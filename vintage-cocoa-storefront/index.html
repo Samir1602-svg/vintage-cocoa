@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
-  <title>VINTAGE COCOA | Handcrafted Luxury Chocolates & Bespoke Gifting</title>
+  <title>VINTAGE COCOA | Taste the Timeless — Artisan Chocolatiers</title>
+  <link rel="icon" type="image/webp" href="./images/vintagecocoa.webp" />
   
-  <!-- Google Fonts: Cormorant Garamond, Playfair Display & Plus Jakarta Sans -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -49,17 +50,12 @@
           },
           animation: {
             'float-slow': 'floatSlow 7s ease-in-out infinite',
-            'shimmer': 'shimmer 3s linear infinite',
             'pulse-glow': 'pulseGlow 4s ease-in-out infinite',
           },
           keyframes: {
             floatSlow: {
               '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
-              '50%': { transform: 'translateY(-12px) rotate(1.5deg)' },
-            },
-            shimmer: {
-              '0%': { backgroundPosition: '-200% 0' },
-              '100%': { backgroundPosition: '200% 0' },
+              '50%': { transform: 'translateY(-10px) rotate(1.5deg)' },
             },
             pulseGlow: {
               '0%, 100%': { opacity: '0.45', transform: 'scale(1)' },
@@ -79,25 +75,34 @@
       width: 100%;
       height: 100%;
       pointer-events: none;
-      z-index: 9999;
-      opacity: 0.03;
+      z-index: 9998;
+      opacity: 0.028;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
     }
 
+    /* Brand Logo Fixed Background Watermark */
+    .brand-watermark {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0.045;
+    }
+    .brand-watermark img {
+      width: min(520px, 72vw);
+      height: auto;
+      object-fit: contain;
+      filter: sepia(30%) contrast(105%);
+    }
+
     /* Custom Scrollbar */
-    ::-webkit-scrollbar {
-      width: 6px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #140C08;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #3E261A;
-      border-radius: 4px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: #C59B27;
-    }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #140C08; }
+    ::-webkit-scrollbar-thumb { background: #3E261A; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #C59B27; }
 
     /* Gold Foil Text Gradient */
     .text-gold-foil {
@@ -118,38 +123,31 @@
       box-shadow: 0 12px 32px -6px rgba(197, 155, 39, 0.45);
     }
 
-    /* Scroll Reveal Animations */
-    .reveal-up {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .reveal-up.is-visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* 3D Perspective Tilt Card (Desktop) */
-    .tilt-stage {
-      perspective: 1200px;
-    }
-    .tilt-card {
-      transform-style: preserve-3d;
-      transition: transform 0.18s ease-out, box-shadow 0.4s ease;
-    }
-
     /* Glassmorphism Panels */
     .glass-dark {
-      background: rgba(20, 12, 8, 0.88);
+      background: rgba(20, 12, 8, 0.92);
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
-      border-bottom: 1px solid rgba(197, 155, 39, 0.18);
+      border-bottom: 1px solid rgba(197, 155, 39, 0.22);
     }
 
     .glass-card-dark {
       background: linear-gradient(145deg, rgba(31, 18, 12, 0.94), rgba(20, 12, 8, 0.98));
       border: 1px solid rgba(197, 155, 39, 0.24);
       box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+    }
+
+    /* Page View Transition */
+    .page-view {
+      display: none;
+      animation: pageFadeIn 0.42s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .page-view.active {
+      display: block;
+    }
+    @keyframes pageFadeIn {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     @keyframes slotPop {
@@ -160,31 +158,28 @@
       animation: slotPop 0.28s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
     }
 
-    /* Hide scrollbar for mobile horizontal filter pills */
-    .no-scrollbar::-webkit-scrollbar {
-      display: none;
-    }
-    .no-scrollbar {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
   </style>
 </head>
-<body class="bg-cream-100 text-espresso-900 font-sans antialiased selection:bg-gold-500 selection:text-espresso-950 overflow-x-hidden pb-20 lg:pb-0">
+<body class="bg-cream-100 text-espresso-900 font-sans antialiased selection:bg-gold-500 selection:text-espresso-950 overflow-x-hidden pb-20 lg:pb-0 flex flex-col min-h-screen">
 
-  <!-- Subtle Tactile Film Grain -->
+  <!-- Subtle Tactile Film Grain & Brand Watermark -->
   <div class="grain-overlay"></div>
+  <div class="brand-watermark" aria-hidden="true">
+    <img src="./images/vintagecocoa.webp" alt="" />
+  </div>
 
   <!-- Toast Notification Container -->
   <div id="toast-container" class="fixed top-24 right-4 left-4 sm:left-auto sm:right-6 z-[100] flex flex-col items-center sm:items-end gap-2.5 pointer-events-none"></div>
 
   <!-- =====================================================================
-       1. LUXURY STICKY GLASS NAVBAR (MOBILE-OPTIMIZED)
+       COMMON STICKY HEADER NAVBAR (ACROSS ALL PAGES)
   ====================================================================== -->
   <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 glass-dark text-cream-100">
     <!-- Top Heritage Announcement Bar -->
     <div class="bg-espresso-950/95 border-b border-gold-500/15 py-1.5 px-3 text-center text-[10px] sm:text-xs tracking-[0.14em] sm:tracking-[0.2em] uppercase text-gold-300/90 truncate">
-      Free Gold Gift Wrap & Shipping Above ₹499 &bull; Code <span class="text-gold-400 font-semibold">ROYAL10</span>
+      Taste the Timeless &bull; Free Gold Gift Wrap & Shipping Above ₹499 &bull; Code <span class="text-gold-400 font-semibold">ROYAL10</span>
     </div>
 
     <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-2">
@@ -193,36 +188,31 @@
         <i data-lucide="menu" class="w-6 h-6"></i>
       </button>
 
-      <!-- Brand Crest & Logo -->
-      <a href="#" class="flex items-center gap-2 sm:gap-3 group min-w-0">
-        <div class="w-9 h-9 sm:w-11 sm:h-11 rounded-full border border-gold-500/50 bg-gradient-to-br from-espresso-800 to-espresso-950 flex items-center justify-center shadow-lg shrink-0">
-          <svg class="w-5 h-5 sm:w-6 sm:h-6 text-gold-400" viewBox="0 0 32 32" fill="none">
-            <path d="M16 3C11.5 7.5 9 12.5 9 17.5C9 22.8 12.2 27 16 29C19.8 27 23 22.8 23 17.5C23 12.5 20.5 7.5 16 3Z" stroke="currentColor" stroke-width="1.6"/>
-            <path d="M16 3V29" stroke="currentColor" stroke-width="1.2" stroke-dasharray="2 2"/>
-            <path d="M12.2 12C13.5 15 13.5 20 12.2 23" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
-            <path d="M19.8 12C18.5 15 18.5 20 19.8 23" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
-            <circle cx="16" cy="17" r="2" fill="currentColor"/>
-          </svg>
+      <!-- Brand Crest & Real Logo -->
+      <button onclick="navigateTo('home')" class="flex items-center gap-2.5 sm:gap-3 group min-w-0 text-left">
+        <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-gold-500/50 bg-cream-50 p-1 flex items-center justify-center shadow-lg shrink-0 overflow-hidden">
+          <img src="./images/vintagecocoa.webp" alt="Vintage Cocoa Official Crest" class="w-full h-full object-contain" />
         </div>
         <div class="flex flex-col truncate">
-          <span class="font-display text-base sm:text-2xl tracking-[0.12em] sm:tracking-[0.16em] font-semibold text-cream-50 leading-none truncate">VINTAGE COCOA</span>
-          <span class="text-[8px] sm:text-[10px] tracking-[0.24em] sm:tracking-[0.32em] uppercase text-gold-400 mt-0.5 sm:mt-1 truncate">Artisan Chocolatiers</span>
+          <span class="font-display text-base sm:text-xl tracking-[0.12em] sm:tracking-[0.16em] font-semibold text-cream-50 leading-none truncate">VINTAGE COCOA</span>
+          <span class="text-[8px] sm:text-[10px] tracking-[0.22em] sm:tracking-[0.28em] uppercase text-gold-400 mt-0.5 sm:mt-1 truncate">Taste the Timeless</span>
         </div>
-      </a>
+      </button>
 
-      <!-- Desktop Navigation Links -->
-      <nav class="hidden lg:flex items-center gap-9 text-sm tracking-[0.12em] uppercase font-medium text-cream-200/90">
-        <a href="#collections" class="hover:text-gold-400 transition-colors py-1">Collections</a>
-        <a href="#box-builder" class="hover:text-gold-400 transition-colors py-1 flex items-center gap-1.5">
+      <!-- Desktop Multi-Page Navigation Links -->
+      <nav class="hidden lg:flex items-center gap-7 text-xs tracking-[0.14em] uppercase font-semibold text-cream-200/85">
+        <button onclick="navigateTo('home')" data-nav="home" class="nav-link py-2 border-b-2 border-gold-400 text-gold-400 transition-all">Home</button>
+        <button onclick="navigateTo('collections')" data-nav="collections" class="nav-link py-2 border-b-2 border-transparent hover:text-gold-400 transition-all">Collections</button>
+        <button onclick="navigateTo('box-builder')" data-nav="box-builder" class="nav-link py-2 border-b-2 border-transparent hover:text-gold-400 transition-all flex items-center gap-1.5">
           <span>Build Your Box</span>
           <span class="px-1.5 py-0.5 text-[9px] bg-gold-500/20 text-gold-300 border border-gold-500/40 rounded-full">Bespoke</span>
-        </a>
-        <a href="#our-craft" class="hover:text-gold-400 transition-colors py-1">Our Craft</a>
-        <a href="#concierge" class="hover:text-gold-400 transition-colors py-1">Gifting Concierge</a>
+        </button>
+        <button onclick="navigateTo('our-story')" data-nav="our-story" class="nav-link py-2 border-b-2 border-transparent hover:text-gold-400 transition-all">Our Story</button>
+        <button onclick="navigateTo('concierge')" data-nav="concierge" class="nav-link py-2 border-b-2 border-transparent hover:text-gold-400 transition-all">Gifting Concierge</button>
       </nav>
 
       <!-- Right Action Controls: Search & Bag -->
-      <div class="flex items-center gap-1.5 sm:gap-4 shrink-0">
+      <div class="flex items-center gap-1.5 sm:gap-3.5 shrink-0">
         <button onclick="openSearchModal()" class="p-2 sm:p-2.5 rounded-full text-cream-200 hover:text-gold-400 active:bg-espresso-800 transition-all" aria-label="Search Chocolates">
           <i data-lucide="search" class="w-5 h-5"></i>
         </button>
@@ -238,493 +228,543 @@
     </div>
 
     <!-- Mobile Navigation Drawer -->
-    <div id="mobile-menu" class="hidden lg:hidden bg-espresso-900 border-t border-gold-500/20 px-5 py-5 space-y-3 shadow-2xl">
-      <a href="#collections" onclick="toggleMobileMenu()" class="block py-2.5 text-sm uppercase tracking-[0.16em] text-cream-100 hover:text-gold-400 border-b border-gold-500/10">Collections</a>
-      <a href="#box-builder" onclick="toggleMobileMenu()" class="block py-2.5 text-sm uppercase tracking-[0.16em] text-gold-400 font-semibold border-b border-gold-500/10">Build Your Box (Bespoke)</a>
-      <a href="#our-craft" onclick="toggleMobileMenu()" class="block py-2.5 text-sm uppercase tracking-[0.16em] text-cream-100 hover:text-gold-400 border-b border-gold-500/10">Our Craft</a>
-      <a href="#concierge" onclick="toggleMobileMenu()" class="block py-2.5 text-sm uppercase tracking-[0.16em] text-cream-100 hover:text-gold-400">Gifting Concierge</a>
+    <div id="mobile-menu" class="hidden lg:hidden bg-espresso-900 border-t border-gold-500/20 px-5 py-4 space-y-1 shadow-2xl">
+      <button onclick="navigateTo('home'); toggleMobileMenu()" data-nav="home" class="mobile-nav-link w-full text-left py-3 text-sm uppercase tracking-[0.16em] text-gold-400 font-semibold border-b border-gold-500/10">Home</button>
+      <button onclick="navigateTo('collections'); toggleMobileMenu()" data-nav="collections" class="mobile-nav-link w-full text-left py-3 text-sm uppercase tracking-[0.16em] text-cream-100 hover:text-gold-400 border-b border-gold-500/10">Collections</button>
+      <button onclick="navigateTo('box-builder'); toggleMobileMenu()" data-nav="box-builder" class="mobile-nav-link w-full text-left py-3 text-sm uppercase tracking-[0.16em] text-cream-100 hover:text-gold-400 border-b border-gold-500/10">Build Your Box (Bespoke)</button>
+      <button onclick="navigateTo('our-story'); toggleMobileMenu()" data-nav="our-story" class="mobile-nav-link w-full text-left py-3 text-sm uppercase tracking-[0.16em] text-cream-100 hover:text-gold-400 border-b border-gold-500/10">Our Story & Impact</button>
+      <button onclick="navigateTo('concierge'); toggleMobileMenu()" data-nav="concierge" class="mobile-nav-link w-full text-left py-3 text-sm uppercase tracking-[0.16em] text-cream-100 hover:text-gold-400">Gifting Concierge</button>
     </div>
   </header>
 
   <!-- =====================================================================
-       2. CINEMATIC HERO SECTION
+       MAIN CONTENT AREA (SEPARATE PAGES SWITCHED DYNAMICALLY)
   ====================================================================== -->
-  <section class="relative min-h-[92vh] pt-28 pb-16 sm:pt-36 sm:pb-24 bg-espresso-900 text-cream-100 overflow-hidden flex items-center">
-    <div class="absolute top-1/4 -left-32 w-[420px] sm:w-[520px] h-[420px] sm:h-[520px] rounded-full bg-gold-500/10 blur-[120px] animate-pulse-glow pointer-events-none"></div>
-    <div class="absolute bottom-10 right-0 w-[380px] sm:w-[480px] h-[380px] sm:h-[480px] rounded-full bg-amber-700/15 blur-[130px] pointer-events-none"></div>
-    <div class="absolute inset-0 opacity-[0.04] pointer-events-none" style="background-image: radial-gradient(#C59B27 1px, transparent 1px); background-size: 32px 32px;"></div>
+  <main class="flex-1 pt-24 sm:pt-28 relative z-10">
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
-        
-        <!-- Left Column: Editorial Typography & Dual CTAs -->
-        <div class="lg:col-span-7 space-y-6 sm:space-y-7 text-center lg:text-left">
-          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-espresso-800/90 border border-gold-500/30 text-gold-300 text-[10px] sm:text-xs tracking-[0.18em] sm:tracking-[0.22em] uppercase">
-            <span class="w-1.5 h-1.5 rounded-full bg-gold-400 animate-ping"></span>
-            Small-Batch Single-Origin Atelier
-          </div>
+    <!-- ===================================================================
+         PAGE 1: HOME PAGE
+    ==================================================================== -->
+    <div id="page-home" class="page-view active">
+      <!-- Hero Banner -->
+      <section class="relative min-h-[84vh] py-12 sm:py-20 bg-espresso-900 text-cream-100 overflow-hidden flex items-center">
+        <div class="absolute top-1/4 -left-32 w-[420px] sm:w-[520px] h-[420px] sm:h-[520px] rounded-full bg-gold-500/10 blur-[120px] animate-pulse-glow pointer-events-none"></div>
+        <div class="absolute bottom-10 right-0 w-[380px] sm:w-[480px] h-[380px] sm:h-[480px] rounded-full bg-amber-700/15 blur-[130px] pointer-events-none"></div>
 
-          <h1 class="font-serif text-4xl sm:text-6xl lg:text-7xl xl:text-[5.2rem] font-medium leading-[1.06] tracking-tight text-cream-50">
-            Handcrafted <br class="hidden sm:inline" />
-            <span class="italic font-normal text-gold-foil">Elegance</span> in <br class="hidden sm:inline" />
-            Every Bite.
-          </h1>
-
-          <p class="text-cream-200/80 text-sm sm:text-lg max-w-xl mx-auto lg:mx-0 leading-relaxed font-light px-2 sm:px-0">
-            Stone-conched for 48 hours using pure single-origin cocoa butter, roasted Piedmont hazelnuts, and 24K edible gold leaf. Crafted for connoisseurs and unforgettable gifting.
-          </p>
-
-          <!-- Dual CTAs -->
-          <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3.5 pt-1">
-            <a href="#collections" class="btn-gold-shimmer w-full sm:w-auto px-7 py-4 rounded-full text-espresso-950 font-bold text-xs sm:text-sm tracking-[0.14em] uppercase flex items-center justify-center gap-2.5 shadow-xl">
-              <span>Explore Collection</span>
-              <i data-lucide="arrow-right" class="w-4 h-4"></i>
-            </a>
-            <a href="#box-builder" class="w-full sm:w-auto px-7 py-4 rounded-full bg-espresso-800/80 hover:bg-espresso-800 text-cream-100 border border-gold-500/40 hover:border-gold-400 font-medium text-xs sm:text-sm tracking-[0.14em] uppercase flex items-center justify-center gap-2.5 transition-all duration-300">
-              <i data-lucide="sparkles" class="w-4 h-4 text-gold-400"></i>
-              <span>Build Custom Gift Box</span>
-            </a>
-          </div>
-
-          <!-- Trust Badges -->
-          <div class="grid grid-cols-3 gap-2 sm:gap-4 pt-6 border-t border-gold-500/15 max-w-xl mx-auto lg:mx-0">
-            <div class="flex flex-col sm:flex-row items-center lg:items-start gap-2 text-center sm:text-left">
-              <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-espresso-800 border border-gold-500/25 flex items-center justify-center shrink-0 text-gold-400">
-                <i data-lucide="award" class="w-4 h-4"></i>
-              </div>
-              <div>
-                <p class="text-[11px] sm:text-xs font-semibold text-cream-100">100% Pure Cocoa</p>
-                <p class="text-[10px] text-cream-300/60 hidden sm:block">Zero vegetable oils</p>
-              </div>
-            </div>
-            <div class="flex flex-col sm:flex-row items-center lg:items-start gap-2 text-center sm:text-left">
-              <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-espresso-800 border border-gold-500/25 flex items-center justify-center shrink-0 text-gold-400">
-                <i data-lucide="hand-heart" class="w-4 h-4"></i>
-              </div>
-              <div>
-                <p class="text-[11px] sm:text-xs font-semibold text-cream-100">Hand-Tempered</p>
-                <p class="text-[10px] text-cream-300/60 hidden sm:block">Artisan small batches</p>
-              </div>
-            </div>
-            <div class="flex flex-col sm:flex-row items-center lg:items-start gap-2 text-center sm:text-left">
-              <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-espresso-800 border border-gold-500/25 flex items-center justify-center shrink-0 text-gold-400">
-                <i data-lucide="truck" class="w-4 h-4"></i>
-              </div>
-              <div>
-                <p class="text-[11px] sm:text-xs font-semibold text-cream-100">Chilled Dispatch</p>
-                <p class="text-[10px] text-cream-300/60 hidden sm:block">Insulated luxury boxes</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Right Column: Featured Spotlight Card (Live Synced with Sheet) -->
-        <div class="lg:col-span-5 tilt-stage flex justify-center">
-          <div id="hero-tilt-card" class="tilt-card relative w-full max-w-md rounded-3xl p-4 sm:p-7 glass-card-dark">
-            <div class="absolute top-3 left-3 w-5 h-5 border-t-2 border-l-2 border-gold-500/50 rounded-tl-xl pointer-events-none"></div>
-            <div class="absolute top-3 right-3 w-5 h-5 border-t-2 border-r-2 border-gold-500/50 rounded-tr-xl pointer-events-none"></div>
-            <div class="absolute bottom-3 left-3 w-5 h-5 border-b-2 border-l-2 border-gold-500/50 rounded-bl-xl pointer-events-none"></div>
-            <div class="absolute bottom-3 right-3 w-5 h-5 border-b-2 border-r-2 border-gold-500/50 rounded-br-xl pointer-events-none"></div>
-
-            <div id="hero-spotlight-container" class="relative rounded-2xl overflow-hidden aspect-[4/5] bg-gradient-to-b from-espresso-800 to-espresso-950 border border-gold-500/20 shadow-2xl group">
-              <img 
-                id="hero-spotlight-img"
-                src="https://images.unsplash.com/photo-1549007994-cb92caebd54b?auto=format&fit=crop&w=900&q=85" 
-                onerror="this.src='https://placehold.co/600x750/1F120C/E5C158?text=Vintage+Cocoa+Reserve'"
-                alt="Vintage Cocoa Signature Artisan Assortment" 
-                class="w-full h-full object-cover object-center opacity-85 group-hover:scale-105 transition-transform duration-700"
-              />
-              <div class="absolute inset-0 bg-gradient-to-t from-espresso-950 via-espresso-950/35 to-transparent"></div>
-
-              <!-- Floating Wax Seal Emblem -->
-              <div class="absolute top-3.5 right-3.5 w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-gold-300 via-gold-500 to-gold-700 p-1 shadow-xl animate-float-slow flex items-center justify-center">
-                <div class="w-full h-full rounded-full border border-espresso-950/40 flex flex-col items-center justify-center text-center px-1">
-                  <span class="text-[7px] sm:text-[8px] font-bold tracking-[0.16em] uppercase text-espresso-950">EST. 2024</span>
-                  <span class="font-serif font-bold text-[10px] sm:text-xs leading-tight text-espresso-950">VINTAGE<br/>COCOA</span>
-                  <span class="text-[6px] sm:text-[7px] uppercase tracking-widest text-espresso-950/80">100% PURE</span>
-                </div>
-              </div>
-
-              <!-- Bottom Overlay Tasting Card -->
-              <div class="absolute bottom-3.5 left-3.5 right-3.5 p-3.5 sm:p-4 rounded-2xl bg-espresso-950/90 backdrop-blur-md border border-gold-500/30">
-                <div class="flex items-center justify-between gap-2">
-                  <div class="min-w-0">
-                    <span id="hero-spotlight-badge" class="text-[9px] sm:text-[10px] uppercase tracking-[0.2em] text-gold-400 block truncate">Limited Edition Reserve</span>
-                    <h3 id="hero-spotlight-title" class="font-serif text-lg sm:text-xl text-cream-50 font-semibold truncate">Signature Combo of 5</h3>
-                  </div>
-                  <span id="hero-spotlight-price" class="font-serif text-xl font-bold text-gold-400 shrink-0">₹150</span>
-                </div>
-                <p id="hero-spotlight-sub" class="text-xs text-cream-200/75 mt-1 truncate">Coffee Ganache, White Marble, Roasted Almonds & Crackles</p>
-                <button id="hero-spotlight-btn" onclick="addFirstProductToCart()" class="mt-3 w-full py-2.5 rounded-xl bg-gold-500/20 hover:bg-gold-500 active:bg-gold-500 text-gold-300 hover:text-espresso-950 active:text-espresso-950 border border-gold-500/40 text-xs font-semibold uppercase tracking-[0.15em] transition-all duration-300 flex items-center justify-center gap-2">
-                  <i data-lucide="plus" class="w-3.5 h-3.5"></i>
-                  <span>Add Signature Box to Bag</span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- =====================================================================
-       3. LIVE GOOGLE SHEETS PRODUCT COLLECTION & FILTER SHOWCASE
-  ====================================================================== -->
-  <section id="collections" class="py-16 sm:py-24 bg-cream-100 relative">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <!-- Section Header -->
-      <div class="text-center max-w-3xl mx-auto space-y-3 sm:space-y-4 reveal-up">
-        <div class="inline-flex items-center gap-2 text-xs font-semibold tracking-[0.24em] uppercase text-gold-600">
-          <span>Curated Creations</span>
-          <span id="live-sync-dot" class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" title="Live Catalog Synced"></span>
-        </div>
-        <h2 class="font-serif text-3xl sm:text-5xl font-semibold text-espresso-900">
-          The Artisanal <span class="italic font-normal text-gold-600">Collection</span>
-        </h2>
-        <p class="text-espresso-700/80 text-xs sm:text-base leading-relaxed">
-          Every confection is hand-poured in small batches, free from artificial preservatives, and presented in keepsake packaging worthy of royalty.
-        </p>
-      </div>
-
-      <!-- Mobile-Friendly Horizontal Scrollable Category Filter Tabs -->
-      <div class="flex items-center justify-start sm:justify-center gap-2.5 overflow-x-auto no-scrollbar py-2 mt-8 mb-10 sm:mt-10 sm:mb-14 reveal-up" id="filter-tabs">
-        <button data-filter="all" class="filter-btn active shrink-0 px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold tracking-wider uppercase transition-all duration-300 bg-espresso-900 text-gold-400 border border-espresso-900 shadow-md">
-          All Creations
-        </button>
-        <button data-filter="boxes" class="filter-btn shrink-0 px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold tracking-wider uppercase transition-all duration-300 bg-cream-200/80 text-espresso-800 hover:bg-espresso-900/10 border border-espresso-900/15">
-          Luxury Boxes
-        </button>
-        <button data-filter="jars" class="filter-btn shrink-0 px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold tracking-wider uppercase transition-all duration-300 bg-cream-200/80 text-espresso-800 hover:bg-espresso-900/10 border border-espresso-900/15">
-          Artisan Jars
-        </button>
-        <button data-filter="bars" class="filter-btn shrink-0 px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold tracking-wider uppercase transition-all duration-300 bg-cream-200/80 text-espresso-800 hover:bg-espresso-900/10 border border-espresso-900/15">
-          Protein & Bars
-        </button>
-      </div>
-
-      <!-- Loading Skeleton / Live Product Grid -->
-      <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-        <!-- Live products from Google Sheet injected here -->
-      </div>
-
-    </div>
-  </section>
-
-  <!-- =====================================================================
-       4. INTERACTIVE 'BUILD YOUR OWN LUXURY BOX' CUSTOMIZER
-  ====================================================================== -->
-  <section id="box-builder" class="py-16 sm:py-24 bg-espresso-900 text-cream-100 relative overflow-hidden">
-    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[750px] h-[350px] bg-gold-500/10 blur-[140px] pointer-events-none"></div>
-
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <div class="text-center max-w-3xl mx-auto space-y-3 sm:space-y-4 mb-10 sm:mb-14 reveal-up">
-        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-gold-500/15 border border-gold-500/30 text-gold-300 text-[11px] sm:text-xs tracking-[0.2em] uppercase">
-          <i data-lucide="gift" class="w-3.5 h-3.5"></i>
-          Bespoke Atelier Experience
-        </div>
-        <h2 class="font-serif text-3xl sm:text-5xl font-semibold text-cream-50">
-          Curate Your <span class="italic font-normal text-gold-foil">Signature Gift Box</span>
-        </h2>
-        <p class="text-cream-200/75 text-xs sm:text-base">
-          Select your keepsake box size, hand-pick individual artisan pralines to fill each velvet slot, and add a gold-embossed personal note.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-10 items-start">
-        
-        <!-- Left Controls: Step 1 (Box Size) & Step 2 (Flavor Palette) -->
-        <div class="lg:col-span-6 space-y-6 sm:space-y-8">
-          
-          <!-- Step 1: Select Box Size -->
-          <div class="p-5 sm:p-6 rounded-3xl glass-card-dark space-y-4">
-            <div class="flex items-center justify-between">
-              <span class="text-[11px] sm:text-xs font-bold tracking-[0.18em] uppercase text-gold-400">Step 01 &bull; Choose Box Size</span>
-              <span id="selected-box-price-badge" class="text-sm font-serif font-bold text-gold-300">₹150</span>
-            </div>
-            <div class="grid grid-cols-3 gap-2.5 sm:gap-3" id="box-size-options">
-              <button onclick="selectBoxSize(5, 150, '5-Piece Signature Strip')" data-size="5" class="box-size-btn active p-3 sm:p-3.5 rounded-2xl border-2 border-gold-400 bg-espresso-800 text-left transition-all">
-                <p class="font-serif text-base sm:text-lg font-semibold text-cream-50">5 Pcs</p>
-                <p class="text-[10px] sm:text-[11px] text-cream-300/70 truncate">Signature Strip</p>
-                <p class="text-xs font-bold text-gold-400 mt-1">₹150</p>
-              </button>
-              <button onclick="selectBoxSize(9, 250, '9-Piece Royal Heart Box')" data-size="9" class="box-size-btn p-3 sm:p-3.5 rounded-2xl border border-gold-500/25 bg-espresso-950/60 hover:border-gold-500/60 text-left transition-all">
-                <p class="font-serif text-base sm:text-lg font-semibold text-cream-50">9 Pcs</p>
-                <p class="text-[10px] sm:text-[11px] text-cream-300/70 truncate">Royal Heart Box</p>
-                <p class="text-xs font-bold text-gold-400 mt-1">₹250</p>
-              </button>
-              <button onclick="selectBoxSize(12, 340, '12-Piece Collector Trunk')" data-size="12" class="box-size-btn p-3 sm:p-3.5 rounded-2xl border border-gold-500/25 bg-espresso-950/60 hover:border-gold-500/60 text-left transition-all">
-                <p class="font-serif text-base sm:text-lg font-semibold text-cream-50">12 Pcs</p>
-                <p class="text-[10px] sm:text-[11px] text-cream-300/70 truncate">Collector Trunk</p>
-                <p class="text-xs font-bold text-gold-400 mt-1">₹340</p>
-              </button>
-            </div>
-          </div>
-
-          <!-- Step 2: Select Chocolates to Fill Slots -->
-          <div class="p-5 sm:p-6 rounded-3xl glass-card-dark space-y-4">
-            <div class="flex items-center justify-between gap-2">
-              <span class="text-[11px] sm:text-xs font-bold tracking-[0.18em] uppercase text-gold-400">Step 02 &bull; Tap Flavors</span>
-              <button onclick="autoFillBox()" class="text-xs text-gold-300 hover:text-gold-400 underline underline-offset-4 flex items-center gap-1 shrink-0">
-                <i data-lucide="wand-2" class="w-3.5 h-3.5"></i>
-                <span>Auto-Fill Chef Mix</span>
-              </button>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3" id="flavor-palette">
-              <!-- Flavors injected by JS -->
-            </div>
-          </div>
-
-        </div>
-
-        <!-- Right Interactive Stage: Live Visual Velvet Chocolate Box -->
-        <div class="lg:col-span-6">
-          <div class="p-5 sm:p-8 rounded-3xl bg-gradient-to-br from-espresso-800 via-espresso-900 to-espresso-950 border-2 border-gold-500/40 shadow-2xl space-y-5 sm:space-y-6 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
             
-            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-gold-500/20 pb-4">
-              <div>
-                <span class="text-[10px] tracking-[0.25em] uppercase text-gold-400">Live Preview</span>
-                <h3 id="builder-box-title" class="font-serif text-xl sm:text-2xl font-semibold text-cream-50">5-Piece Signature Strip</h3>
+            <!-- Left Editorial Typography -->
+            <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+              <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-espresso-800/90 border border-gold-500/30 text-gold-300 text-[10px] sm:text-xs tracking-[0.18em] sm:tracking-[0.22em] uppercase">
+                <span class="w-1.5 h-1.5 rounded-full bg-gold-400 animate-ping"></span>
+                Small-Batch Handcrafted Atelier
               </div>
-              <div class="flex items-center gap-3">
-                <span id="slot-counter" class="px-3 py-1 rounded-full bg-gold-500/20 border border-gold-500/40 text-xs font-semibold text-gold-300">
-                  0 / 5 Filled
-                </span>
-                <button onclick="clearBoxSlots()" class="text-xs text-cream-300/60 hover:text-red-400 transition px-2 py-1">
-                  Reset
-                </button>
-              </div>
-            </div>
 
-            <!-- Interactive Velvet Tray Grid -->
-            <div class="p-4 sm:p-6 rounded-2xl bg-espresso-950/90 border border-gold-500/25 shadow-inner">
-              <div id="velvet-tray" class="grid grid-cols-5 gap-2.5 sm:gap-4 justify-items-center">
-                <!-- Slots rendered dynamically -->
-              </div>
-              <p class="text-center text-[11px] text-cream-300/50 mt-4">
-                Tap any filled praline above to remove it.
+              <h1 class="font-serif text-4xl sm:text-6xl lg:text-7xl font-medium leading-[1.06] tracking-tight text-cream-50">
+                Handcrafted <br class="hidden sm:inline" />
+                <span class="italic font-normal text-gold-foil">Elegance</span> in <br class="hidden sm:inline" />
+                Every Bite.
+              </h1>
+
+              <p class="text-cream-200/80 text-sm sm:text-lg max-w-xl mx-auto lg:mx-0 leading-relaxed font-light">
+                100% handmade chocolates crafted in small batches by women artisans using pure cocoa butter, roasted nuts, and timeless recipes. Taste the timeless in every box.
               </p>
+
+              <!-- Dual Page Navigation CTAs -->
+              <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3.5 pt-1">
+                <button onclick="navigateTo('collections')" class="btn-gold-shimmer w-full sm:w-auto px-7 py-4 rounded-full text-espresso-950 font-bold text-xs sm:text-sm tracking-[0.14em] uppercase flex items-center justify-center gap-2.5 shadow-xl">
+                  <span>Shop Full Collection</span>
+                  <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </button>
+                <button onclick="navigateTo('box-builder')" class="w-full sm:w-auto px-7 py-4 rounded-full bg-espresso-800/80 hover:bg-espresso-800 text-cream-100 border border-gold-500/40 hover:border-gold-400 font-medium text-xs sm:text-sm tracking-[0.14em] uppercase flex items-center justify-center gap-2.5 transition-all duration-300">
+                  <i data-lucide="sparkles" class="w-4 h-4 text-gold-400"></i>
+                  <span>Build Custom Gift Box</span>
+                </button>
+              </div>
+
+              <!-- Brand Pillars -->
+              <div class="grid grid-cols-3 gap-2 sm:gap-4 pt-6 border-t border-gold-500/15 max-w-xl mx-auto lg:mx-0">
+                <div class="flex flex-col sm:flex-row items-center lg:items-start gap-2 text-center sm:text-left">
+                  <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-espresso-800 border border-gold-500/25 flex items-center justify-center shrink-0 text-gold-400">
+                    <i data-lucide="award" class="w-4 h-4"></i>
+                  </div>
+                  <div>
+                    <p class="text-[11px] sm:text-xs font-semibold text-cream-100">100% Handmade</p>
+                    <p class="text-[10px] text-cream-300/60 hidden sm:block">Pure cocoa butter</p>
+                  </div>
+                </div>
+                <div class="flex flex-col sm:flex-row items-center lg:items-start gap-2 text-center sm:text-left">
+                  <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-espresso-800 border border-gold-500/25 flex items-center justify-center shrink-0 text-gold-400">
+                    <i data-lucide="heart-handshake" class="w-4 h-4"></i>
+                  </div>
+                  <div>
+                    <p class="text-[11px] sm:text-xs font-semibold text-cream-100">Women-Led Craft</p>
+                    <p class="text-[10px] text-cream-300/60 hidden sm:block">Empowering livelihoods</p>
+                  </div>
+                </div>
+                <div class="flex flex-col sm:flex-row items-center lg:items-start gap-2 text-center sm:text-left">
+                  <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-espresso-800 border border-gold-500/25 flex items-center justify-center shrink-0 text-gold-400">
+                    <i data-lucide="truck" class="w-4 h-4"></i>
+                  </div>
+                  <div>
+                    <p class="text-[11px] sm:text-xs font-semibold text-cream-100">Chilled Dispatch</p>
+                    <p class="text-[10px] text-cream-300/60 hidden sm:block">Insulated luxury boxes</p>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <!-- Step 3: Gold-Embossed Gift Card Note -->
-            <div class="space-y-2">
-              <label for="gift-note-input" class="block text-[11px] sm:text-xs font-bold tracking-[0.16em] uppercase text-gold-400">
-                Step 03 &bull; Gold-Foil Gift Note (Optional)
-              </label>
-              <input 
-                type="text" 
-                id="gift-note-input" 
-                maxlength="80"
-                placeholder="e.g., Happy Anniversary My Love — Forever Sweet..."
-                class="w-full px-4 py-3 rounded-xl bg-espresso-950/80 border border-gold-500/30 focus:border-gold-400 focus:outline-none text-sm text-cream-100 placeholder:text-cream-300/35"
+            <!-- Right Column: Real Brand Photo Showcase with Official Logo Crest -->
+            <div class="lg:col-span-5 tilt-stage flex justify-center">
+              <div id="hero-tilt-card" class="tilt-card relative w-full max-w-md rounded-3xl p-4 sm:p-6 glass-card-dark">
+                <div class="relative rounded-2xl overflow-hidden aspect-[4/5] bg-espresso-950 border border-gold-500/25 shadow-2xl group">
+                  <img 
+                    src="./images/coco.jpg" 
+                    onerror="this.src='https://images.unsplash.com/photo-1549007994-cb92caebd54b?auto=format&fit=crop&w=900&q=85'"
+                    alt="Vintage Cocoa Handcrafted Heart Chocolate Box" 
+                    class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-espresso-950 via-espresso-950/25 to-transparent"></div>
+
+                  <!-- Official Brand Logo Crest Badge -->
+                  <div class="absolute top-3.5 right-3.5 w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-cream-50/95 p-1.5 shadow-2xl border-2 border-gold-500 animate-float-slow flex items-center justify-center">
+                    <img src="./images/vintagecocoa.webp" alt="Vintage Cocoa Crest" class="w-full h-full object-contain" />
+                  </div>
+
+                  <!-- Bottom Overlay Card -->
+                  <div class="absolute bottom-3.5 left-3.5 right-3.5 p-4 rounded-2xl bg-espresso-950/90 backdrop-blur-md border border-gold-500/30">
+                    <div class="flex items-center justify-between gap-2">
+                      <div class="min-w-0">
+                        <span id="hero-spotlight-badge" class="text-[9px] sm:text-[10px] uppercase tracking-[0.2em] text-gold-400 block truncate">Signature Gift Edition</span>
+                        <h3 id="hero-spotlight-title" class="font-serif text-lg sm:text-xl text-cream-50 font-semibold truncate">Heart Pack — 9 Royal Pralines</h3>
+                      </div>
+                      <span id="hero-spotlight-price" class="font-serif text-xl font-bold text-gold-400 shrink-0">₹250</span>
+                    </div>
+                    <p id="hero-spotlight-sub" class="text-xs text-cream-200/75 mt-1 truncate">Hand-molded crimson & white marble chocolate hearts</p>
+                    <button onclick="addFirstProductToCart()" class="mt-3 w-full py-2.5 rounded-xl bg-gold-500/20 hover:bg-gold-500 text-gold-300 hover:text-espresso-950 border border-gold-500/40 text-xs font-semibold uppercase tracking-[0.15em] transition-all duration-300 flex items-center justify-center gap-2">
+                      <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+                      <span>Add Signature Box to Bag</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- Home Page Section 2: Featured Creations Preview -->
+      <section class="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
+          <div>
+            <span class="text-xs font-semibold tracking-[0.24em] uppercase text-gold-600">Curated Highlights</span>
+            <h2 class="font-serif text-3xl sm:text-5xl font-semibold text-espresso-900 mt-1">
+              Signature <span class="italic font-normal text-gold-600">Bestsellers</span>
+            </h2>
+          </div>
+          <button onclick="navigateTo('collections')" class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-espresso-900 hover:text-gold-700 border-b border-espresso-900 pb-1 self-start sm:self-auto">
+            <span>View All Creations</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+
+        <div id="home-featured-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          <!-- Top 3 featured products injected dynamically -->
+        </div>
+      </section>
+
+      <!-- Home Page Section 3: Brand Story Teaser Banner -->
+      <section class="py-14 sm:py-20 bg-cream-200/75 border-t border-espresso-900/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div class="lg:col-span-5">
+              <div class="rounded-3xl overflow-hidden shadow-xl border border-gold-500/30 aspect-[4/3]">
+                <img src="./images/female-owner.jpg" onerror="this.src='https://placehold.co/600x450/2D1B12/E5C158?text=Vintage+Cocoa+Artisans'" alt="Vintage Cocoa Women Artisans" class="w-full h-full object-cover" />
+              </div>
+            </div>
+            <div class="lg:col-span-7 space-y-4">
+              <span class="text-xs font-semibold tracking-[0.24em] uppercase text-gold-600">Purpose Beyond Chocolate</span>
+              <h2 class="font-serif text-3xl sm:text-4xl font-semibold text-espresso-900 leading-tight">
+                “Empowering Women, <span class="italic font-normal text-gold-600">One Opportunity at a Time.</span>”
+              </h2>
+              <p class="text-sm sm:text-base text-espresso-700/85 leading-relaxed">
+                Every box of Vintage Cocoa supports local women artisans with dignified employment, financial independence, and a share of our revenue dedicated to uplifting women in need.
+              </p>
+              <div class="pt-2">
+                <button onclick="navigateTo('our-story')" class="px-7 py-3.5 rounded-full bg-espresso-900 text-gold-400 hover:bg-espresso-800 text-xs font-bold uppercase tracking-[0.16em] inline-flex items-center gap-2 shadow-md transition">
+                  <span>Read Our Full Story</span>
+                  <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ===================================================================
+         PAGE 2: COLLECTIONS PAGE (LIVE GOOGLE SHEETS CATALOG)
+    ==================================================================== -->
+    <div id="page-collections" class="page-view">
+      <section class="py-12 sm:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Page Header -->
+        <div class="text-center max-w-3xl mx-auto space-y-3 sm:space-y-4">
+          <div class="inline-flex items-center gap-2 text-xs font-semibold tracking-[0.24em] uppercase text-gold-600">
+            <span>Live Atelier Catalog</span>
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" title="Live Synced"></span>
+          </div>
+          <h1 class="font-serif text-4xl sm:text-5xl font-semibold text-espresso-900">
+            The Artisanal <span class="italic font-normal text-gold-600">Collection</span>
+          </h1>
+          <p class="text-espresso-700/80 text-xs sm:text-base leading-relaxed">
+            Explore our complete range of small-batch handcrafted chocolates, gift assortments, apothecary jars, and protein bars.
+          </p>
+        </div>
+
+        <!-- Category Filter Pills -->
+        <div class="flex items-center justify-start sm:justify-center gap-2.5 overflow-x-auto no-scrollbar py-2 mt-8 mb-10" id="filter-tabs">
+          <button data-filter="all" class="filter-btn active shrink-0 px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold tracking-wider uppercase transition-all duration-300 bg-espresso-900 text-gold-400 border border-espresso-900 shadow-md">
+            All Creations
+          </button>
+          <button data-filter="boxes" class="filter-btn shrink-0 px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold tracking-wider uppercase transition-all duration-300 bg-cream-200/80 text-espresso-800 hover:bg-espresso-900/10 border border-espresso-900/15">
+            Luxury Boxes
+          </button>
+          <button data-filter="jars" class="filter-btn shrink-0 px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold tracking-wider uppercase transition-all duration-300 bg-cream-200/80 text-espresso-800 hover:bg-espresso-900/10 border border-espresso-900/15">
+            Artisan Jars
+          </button>
+          <button data-filter="bars" class="filter-btn shrink-0 px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold tracking-wider uppercase transition-all duration-300 bg-cream-200/80 text-espresso-800 hover:bg-espresso-900/10 border border-espresso-900/15">
+            Protein & Bars
+          </button>
+        </div>
+
+        <!-- Full Product Grid -->
+        <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          <!-- Injected from Google Sheet -->
+        </div>
+      </section>
+    </div>
+
+    <!-- ===================================================================
+         PAGE 3: BUILD YOUR BOX PAGE (BESPOKE CUSTOMIZER)
+    ==================================================================== -->
+    <div id="page-box-builder" class="page-view">
+      <section class="py-12 sm:py-16 bg-espresso-900 text-cream-100 min-h-[82vh] relative overflow-hidden">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[750px] h-[350px] bg-gold-500/10 blur-[140px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div class="text-center max-w-3xl mx-auto space-y-3 sm:space-y-4 mb-10 sm:mb-14">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-gold-500/15 border border-gold-500/30 text-gold-300 text-[11px] sm:text-xs tracking-[0.2em] uppercase">
+              <i data-lucide="gift" class="w-3.5 h-3.5"></i>
+              Bespoke Atelier Experience
+            </div>
+            <h1 class="font-serif text-3xl sm:text-5xl font-semibold text-cream-50">
+              Curate Your <span class="italic font-normal text-gold-foil">Signature Gift Box</span>
+            </h1>
+            <p class="text-cream-200/75 text-xs sm:text-base">
+              Select your keepsake box size, hand-pick individual artisan pralines to fill each velvet slot, and add a gold-embossed personal note.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-10 items-start">
+            <!-- Left Controls -->
+            <div class="lg:col-span-6 space-y-6">
+              <div class="p-5 sm:p-6 rounded-3xl glass-card-dark space-y-4">
+                <div class="flex items-center justify-between">
+                  <span class="text-[11px] sm:text-xs font-bold tracking-[0.18em] uppercase text-gold-400">Step 01 &bull; Choose Box Size</span>
+                  <span id="selected-box-price-badge" class="text-sm font-serif font-bold text-gold-300">₹150</span>
+                </div>
+                <div class="grid grid-cols-3 gap-2.5 sm:gap-3" id="box-size-options">
+                  <button onclick="selectBoxSize(5, 150, '5-Piece Signature Strip')" data-size="5" class="box-size-btn active p-3 sm:p-3.5 rounded-2xl border-2 border-gold-400 bg-espresso-800 text-left transition-all">
+                    <p class="font-serif text-base sm:text-lg font-semibold text-cream-50">5 Pcs</p>
+                    <p class="text-[10px] sm:text-[11px] text-cream-300/70 truncate">Signature Strip</p>
+                    <p class="text-xs font-bold text-gold-400 mt-1">₹150</p>
+                  </button>
+                  <button onclick="selectBoxSize(9, 250, '9-Piece Royal Heart Box')" data-size="9" class="box-size-btn p-3 sm:p-3.5 rounded-2xl border border-gold-500/25 bg-espresso-950/60 hover:border-gold-500/60 text-left transition-all">
+                    <p class="font-serif text-base sm:text-lg font-semibold text-cream-50">9 Pcs</p>
+                    <p class="text-[10px] sm:text-[11px] text-cream-300/70 truncate">Royal Heart Box</p>
+                    <p class="text-xs font-bold text-gold-400 mt-1">₹250</p>
+                  </button>
+                  <button onclick="selectBoxSize(12, 340, '12-Piece Collector Trunk')" data-size="12" class="box-size-btn p-3 sm:p-3.5 rounded-2xl border border-gold-500/25 bg-espresso-950/60 hover:border-gold-500/60 text-left transition-all">
+                    <p class="font-serif text-base sm:text-lg font-semibold text-cream-50">12 Pcs</p>
+                    <p class="text-[10px] sm:text-[11px] text-cream-300/70 truncate">Collector Trunk</p>
+                    <p class="text-xs font-bold text-gold-400 mt-1">₹340</p>
+                  </button>
+                </div>
+              </div>
+
+              <div class="p-5 sm:p-6 rounded-3xl glass-card-dark space-y-4">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="text-[11px] sm:text-xs font-bold tracking-[0.18em] uppercase text-gold-400">Step 02 &bull; Tap Flavors</span>
+                  <button onclick="autoFillBox()" class="text-xs text-gold-300 hover:text-gold-400 underline underline-offset-4 flex items-center gap-1 shrink-0">
+                    <i data-lucide="wand-2" class="w-3.5 h-3.5"></i>
+                    <span>Auto-Fill Chef Mix</span>
+                  </button>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3" id="flavor-palette"></div>
+              </div>
+            </div>
+
+            <!-- Right Live Preview -->
+            <div class="lg:col-span-6">
+              <div class="p-5 sm:p-8 rounded-3xl bg-gradient-to-br from-espresso-800 via-espresso-900 to-espresso-950 border-2 border-gold-500/40 shadow-2xl space-y-5 sm:space-y-6">
+                <div class="flex flex-wrap items-center justify-between gap-2 border-b border-gold-500/20 pb-4">
+                  <div>
+                    <span class="text-[10px] tracking-[0.25em] uppercase text-gold-400">Live Preview</span>
+                    <h3 id="builder-box-title" class="font-serif text-xl sm:text-2xl font-semibold text-cream-50">5-Piece Signature Strip</h3>
+                  </div>
+                  <div class="flex items-center gap-3">
+                    <span id="slot-counter" class="px-3 py-1 rounded-full bg-gold-500/20 border border-gold-500/40 text-xs font-semibold text-gold-300">0 / 5 Filled</span>
+                    <button onclick="clearBoxSlots()" class="text-xs text-cream-300/60 hover:text-red-400 transition px-2 py-1">Reset</button>
+                  </div>
+                </div>
+
+                <div class="p-4 sm:p-6 rounded-2xl bg-espresso-950/90 border border-gold-500/25 shadow-inner">
+                  <div id="velvet-tray" class="grid grid-cols-5 gap-2.5 sm:gap-4 justify-items-center"></div>
+                  <p class="text-center text-[11px] text-cream-300/50 mt-4">Tap any filled praline above to remove it.</p>
+                </div>
+
+                <div class="space-y-2">
+                  <label for="gift-note-input" class="block text-[11px] sm:text-xs font-bold tracking-[0.16em] uppercase text-gold-400">
+                    Step 03 &bull; Gold-Foil Gift Note (Optional)
+                  </label>
+                  <input type="text" id="gift-note-input" maxlength="80" placeholder="e.g., Happy Anniversary My Love — Forever Sweet..." class="w-full px-4 py-3 rounded-xl bg-espresso-950/80 border border-gold-500/30 focus:border-gold-400 focus:outline-none text-sm text-cream-100 placeholder:text-cream-300/35" />
+                </div>
+
+                <button id="add-custom-box-btn" onclick="addCustomBoxToCart()" class="btn-gold-shimmer w-full py-4 rounded-2xl text-espresso-950 font-bold text-xs sm:text-sm tracking-[0.14em] uppercase flex items-center justify-center gap-2.5 shadow-xl">
+                  <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+                  <span id="add-custom-box-label">Select 5 More Pralines to Complete Box</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ===================================================================
+         PAGE 4: OUR STORY & WOMEN EMPOWERMENT PAGE (FROM YOUR SCREENSHOT & PICS)
+    ==================================================================== -->
+    <div id="page-our-story" class="page-view">
+      <section class="py-12 sm:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+        
+        <!-- Story Header with Brand Crest -->
+        <div class="text-center max-w-3xl mx-auto space-y-4">
+          <img src="./images/vintagecocoa.webp" alt="Vintage Cocoa Emblem" class="w-24 h-24 sm:w-28 sm:h-28 mx-auto object-contain" />
+          <span class="text-xs font-semibold tracking-[0.26em] uppercase text-gold-600 block">Heritage & Social Impact</span>
+          <h1 class="font-serif text-4xl sm:text-5xl font-semibold text-espresso-900">
+            The Heart Behind <span class="italic font-normal text-gold-600">Vintage Cocoa</span>
+          </h1>
+          <p class="text-espresso-700/85 text-sm sm:text-base leading-relaxed">
+            Born from a vision to craft pure, timeless artisanal chocolates while creating sustainable livelihoods and dignity for local women artisans.
+          </p>
+        </div>
+
+        <!-- 3-Column Editorial Story Grid (Matching Your Screenshot Layout) -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+          
+          <!-- Card 1: Male Founder & Women Artisans -->
+          <article class="rounded-3xl bg-cream-50 border border-espresso-900/10 overflow-hidden shadow-lg flex flex-col">
+            <div class="aspect-[4/3] overflow-hidden bg-espresso-900">
+              <img 
+                src="./images/male-owner.jpg" 
+                onerror="this.src='https://placehold.co/600x450/1F120C/E5C158?text=Growing+Together'"
+                alt="Growing Together Building Stronger Futures" 
+                class="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-700"
               />
             </div>
-
-            <!-- Add Custom Box to Bag CTA -->
-            <button id="add-custom-box-btn" onclick="addCustomBoxToCart()" class="btn-gold-shimmer w-full py-4 rounded-2xl text-espresso-950 font-bold text-xs sm:text-sm tracking-[0.14em] uppercase flex items-center justify-center gap-2.5 shadow-xl">
-              <i data-lucide="shopping-bag" class="w-4 h-4"></i>
-              <span id="add-custom-box-label">Select 5 More Pralines to Complete Box</span>
-            </button>
-
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- =====================================================================
-       5. 'OUR CRAFT & BEAN-TO-BAR STORY' SECTION
-  ====================================================================== -->
-  <section id="our-craft" class="py-16 sm:py-24 bg-cream-200/70 border-y border-espresso-900/10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-        
-        <div class="lg:col-span-6 space-y-6 sm:space-y-8 reveal-up">
-          <div class="space-y-3">
-            <span class="text-xs font-semibold tracking-[0.26em] uppercase text-gold-600">Bean-to-Bar Heritage</span>
-            <h2 class="font-serif text-3xl sm:text-5xl font-semibold text-espresso-900 leading-tight">
-              Why Connoisseurs Choose <span class="italic font-normal text-gold-600">Vintage Cocoa</span>
-            </h2>
-            <p class="text-espresso-700/85 text-xs sm:text-base leading-relaxed">
-              Unlike mass-produced compound chocolates loaded with palm oil and refined wax, every Vintage Cocoa creation is crafted from pure single-origin cacao butter.
-            </p>
-          </div>
-
-          <div class="space-y-3.5 sm:space-y-4">
-            <div class="p-4 sm:p-5 rounded-2xl bg-cream-50 border border-gold-500/30 shadow-sm">
-              <div class="flex items-start gap-3.5 sm:gap-4">
-                <span class="font-serif text-2xl sm:text-3xl font-bold text-gold-600 leading-none">01</span>
-                <div>
-                  <h3 class="font-serif text-lg sm:text-xl font-semibold text-espresso-900">Single-Origin Estate Harvesting</h3>
-                  <p class="text-xs sm:text-sm text-espresso-700/80 mt-1 leading-relaxed">
-                    Ethically sourced Forastero & Trinitario cacao pods from Idukki & Malabar estates, fermented for 6 days to unlock deep fruity and nutty notes.
-                  </p>
-                </div>
+            <div class="p-6 sm:p-8 flex-1 flex flex-col justify-between space-y-4">
+              <div class="space-y-3">
+                <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-gold-600">Community & Livelihood</span>
+                <h2 class="font-serif text-2xl font-semibold text-espresso-900 leading-snug">
+                  “Growing Together, Building Stronger Futures.”
+                </h2>
+                <p class="text-xs sm:text-sm text-espresso-700/85 leading-relaxed">
+                  As our brand grows, the women who work with us grow too—gaining stability, better opportunities, and the chance to build a stronger future for themselves and their families.
+                </p>
+              </div>
+              <div class="pt-4 border-t border-espresso-900/10 flex items-center gap-2 text-xs font-semibold text-espresso-800">
+                <i data-lucide="sparkles" class="w-4 h-4 text-gold-600"></i>
+                <span>100% Fair Artisan Partnerships</span>
               </div>
             </div>
+          </article>
 
-            <div class="p-4 sm:p-5 rounded-2xl bg-cream-50 border border-gold-500/30 shadow-sm">
-              <div class="flex items-start gap-3.5 sm:gap-4">
-                <span class="font-serif text-2xl sm:text-3xl font-bold text-gold-600 leading-none">02</span>
-                <div>
-                  <h3 class="font-serif text-lg sm:text-xl font-semibold text-espresso-900">48-Hour Granite Stone Conching</h3>
-                  <p class="text-xs sm:text-sm text-espresso-700/80 mt-1 leading-relaxed">
-                    Slow-ground under granite wheels for 48 hours to achieve a microscopic 18-micron silkiness that melts effortlessly at body temperature.
-                  </p>
-                </div>
-              </div>
+          <!-- Card 2: Center Brand Craft & Handcrafted Packaging -->
+          <article class="rounded-3xl bg-espresso-900 text-cream-100 border border-gold-500/40 overflow-hidden shadow-2xl flex flex-col">
+            <div class="aspect-[4/3] overflow-hidden relative">
+              <img 
+                src="./images/coco.jpg" 
+                onerror="this.src='https://placehold.co/600x450/140C08/E5C158?text=Taste+The+Timeless'"
+                alt="Vintage Cocoa Taste The Timeless" 
+                class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-espresso-950 via-transparent to-transparent"></div>
             </div>
-
-            <div class="p-4 sm:p-5 rounded-2xl bg-cream-50 border border-gold-500/30 shadow-sm">
-              <div class="flex items-start gap-3.5 sm:gap-4">
-                <span class="font-serif text-2xl sm:text-3xl font-bold text-gold-600 leading-none">03</span>
-                <div>
-                  <h3 class="font-serif text-lg sm:text-xl font-semibold text-espresso-900">Hand-Tempered & Gold-Leaf Finished</h3>
-                  <p class="text-xs sm:text-sm text-espresso-700/80 mt-1 leading-relaxed">
-                    Marble-slab tempered by master chocolatiers for that signature crisp "snap" and glossy mirror sheen, finished with roasted nuts and edible gold.
-                  </p>
-                </div>
+            <div class="p-6 sm:p-8 flex-1 flex flex-col justify-between space-y-4">
+              <div class="space-y-3">
+                <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-gold-400">Taste the Timeless</span>
+                <h2 class="font-serif text-2xl font-semibold text-cream-50 leading-snug">
+                  “Handcrafted Elegance in Every Single Piece.”
+                </h2>
+                <p class="text-xs sm:text-sm text-cream-200/80 leading-relaxed">
+                  Every batch is hand-tempered, filled with roasted nuts and rich ganaches, and packed with love—combining luxury chocolatier standards with heartfelt human warmth.
+                </p>
               </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="lg:col-span-6 reveal-up">
-          <div class="relative rounded-3xl overflow-hidden shadow-2xl border border-gold-500/30 bg-espresso-900">
-            <img 
-              src="https://images.unsplash.com/photo-1606312619070-d48b4c652a52?auto=format&fit=crop&w=900&q=85" 
-              onerror="this.src='https://placehold.co/700x600/2D1B12/E5C158?text=Artisan+Chocolate+Tempering'"
-              alt="Artisan Chocolatier Tempering Dark Chocolate" 
-              class="w-full h-[380px] sm:h-[460px] object-cover opacity-80"
-            />
-            <div class="absolute inset-0 bg-gradient-to-t from-espresso-950 via-espresso-950/40 to-transparent"></div>
-            
-            <div class="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 p-4 sm:p-6 rounded-2xl bg-espresso-950/90 backdrop-blur-md border border-gold-500/30 text-cream-100 space-y-3 sm:space-y-4">
-              <div class="flex items-center justify-between border-b border-gold-500/20 pb-2.5">
-                <span class="text-[10px] sm:text-xs uppercase tracking-[0.2em] text-gold-400">Signature Cacao Profile</span>
-                <span class="text-xs font-semibold text-cream-200">70% Reserve Blend</span>
-              </div>
-              
-              <div class="space-y-2.5 text-xs">
-                <div>
-                  <div class="flex justify-between mb-1">
-                    <span class="text-cream-200">Velvety Cocoa Richness</span>
-                    <span class="text-gold-400 font-semibold">95%</span>
-                  </div>
-                  <div class="w-full h-1.5 rounded-full bg-espresso-800 overflow-hidden">
-                    <div class="h-full bg-gradient-to-r from-gold-600 to-gold-400 rounded-full" style="width: 95%"></div>
-                  </div>
-                </div>
-                <div>
-                  <div class="flex justify-between mb-1">
-                    <span class="text-cream-200">Roasted Hazelnut & Caramel Notes</span>
-                    <span class="text-gold-400 font-semibold">88%</span>
-                  </div>
-                  <div class="w-full h-1.5 rounded-full bg-espresso-800 overflow-hidden">
-                    <div class="h-full bg-gradient-to-r from-gold-600 to-gold-400 rounded-full" style="width: 88%"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- =====================================================================
-       6. BESPOKE WEDDING & CORPORATE GIFTING CONCIERGE (DIRECT WHATSAPP)
-  ====================================================================== -->
-  <section id="concierge" class="py-16 sm:py-24 bg-cream-100">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="rounded-3xl bg-espresso-900 text-cream-100 p-6 sm:p-12 lg:p-16 relative overflow-hidden border border-gold-500/30 shadow-2xl reveal-up">
-        <div class="absolute -right-24 -bottom-24 w-96 h-96 rounded-full bg-gold-500/10 blur-[100px] pointer-events-none"></div>
-        
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center relative z-10">
-          <div class="lg:col-span-7 space-y-4 sm:space-y-5">
-            <span class="text-[11px] sm:text-xs font-semibold tracking-[0.24em] uppercase text-gold-400">Royal Weddings & Corporate Milestones</span>
-            <h2 class="font-serif text-3xl sm:text-5xl font-semibold text-cream-50 leading-tight">
-              Bespoke Monogrammed <span class="italic font-normal text-gold-foil">Hampers & Favors</span>
-            </h2>
-            <p class="text-cream-200/80 text-xs sm:text-base leading-relaxed max-w-2xl">
-              Planning a royal wedding, festive Diwali gifting, or executive client hampers? Our gifting concierge customizes velvet boxes with your family crest, company logo, and bespoke flavor pairings.
-            </p>
-            <div class="flex flex-wrap gap-4 sm:gap-6 pt-1 text-xs text-gold-300">
-              <span class="flex items-center gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-gold-400 shrink-0"></i> Custom Gold Foil Monograms</span>
-              <span class="flex items-center gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-gold-400 shrink-0"></i> Pan-India Chilled Delivery</span>
-              <span class="flex items-center gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-gold-400 shrink-0"></i> Bulk Orders from 25 to 5,000+ Boxes</span>
-            </div>
-          </div>
-
-          <div class="lg:col-span-5">
-            <form onsubmit="handleConciergeSubmit(event)" class="p-5 sm:p-6 rounded-2xl bg-espresso-950/85 border border-gold-500/25 space-y-3.5 sm:space-y-4">
-              <h3 class="font-serif text-xl text-cream-50">Instant WhatsApp Concierge</h3>
-              <input type="text" id="concierge-name" required placeholder="Your Name / Company" class="w-full px-4 py-3 rounded-xl bg-espresso-900 border border-gold-500/25 text-sm text-cream-100 focus:border-gold-400 focus:outline-none" />
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <input type="tel" id="concierge-phone" required placeholder="Your Phone Number" class="w-full px-4 py-3 rounded-xl bg-espresso-900 border border-gold-500/25 text-sm text-cream-100 focus:border-gold-400 focus:outline-none" />
-                <select id="concierge-occasion" class="w-full px-4 py-3 rounded-xl bg-espresso-900 border border-gold-500/25 text-sm text-cream-200 focus:border-gold-400 focus:outline-none">
-                  <option value="Wedding Invitations & Favors">Wedding Invitations</option>
-                  <option value="Corporate Bulk Gifting">Corporate Gifting</option>
-                  <option value="Festive Luxury Hampers">Festive Hampers</option>
-                </select>
-              </div>
-              <button type="submit" class="btn-gold-shimmer w-full py-3.5 rounded-xl text-espresso-950 font-bold text-xs uppercase tracking-[0.16em] flex items-center justify-center gap-2">
-                <i data-lucide="message-circle" class="w-4 h-4"></i>
-                <span>Chat on WhatsApp Now</span>
+              <button onclick="navigateTo('collections')" class="btn-gold-shimmer w-full py-3 rounded-xl text-espresso-950 font-bold text-xs uppercase tracking-[0.15em]">
+                Explore Handcrafted Boxes
               </button>
-            </form>
+            </div>
+          </article>
+
+          <!-- Card 3: Female Founder & Women Empowerment -->
+          <article class="rounded-3xl bg-cream-50 border border-espresso-900/10 overflow-hidden shadow-lg flex flex-col">
+            <div class="aspect-[4/3] overflow-hidden bg-espresso-900">
+              <img 
+                src="./images/female-owner.jpg" 
+                onerror="this.src='https://placehold.co/600x450/2D1B12/E5C158?text=Empowering+Women'"
+                alt="Empowering Women One Opportunity at a Time" 
+                class="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-700"
+              />
+            </div>
+            <div class="p-6 sm:p-8 flex-1 flex flex-col justify-between space-y-4">
+              <div class="space-y-3">
+                <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-gold-600">Social Mission</span>
+                <h2 class="font-serif text-2xl font-semibold text-espresso-900 leading-snug">
+                  “Empowering Women, One Opportunity at a Time.”
+                </h2>
+                <p class="text-xs sm:text-sm text-espresso-700/85 leading-relaxed">
+                  We support women not only by providing employment but also by dedicating a part of our revenue to help women in need. Through small efforts and meaningful support, we aim to bring opportunities, dignity, and hope to those who need it most.
+                </p>
+              </div>
+              <div class="pt-4 border-t border-espresso-900/10 flex items-center gap-2 text-xs font-semibold text-espresso-800">
+                <i data-lucide="heart" class="w-4 h-4 text-gold-600"></i>
+                <span>Every Purchase Supports Women Artisans</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- Bean-to-Bar Standards Banner -->
+        <div class="rounded-3xl bg-cream-200/80 border border-gold-500/30 p-6 sm:p-10 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="space-y-1.5">
+            <span class="font-serif text-3xl font-bold text-gold-600">01. Pure Cocoa</span>
+            <h3 class="font-serif text-xl font-semibold text-espresso-900">Zero Vegetable Oils</h3>
+            <p class="text-xs sm:text-sm text-espresso-700/80">Crafted exclusively with 100% pure cocoa butter for a rich, velvety melt.</p>
+          </div>
+          <div class="space-y-1.5">
+            <span class="font-serif text-3xl font-bold text-gold-600">02. Small Batch</span>
+            <h3 class="font-serif text-xl font-semibold text-espresso-900">Freshly Made to Order</h3>
+            <p class="text-xs sm:text-sm text-espresso-700/80">Never mass-stored in warehouses; every box is freshly prepared and sealed.</p>
+          </div>
+          <div class="space-y-1.5">
+            <span class="font-serif text-3xl font-bold text-gold-600">03. Dignity & Care</span>
+            <h3 class="font-serif text-xl font-semibold text-espresso-900">Women-Powered Atelier</h3>
+            <p class="text-xs sm:text-sm text-espresso-700/80">A portion of every order directly funds women’s welfare and skill initiatives.</p>
           </div>
         </div>
-      </div>
+
+      </section>
     </div>
-  </section>
+
+    <!-- ===================================================================
+         PAGE 5: GIFTING CONCIERGE PAGE
+    ==================================================================== -->
+    <div id="page-concierge" class="page-view">
+      <section class="py-12 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="rounded-3xl bg-espresso-900 text-cream-100 p-6 sm:p-12 lg:p-16 relative overflow-hidden border border-gold-500/30 shadow-2xl">
+          <div class="absolute -right-24 -bottom-24 w-96 h-96 rounded-full bg-gold-500/10 blur-[100px] pointer-events-none"></div>
+          
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center relative z-10">
+            <div class="lg:col-span-7 space-y-5">
+              <span class="text-xs font-semibold tracking-[0.24em] uppercase text-gold-400">Royal Weddings & Corporate Milestones</span>
+              <h1 class="font-serif text-3xl sm:text-5xl font-semibold text-cream-50 leading-tight">
+                Bespoke Monogrammed <span class="italic font-normal text-gold-foil">Hampers & Favors</span>
+              </h1>
+              <p class="text-cream-200/80 text-xs sm:text-base leading-relaxed max-w-2xl">
+                Planning a royal wedding, festive Diwali gifting, or executive client hampers? Our gifting concierge customizes velvet boxes with your family crest, company logo, and bespoke flavor pairings.
+              </p>
+              <div class="flex flex-wrap gap-4 sm:gap-6 pt-1 text-xs text-gold-300">
+                <span class="flex items-center gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-gold-400 shrink-0"></i> Custom Gold Foil Monograms</span>
+                <span class="flex items-center gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-gold-400 shrink-0"></i> Pan-India Chilled Delivery</span>
+                <span class="flex items-center gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-gold-400 shrink-0"></i> Bulk Orders from 25 to 5,000+ Boxes</span>
+              </div>
+            </div>
+
+            <div class="lg:col-span-5">
+              <form onsubmit="handleConciergeSubmit(event)" class="p-5 sm:p-6 rounded-2xl bg-espresso-950/85 border border-gold-500/25 space-y-4">
+                <h3 class="font-serif text-xl text-cream-50">Instant WhatsApp Concierge</h3>
+                <input type="text" id="concierge-name" required placeholder="Your Name / Company" class="w-full px-4 py-3 rounded-xl bg-espresso-900 border border-gold-500/25 text-sm text-cream-100 focus:border-gold-400 focus:outline-none" />
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <input type="tel" id="concierge-phone" required placeholder="Your Phone Number" class="w-full px-4 py-3 rounded-xl bg-espresso-900 border border-gold-500/25 text-sm text-cream-100 focus:border-gold-400 focus:outline-none" />
+                  <select id="concierge-occasion" class="w-full px-4 py-3 rounded-xl bg-espresso-900 border border-gold-500/25 text-sm text-cream-200 focus:border-gold-400 focus:outline-none">
+                    <option value="Wedding Invitations & Favors">Wedding Invitations</option>
+                    <option value="Corporate Bulk Gifting">Corporate Gifting</option>
+                    <option value="Festive Luxury Hampers">Festive Hampers</option>
+                  </select>
+                </div>
+                <textarea id="concierge-qty" rows="2" placeholder="Estimated Quantity & Event Date (Optional)" class="w-full px-4 py-3 rounded-xl bg-espresso-900 border border-gold-500/25 text-sm text-cream-100 focus:border-gold-400 focus:outline-none"></textarea>
+                <button type="submit" class="btn-gold-shimmer w-full py-3.5 rounded-xl text-espresso-950 font-bold text-xs uppercase tracking-[0.16em] flex items-center justify-center gap-2">
+                  <i data-lucide="message-circle" class="w-4 h-4"></i>
+                  <span>Chat on WhatsApp Now</span>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+  </main>
 
   <!-- =====================================================================
-       7. LUXURY HERITAGE FOOTER
+       COMMON LUXURY HERITAGE FOOTER (SAME ACROSS ALL PAGES)
   ====================================================================== -->
-  <footer class="bg-espresso-950 text-cream-200/80 border-t border-gold-500/20 pt-14 pb-10">
+  <footer class="bg-espresso-950 text-cream-200/80 border-t border-gold-500/25 pt-14 pb-10 relative z-10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 pb-10 border-b border-gold-500/15">
         <div class="space-y-3.5">
           <div class="flex items-center gap-3">
-            <div class="w-9 h-9 rounded-full border border-gold-500/50 flex items-center justify-center text-gold-400">
-              <i data-lucide="crown" class="w-4 h-4"></i>
+            <div class="w-11 h-11 rounded-full bg-cream-50 p-1 border border-gold-500/60 flex items-center justify-center shrink-0">
+              <img src="./images/vintagecocoa.webp" alt="Vintage Cocoa Logo" class="w-full h-full object-contain" />
             </div>
-            <span class="font-display text-xl tracking-[0.16em] font-semibold text-cream-50">VINTAGE COCOA</span>
+            <div>
+              <span class="font-display text-lg tracking-[0.15em] font-semibold text-cream-50 block">VINTAGE COCOA</span>
+              <span class="text-[10px] tracking-[0.22em] uppercase text-gold-400">Taste the Timeless</span>
+            </div>
           </div>
           <p class="text-xs leading-relaxed text-cream-300/65">
-            Handcrafted elegance in every bite. Small-batch artisanal chocolates made with 100% pure cocoa butter and timeless craftsmanship.
+            Handcrafted elegance in every bite. Small-batch artisanal chocolates empowering women artisans with every box crafted.
           </p>
         </div>
 
         <div>
-          <h4 class="text-xs font-bold uppercase tracking-[0.2em] text-gold-400 mb-3.5">Collections</h4>
+          <h4 class="text-xs font-bold uppercase tracking-[0.2em] text-gold-400 mb-3.5">Explore Pages</h4>
           <ul class="space-y-2 text-xs">
-            <li><a href="#collections" class="hover:text-gold-400 transition">Luxury Gift Boxes</a></li>
-            <li><a href="#collections" class="hover:text-gold-400 transition">Artisan Chocolate Jars</a></li>
-            <li><a href="#collections" class="hover:text-gold-400 transition">Dark Protein & Crunch Bars</a></li>
-            <li><a href="#box-builder" class="hover:text-gold-400 transition">Custom Assortment Boxes</a></li>
+            <li><button onclick="navigateTo('home')" class="hover:text-gold-400 transition">Home</button></li>
+            <li><button onclick="navigateTo('collections')" class="hover:text-gold-400 transition">Artisanal Collections</button></li>
+            <li><button onclick="navigateTo('box-builder')" class="hover:text-gold-400 transition">Build Your Custom Box</button></li>
+            <li><button onclick="navigateTo('our-story')" class="hover:text-gold-400 transition">Our Story & Women Empowerment</button></li>
+            <li><button onclick="navigateTo('concierge')" class="hover:text-gold-400 transition">Gifting Concierge</button></li>
           </ul>
         </div>
 
         <div>
-          <h4 class="text-xs font-bold uppercase tracking-[0.2em] text-gold-400 mb-3.5">Atelier Services</h4>
+          <h4 class="text-xs font-bold uppercase tracking-[0.2em] text-gold-400 mb-3.5">Signature Creations</h4>
           <ul class="space-y-2 text-xs">
-            <li><a href="#box-builder" class="hover:text-gold-400 transition">Build Your Own Gift Box</a></li>
-            <li><a href="#concierge" class="hover:text-gold-400 transition">Wedding & Trousseau Favors</a></li>
-            <li><a href="#concierge" class="hover:text-gold-400 transition">Corporate Bulk Hampers</a></li>
-            <li><a href="#our-craft" class="hover:text-gold-400 transition">Bean-to-Bar Standards</a></li>
+            <li><button onclick="navigateTo('collections')" class="hover:text-gold-400 transition">Combo of 5 Assortment</button></li>
+            <li><button onclick="navigateTo('collections')" class="hover:text-gold-400 transition">Heart Pack (9 Royal Pralines)</button></li>
+            <li><button onclick="navigateTo('collections')" class="hover:text-gold-400 transition">Surprise Jar (50 Bites)</button></li>
+            <li><button onclick="navigateTo('collections')" class="hover:text-gold-400 transition">Butterscotch Crunch Jar</button></li>
           </ul>
         </div>
 
         <div>
           <h4 class="text-xs font-bold uppercase tracking-[0.2em] text-gold-400 mb-3.5">Direct Order Desk</h4>
           <p class="text-xs leading-relaxed text-cream-300/65 mb-3">
-            Need urgent same-day gifting dispatch or custom flavors? Order directly via our WhatsApp concierge.
+            Need urgent gifting dispatch or custom flavors? Order directly via our WhatsApp concierge.
           </p>
           <a href="https://wa.me/919876543210?text=Hello%20Vintage%20Cocoa!%20I%20would%20like%20to%20explore%20your%20handcrafted%20chocolates." target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-xs font-semibold text-gold-400 hover:text-gold-300">
             <i data-lucide="message-circle" class="w-4 h-4"></i>
@@ -735,13 +775,13 @@
 
       <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] text-cream-300/50 text-center">
         <p>&copy; 2026 Vintage Cocoa Artisanal Chocolatiers. All Rights Reserved.</p>
-        <p>FSSAI Certified &bull; 100% Vegetarian &bull; Pure Cacao Luxury</p>
+        <p>FSSAI Certified &bull; 100% Vegetarian &bull; Empowering Women Artisans</p>
       </div>
     </div>
   </footer>
 
   <!-- =====================================================================
-       MOBILE STICKY FLOATING BAG BAR (VISIBLE WHEN CART HAS ITEMS)
+       MOBILE STICKY FLOATING BAG BAR
   ====================================================================== -->
   <div id="mobile-sticky-bag" class="fixed bottom-3 left-3 right-3 z-40 lg:hidden hidden">
     <button onclick="toggleCart(true)" class="w-full py-3.5 px-5 rounded-2xl bg-espresso-950/95 backdrop-blur-md border border-gold-500/50 text-cream-100 shadow-2xl flex items-center justify-between">
@@ -760,49 +800,31 @@
   </div>
 
   <!-- =====================================================================
-       MODAL 1: PRODUCT QUICK-VIEW MODAL
+       MODALS (QUICK VIEW, SEARCH, CART DRAWER, WHATSAPP CHECKOUT)
   ====================================================================== -->
   <div id="quick-view-modal" class="fixed inset-0 z-[70] hidden items-end sm:items-center justify-center sm:p-4 bg-espresso-950/80 backdrop-blur-md">
     <div class="relative w-full max-w-3xl rounded-t-3xl sm:rounded-3xl bg-cream-100 text-espresso-900 border border-gold-500/40 shadow-2xl overflow-hidden max-h-[90vh] overflow-y-auto animate-slot-pop">
       <button onclick="closeQuickView()" class="absolute top-3.5 right-3.5 z-10 w-10 h-10 rounded-full bg-espresso-900/90 text-cream-100 hover:text-gold-400 flex items-center justify-center transition">
         <i data-lucide="x" class="w-5 h-5"></i>
       </button>
-      <div id="quick-view-content" class="grid grid-cols-1 md:grid-cols-2">
-        <!-- Populated dynamically -->
-      </div>
+      <div id="quick-view-content" class="grid grid-cols-1 md:grid-cols-2"></div>
     </div>
   </div>
 
-  <!-- =====================================================================
-       MODAL 2: INSTANT SEARCH OVERLAY
-  ====================================================================== -->
   <div id="search-modal" class="fixed inset-0 z-[75] hidden items-start justify-center pt-16 sm:pt-24 p-4 bg-espresso-950/85 backdrop-blur-md">
     <div class="w-full max-w-2xl rounded-3xl bg-espresso-900 border border-gold-500/40 p-5 sm:p-6 text-cream-100 shadow-2xl">
       <div class="flex items-center gap-3 border-b border-gold-500/25 pb-3.5">
         <i data-lucide="search" class="w-5 h-5 text-gold-400 shrink-0"></i>
-        <input 
-          type="text" 
-          id="search-input" 
-          oninput="handleSearch(this.value)"
-          placeholder="Search truffles, heart boxes, butterscotch..." 
-          class="w-full bg-transparent text-sm sm:text-base text-cream-50 placeholder:text-cream-300/40 focus:outline-none"
-        />
+        <input type="text" id="search-input" oninput="handleSearch(this.value)" placeholder="Search truffles, heart boxes, butterscotch..." class="w-full bg-transparent text-sm sm:text-base text-cream-50 placeholder:text-cream-300/40 focus:outline-none" />
         <button onclick="closeSearchModal()" class="p-1.5 rounded-lg bg-espresso-800 text-xs uppercase tracking-widest text-cream-300 hover:text-gold-400">Close</button>
       </div>
-      <div id="search-results" class="mt-4 max-h-80 overflow-y-auto space-y-2.5">
-        <!-- Live search results -->
-      </div>
+      <div id="search-results" class="mt-4 max-h-80 overflow-y-auto space-y-2.5"></div>
     </div>
   </div>
 
-  <!-- =====================================================================
-       SLIDE-OUT LUXURY CART DRAWER (ZERO PAGE RELOAD)
-  ====================================================================== -->
   <div id="cart-backdrop" onclick="toggleCart(false)" class="fixed inset-0 z-[80] bg-espresso-950/75 backdrop-blur-sm hidden transition-opacity duration-300"></div>
   
   <aside id="cart-drawer" class="fixed top-0 right-0 bottom-0 z-[85] w-full sm:max-w-md bg-cream-100 text-espresso-900 shadow-2xl border-l border-gold-500/30 transform translate-x-full transition-transform duration-300 ease-out flex flex-col">
-    
-    <!-- Drawer Header -->
     <div class="p-5 sm:p-6 bg-espresso-900 text-cream-100 border-b border-gold-500/25 flex items-center justify-between">
       <div class="flex items-center gap-3">
         <i data-lucide="shopping-bag" class="w-5 h-5 text-gold-400"></i>
@@ -816,7 +838,6 @@
       </button>
     </div>
 
-    <!-- Gamified Free Luxury Gift Wrap & Shipping Progress Bar -->
     <div class="px-5 sm:px-6 py-3 bg-cream-200 border-b border-espresso-900/10">
       <div class="flex items-center justify-between text-xs mb-1.5 gap-2">
         <span id="shipping-progress-text" class="font-medium text-espresso-800 truncate">Add ₹499 more for Complimentary Gold Gift Wrap!</span>
@@ -827,42 +848,19 @@
       </div>
     </div>
 
-    <!-- Cart Items List -->
-    <div id="cart-items-container" class="flex-1 overflow-y-auto p-5 sm:p-6 space-y-3.5">
-      <!-- Cart items injected here -->
-    </div>
+    <div id="cart-items-container" class="flex-1 overflow-y-auto p-5 sm:p-6 space-y-3.5"></div>
 
-    <!-- Promo Code & Checkout Footer -->
     <div class="p-5 sm:p-6 bg-cream-200/95 border-t border-espresso-900/15 space-y-3.5">
       <div class="flex gap-2">
-        <input 
-          type="text" 
-          id="promo-input" 
-          placeholder="Promo code (Try ROYAL10)" 
-          class="flex-1 px-3.5 py-2.5 rounded-xl bg-cream-50 border border-espresso-900/15 text-xs uppercase tracking-wider focus:outline-none focus:border-gold-600"
-        />
-        <button onclick="applyPromoCode()" class="px-4 py-2.5 rounded-xl bg-espresso-900 text-gold-400 text-xs font-semibold uppercase tracking-wider hover:bg-espresso-800 transition">
-          Apply
-        </button>
+        <input type="text" id="promo-input" placeholder="Promo code (Try ROYAL10)" class="flex-1 px-3.5 py-2.5 rounded-xl bg-cream-50 border border-espresso-900/15 text-xs uppercase tracking-wider focus:outline-none focus:border-gold-600" />
+        <button onclick="applyPromoCode()" class="px-4 py-2.5 rounded-xl bg-espresso-900 text-gold-400 text-xs font-semibold uppercase tracking-wider hover:bg-espresso-800 transition">Apply</button>
       </div>
 
       <div class="space-y-1 text-xs">
-        <div class="flex justify-between text-espresso-700">
-          <span>Subtotal</span>
-          <span id="cart-subtotal" class="font-semibold">₹0</span>
-        </div>
-        <div id="discount-row" class="hidden flex justify-between text-emerald-700 font-medium">
-          <span>Royal Privilege Discount (10%)</span>
-          <span id="cart-discount">-₹0</span>
-        </div>
-        <div class="flex justify-between text-espresso-700">
-          <span>Insulated Chilled Shipping</span>
-          <span id="cart-shipping" class="font-semibold">₹0</span>
-        </div>
-        <div class="flex justify-between text-base font-serif font-bold text-espresso-900 pt-2 border-t border-espresso-900/10">
-          <span>Estimated Total</span>
-          <span id="cart-total">₹0</span>
-        </div>
+        <div class="flex justify-between text-espresso-700"><span>Subtotal</span><span id="cart-subtotal" class="font-semibold">₹0</span></div>
+        <div id="discount-row" class="hidden flex justify-between text-emerald-700 font-medium"><span>Royal Privilege Discount (10%)</span><span id="cart-discount">-₹0</span></div>
+        <div class="flex justify-between text-espresso-700"><span>Insulated Chilled Shipping</span><span id="cart-shipping" class="font-semibold">₹0</span></div>
+        <div class="flex justify-between text-base font-serif font-bold text-espresso-900 pt-2 border-t border-espresso-900/10"><span>Estimated Total</span><span id="cart-total">₹0</span></div>
       </div>
 
       <button onclick="openCheckoutModal()" class="btn-gold-shimmer w-full py-4 rounded-2xl text-espresso-950 font-bold text-xs uppercase tracking-[0.16em] flex items-center justify-center gap-2 shadow-lg">
@@ -872,9 +870,6 @@
     </div>
   </aside>
 
-  <!-- =====================================================================
-       MODAL 3: REAL WHATSAPP ORDER CHECKOUT MODAL
-  ====================================================================== -->
   <div id="checkout-modal" class="fixed inset-0 z-[95] hidden items-end sm:items-center justify-center sm:p-4 bg-espresso-950/85 backdrop-blur-md">
     <div class="w-full max-w-lg rounded-t-3xl sm:rounded-3xl bg-cream-100 text-espresso-900 border border-gold-500/40 p-6 sm:p-8 shadow-2xl relative max-h-[92vh] overflow-y-auto">
       <button onclick="closeCheckoutModal()" class="absolute top-5 right-5 w-9 h-9 rounded-full bg-cream-200 flex items-center justify-center text-espresso-700 hover:text-espresso-950">
@@ -891,12 +886,10 @@
           <input type="tel" id="cust-phone" required placeholder="Your Mobile / WhatsApp Number *" class="w-full px-4 py-3 rounded-xl bg-cream-50 border border-espresso-900/15 text-sm focus:outline-none focus:border-gold-600" />
           <textarea id="cust-address" required rows="2" placeholder="Complete Delivery Address & PIN Code *" class="w-full px-4 py-3 rounded-xl bg-cream-50 border border-espresso-900/15 text-sm focus:outline-none focus:border-gold-600"></textarea>
           <input type="text" id="cust-note" placeholder="Optional Delivery Instructions or Gift Note" class="w-full px-4 py-3 rounded-xl bg-cream-50 border border-espresso-900/15 text-sm focus:outline-none focus:border-gold-600" />
-          
           <div class="p-3.5 rounded-xl bg-cream-200/80 border border-gold-500/25 flex items-center justify-between text-xs">
             <span class="font-medium text-espresso-800">Total Payable (UPI / Card / COD)</span>
             <span id="checkout-final-amount" class="font-serif text-lg font-bold text-espresso-950">₹0</span>
           </div>
-          
           <button type="submit" class="btn-gold-shimmer w-full py-4 rounded-2xl text-espresso-950 font-bold text-xs uppercase tracking-[0.15em] flex items-center justify-center gap-2 shadow-lg">
             <i data-lucide="send" class="w-4 h-4"></i>
             <span>Send Order on WhatsApp</span>
@@ -921,16 +914,12 @@
   </div>
 
   <!-- =====================================================================
-       JAVASCRIPT: LIVE GOOGLE SHEETS CMS + WHATSAPP CHECKOUT + CLEAN CART
+       JAVASCRIPT: MULTI-PAGE ROUTER + LIVE GOOGLE SHEETS + WHATSAPP CHECKOUT
   ====================================================================== -->
   <script>
-    // =====================================================================
-    // CONFIGURATION: OWNER WHATSAPP & LIVE GOOGLE SHEETS CSV ENDPOINT
-    // =====================================================================
     const OWNER_WHATSAPP = '919876543210';
     const GOOGLE_SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT_CN3MPQESzrACHK24VKw32sE1UcOrDVGQ4yCbswlO2jJF8PX3HDToqKqO02ACeRmh9_MgRNFCHRVk/pub?gid=0&single=true&output=csv';
 
-    // Fallback Catalog (Used only if Google Sheet is temporarily unreachable)
     const FALLBACK_PRODUCTS = [
       {
         id: 'combo-5',
@@ -953,9 +942,9 @@
         category: 'boxes',
         badge: 'Most Gifted',
         weight: '135g (9 Pieces)',
-        image: 'https://images.unsplash.com/photo-1548907040-4baa42d10919?auto=format&fit=crop&w=800&q=85',
+        image: './images/coco.jpg',
         fallback: 'https://placehold.co/600x600/3E1216/E5C158?text=Heart+Pack+9',
-        description: 'Nine individually gold-foiled chocolate hearts presented in a plush heart-shaped keepsake box tied with satin ribbon.',
+        description: 'Nine individually hand-crafted chocolate hearts presented in our signature ribbon keepsake box.',
         tastingNotes: ['Silky Hazelnut', 'Caramelized Milk', 'Warm Vanilla']
       },
       {
@@ -968,7 +957,7 @@
         weight: '450g (50 Bites)',
         image: 'https://images.unsplash.com/photo-1511381939415-e44015466834?auto=format&fit=crop&w=800&q=85',
         fallback: 'https://placehold.co/600x600/2D1B12/E5C158?text=Surprise+Jar+50',
-        description: 'An abundant apothecary glass jar brimming with 50 jewel-wrapped artisan chocolate bites across 8 surprise flavors.',
+        description: 'An abundant glass jar brimming with 50 jewel-wrapped artisan chocolate bites across 8 surprise flavors.',
         tastingNotes: ['Citrus Zest', 'Dark Ganache', 'Toasted Nuts']
       },
       {
@@ -981,7 +970,7 @@
         weight: '180g (18 Squares)',
         image: 'https://images.unsplash.com/photo-1582176604856-e824b4736522?auto=format&fit=crop&w=800&q=85',
         fallback: 'https://placehold.co/600x600/3E261A/E5C158?text=Butterscotch+Jar',
-        description: 'Slow-cooked golden butterscotch brittle folded into creamy, stone-conched milk chocolate wrapped in gold foil.',
+        description: 'Slow-cooked golden butterscotch brittle folded into creamy milk chocolate wrapped in gold foil.',
         tastingNotes: ['Golden Caramel', 'Salted Butter', 'Creamy Cocoa']
       },
       {
@@ -999,7 +988,6 @@
       }
     ];
 
-    // Custom Box Builder Flavors
     const BUILDER_FLAVORS = [
       { id: 'espresso', name: 'Espresso Dark Truffle', note: '70% Dark & Arabica', color: '#24130C', accent: '#C59B27' },
       { id: 'marble', name: 'White Chocolate Marble', note: 'Madagascar Vanilla Swirl', color: '#EAE0D2', accent: '#6E4730' },
@@ -1009,7 +997,6 @@
       { id: 'pistachio', name: 'Pistachio & Rose Petal', note: 'Royal Saffron Infusion', color: '#4B5E3A', accent: '#E5C158' }
     ];
 
-    // Load saved cart from localStorage (Starts 100% EMPTY on fresh visit/refresh)
     function loadSavedCart() {
       try {
         const saved = localStorage.getItem('vintage_cocoa_cart_v1');
@@ -1025,8 +1012,8 @@
       } catch (e) {}
     }
 
-    // Application State
     let state = {
+      currentPage: 'home',
       products: [...FALLBACK_PRODUCTS],
       activeFilter: 'all',
       cart: loadSavedCart(),
@@ -1039,22 +1026,64 @@
       }
     };
 
-    // Initialize App
+    // =====================================================================
+    // MULTI-PAGE SPA ROUTER (SEPARATE PAGES + SAME HEADER/FOOTER)
+    // =====================================================================
+    function navigateTo(pageName) {
+      const validPages = ['home', 'collections', 'box-builder', 'our-story', 'concierge'];
+      if (!validPages.includes(pageName)) pageName = 'home';
+      state.currentPage = pageName;
+
+      // Hide all pages and activate selected page
+      document.querySelectorAll('.page-view').forEach(section => {
+        section.classList.remove('active');
+      });
+      const activeSection = document.getElementById(`page-${pageName}`);
+      if (activeSection) activeSection.classList.add('active');
+
+      // Update Desktop Active Nav Styling
+      document.querySelectorAll('.nav-link').forEach(link => {
+        if (link.dataset.nav === pageName) {
+          link.classList.add('border-gold-400', 'text-gold-400');
+          link.classList.remove('border-transparent');
+        } else {
+          link.classList.remove('border-gold-400', 'text-gold-400');
+          link.classList.add('border-transparent');
+        }
+      });
+
+      // Update Mobile Active Nav Styling
+      document.querySelectorAll('.mobile-nav-link').forEach(link => {
+        if (link.dataset.nav === pageName) {
+          link.classList.add('text-gold-400', 'font-semibold');
+          link.classList.remove('text-cream-100');
+        } else {
+          link.classList.remove('text-gold-400', 'font-semibold');
+          link.classList.add('text-cream-100');
+        }
+      });
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      history.replaceState(null, '', `#${pageName}`);
+      lucide.createIcons();
+    }
+
     document.addEventListener('DOMContentLoaded', async () => {
       lucide.createIcons();
       renderBuilderFlavors();
       renderVelvetTray();
       updateCartUI();
-      initScrollReveal();
       initHeroTilt();
 
-      // Show sleek loading state while fetching live Google Sheet
-      renderSkeletons();
+      // Handle initial hash route if user shares direct page link
+      const initialHash = window.location.hash.replace('#', '');
+      if (initialHash) navigateTo(initialHash);
+
       await fetchLiveGoogleSheetProducts();
     });
 
     // =====================================================================
-    // LIVE GOOGLE SHEETS CSV PARSER & SYNC ENGINE
+    // LIVE GOOGLE SHEETS CSV SYNC
     // =====================================================================
     function parseCSV(csvText) {
       const rows = [];
@@ -1095,9 +1124,8 @@
 
     async function fetchLiveGoogleSheetProducts() {
       try {
-        const cacheBusterUrl = `${GOOGLE_SHEET_CSV_URL}&_t=${Date.now()}`;
-        const response = await fetch(cacheBusterUrl);
-        if (!response.ok) throw new Error('Network response not ok');
+        const response = await fetch(`${GOOGLE_SHEET_CSV_URL}&_t=${Date.now()}`);
+        if (!response.ok) throw new Error('Network error');
         const csvText = await response.text();
         const rows = parseCSV(csvText);
 
@@ -1110,13 +1138,11 @@
             const parsedPrice = parseFloat(rawPrice) || 150;
             const rawCat = (cols[idx('category')] || 'boxes').toLowerCase().trim();
             
-            // Normalize category names
             let category = 'boxes';
             if (rawCat.includes('jar')) category = 'jars';
             else if (rawCat.includes('bar')) category = 'bars';
-            else if (rawCat.includes('box')) category = 'boxes';
 
-            const notesRaw = cols[idx('notes')] || 'Pure Single-Origin Cocoa, Hand-Tempered';
+            const notesRaw = cols[idx('notes')] || '100% Pure Cocoa, Hand-Tempered';
             const tastingNotes = notesRaw.split(',').map(s => s.trim()).filter(Boolean);
             const name = cols[idx('name')] || `Artisan Creation #${index + 1}`;
             const image = cols[idx('image')] || FALLBACK_PRODUCTS[index % FALLBACK_PRODUCTS.length].image;
@@ -1130,7 +1156,7 @@
               badge: cols[idx('badge')] || 'Handcrafted',
               image: image,
               fallback: `https://placehold.co/600x600/1F120C/E5C158?text=${encodeURIComponent(name)}`,
-              description: cols[idx('description')] || 'Hand-poured in small batches using 100% pure cocoa butter and premium roasted ingredients.',
+              description: cols[idx('description')] || 'Hand-poured in small batches using 100% pure cocoa butter.',
               tastingNotes: tastingNotes.length ? tastingNotes : ['100% Pure Cocoa'],
               weight: cols[idx('weight')] || 'Artisan Pack'
             };
@@ -1145,12 +1171,12 @@
         console.warn('Using fallback catalog:', err);
       } finally {
         renderProducts(state.activeFilter);
+        renderHomeFeatured();
       }
     }
 
     function updateHeroSpotlight(featured) {
       if (!featured) return;
-      document.getElementById('hero-spotlight-img').src = featured.image;
       document.getElementById('hero-spotlight-badge').textContent = featured.badge;
       document.getElementById('hero-spotlight-title').textContent = featured.name;
       document.getElementById('hero-spotlight-price').textContent = `₹${featured.price}`;
@@ -1158,39 +1184,75 @@
     }
 
     function addFirstProductToCart() {
-      if (state.products.length > 0) {
-        addToCartById(state.products[0].id);
-      }
+      if (state.products.length > 0) addToCartById(state.products[0].id);
     }
 
-    function renderSkeletons() {
-      const grid = document.getElementById('product-grid');
-      grid.innerHTML = Array(3).fill(0).map(() => `
-        <div class="rounded-3xl bg-cream-50 border border-espresso-900/10 overflow-hidden animate-pulse">
-          <div class="aspect-[4/3] bg-espresso-900/15"></div>
-          <div class="p-6 space-y-3">
-            <div class="h-3 w-24 bg-espresso-900/15 rounded"></div>
-            <div class="h-6 w-3/4 bg-espresso-900/15 rounded"></div>
-            <div class="h-4 w-full bg-espresso-900/10 rounded"></div>
-            <div class="pt-4 flex justify-between items-center">
-              <div class="h-7 w-16 bg-espresso-900/15 rounded"></div>
-              <div class="h-10 w-24 bg-espresso-900/15 rounded-xl"></div>
+    function buildProductCardHTML(product) {
+      return `
+        <article class="group rounded-3xl bg-cream-50/95 backdrop-blur-sm border border-espresso-900/10 hover:border-gold-500/60 overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 flex flex-col">
+          <div class="relative aspect-[4/3] overflow-hidden bg-espresso-900">
+            <img 
+              src="${product.image}" 
+              onerror="this.src='${product.fallback}'"
+              alt="${product.name}" 
+              loading="lazy"
+              class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-espresso-950/80 via-transparent to-espresso-950/20"></div>
+            <span class="absolute top-3.5 left-3.5 px-3 py-1 rounded-full bg-espresso-950/85 backdrop-blur-md border border-gold-500/40 text-gold-300 text-[10px] font-semibold uppercase tracking-[0.16em]">
+              ${product.badge}
+            </span>
+            <button onclick="openQuickView('${product.id}')" class="absolute top-3.5 right-3.5 w-9 h-9 rounded-full bg-cream-50/95 hover:bg-gold-400 text-espresso-950 flex items-center justify-center shadow-md transition-all" title="Quick View">
+              <i data-lucide="eye" class="w-4 h-4"></i>
+            </button>
+            <div class="absolute bottom-3 left-3.5 right-3.5 flex flex-wrap gap-1.5">
+              ${product.tastingNotes.slice(0, 3).map(note => `
+                <span class="px-2.5 py-0.5 rounded-full bg-espresso-950/85 backdrop-blur-sm border border-gold-500/30 text-[10px] text-cream-100">${note}</span>
+              `).join('')}
             </div>
           </div>
-        </div>
-      `).join('');
+
+          <div class="p-5 sm:p-6 flex-1 flex flex-col justify-between space-y-4">
+            <div>
+              <div class="flex items-center justify-between text-[11px] uppercase tracking-wider text-gold-700 font-semibold mb-1">
+                <span>100% Pure Cocoa</span>
+                <span>${product.weight}</span>
+              </div>
+              <h3 class="font-serif text-xl sm:text-2xl font-semibold text-espresso-900 group-hover:text-gold-700 transition-colors">
+                ${product.name}
+              </h3>
+              <p class="text-xs sm:text-sm text-espresso-700/75 mt-1 line-clamp-2">${product.subtitle}</p>
+            </div>
+
+            <div class="pt-3.5 border-t border-espresso-900/10 flex items-center justify-between gap-3">
+              <div>
+                <span class="text-[10px] uppercase tracking-widest text-espresso-600 block">Price</span>
+                <span class="font-serif text-2xl font-bold text-espresso-950">₹${product.price}</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <button onclick="openQuickView('${product.id}')" class="px-3.5 py-2.5 rounded-xl border border-espresso-900/15 hover:border-espresso-900 text-xs font-semibold text-espresso-800 transition">Details</button>
+                <button onclick="addToCartById('${product.id}')" class="px-5 py-2.5 rounded-xl bg-espresso-900 hover:bg-gold-500 text-gold-400 hover:text-espresso-950 font-semibold text-xs uppercase tracking-wider transition-all duration-300 flex items-center gap-1.5 shadow-md">
+                  <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+                  <span>Add</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </article>
+      `;
     }
 
-    // =====================================================================
-    // RENDER PRODUCT GRID & CATEGORY FILTERING
-    // =====================================================================
+    function renderHomeFeatured() {
+      const homeGrid = document.getElementById('home-featured-grid');
+      if (!homeGrid) return;
+      homeGrid.innerHTML = state.products.slice(0, 3).map(buildProductCardHTML).join('');
+      lucide.createIcons();
+    }
+
     function renderProducts(filter) {
       state.activeFilter = filter;
       const grid = document.getElementById('product-grid');
-      const filtered = state.products.filter(p => {
-        if (filter === 'all') return true;
-        return p.category === filter;
-      });
+      const filtered = state.products.filter(p => filter === 'all' ? true : p.category === filter);
 
       if (filtered.length === 0) {
         grid.innerHTML = `
@@ -1202,74 +1264,7 @@
         return;
       }
 
-      grid.innerHTML = filtered.map(product => `
-        <article class="group rounded-3xl bg-cream-50 border border-espresso-900/10 hover:border-gold-500/60 overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 flex flex-col">
-          <!-- Clean Studio Image Container -->
-          <div class="relative aspect-[4/3] overflow-hidden bg-espresso-900">
-            <img 
-              src="${product.image}" 
-              onerror="this.src='${product.fallback}'"
-              alt="${product.name}" 
-              loading="lazy"
-              class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-            />
-            <div class="absolute inset-0 bg-gradient-to-t from-espresso-950/80 via-transparent to-espresso-950/20"></div>
-            
-            <!-- Top Badge -->
-            <span class="absolute top-3.5 left-3.5 px-3 py-1 rounded-full bg-espresso-950/85 backdrop-blur-md border border-gold-500/40 text-gold-300 text-[10px] font-semibold uppercase tracking-[0.16em]">
-              ${product.badge}
-            </span>
-
-            <!-- Mobile & Desktop Quick View Button -->
-            <button onclick="openQuickView('${product.id}')" class="absolute top-3.5 right-3.5 w-9 h-9 rounded-full bg-cream-50/95 hover:bg-gold-400 text-espresso-950 flex items-center justify-center shadow-md transition-all" title="Quick View">
-              <i data-lucide="eye" class="w-4 h-4"></i>
-            </button>
-
-            <!-- Tasting Notes Pills -->
-            <div class="absolute bottom-3 left-3.5 right-3.5 flex flex-wrap gap-1.5">
-              ${product.tastingNotes.slice(0, 3).map(note => `
-                <span class="px-2.5 py-0.5 rounded-full bg-espresso-950/85 backdrop-blur-sm border border-gold-500/30 text-[10px] text-cream-100">
-                  ${note}
-                </span>
-              `).join('')}
-            </div>
-          </div>
-
-          <!-- Product Details -->
-          <div class="p-5 sm:p-6 flex-1 flex flex-col justify-between space-y-4">
-            <div>
-              <div class="flex items-center justify-between text-[11px] uppercase tracking-wider text-gold-700 font-semibold mb-1">
-                <span>100% Pure Cocoa</span>
-                <span>${product.weight}</span>
-              </div>
-              <h3 class="font-serif text-xl sm:text-2xl font-semibold text-espresso-900 group-hover:text-gold-700 transition-colors">
-                ${product.name}
-              </h3>
-              <p class="text-xs sm:text-sm text-espresso-700/75 mt-1 line-clamp-2">
-                ${product.subtitle}
-              </p>
-            </div>
-
-            <div class="pt-3.5 border-t border-espresso-900/10 flex items-center justify-between gap-3">
-              <div>
-                <span class="text-[10px] uppercase tracking-widest text-espresso-600 block">Price</span>
-                <span class="font-serif text-2xl font-bold text-espresso-950">₹${product.price}</span>
-              </div>
-
-              <div class="flex items-center gap-2">
-                <button onclick="openQuickView('${product.id}')" class="px-3.5 py-2.5 rounded-xl border border-espresso-900/15 hover:border-espresso-900 text-xs font-semibold text-espresso-800 transition">
-                  Details
-                </button>
-                <button onclick="addToCartById('${product.id}')" class="px-5 py-2.5 rounded-xl bg-espresso-900 hover:bg-gold-500 active:bg-gold-500 text-gold-400 hover:text-espresso-950 active:text-espresso-950 font-semibold text-xs uppercase tracking-wider transition-all duration-300 flex items-center gap-1.5 shadow-md">
-                  <i data-lucide="plus" class="w-3.5 h-3.5"></i>
-                  <span>Add</span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </article>
-      `).join('');
-
+      grid.innerHTML = filtered.map(buildProductCardHTML).join('');
       lucide.createIcons();
     }
 
@@ -1291,12 +1286,12 @@
     });
 
     // =====================================================================
-    // INTERACTIVE 'BUILD YOUR OWN LUXURY BOX' ENGINE
+    // CUSTOM BOX BUILDER LOGIC
     // =====================================================================
     function renderBuilderFlavors() {
       const container = document.getElementById('flavor-palette');
       container.innerHTML = BUILDER_FLAVORS.map(flavor => `
-        <button onclick="addFlavorToBox('${flavor.id}')" class="group p-3 rounded-2xl bg-espresso-950/80 hover:bg-espresso-800 active:bg-espresso-800 border border-gold-500/20 hover:border-gold-400 flex items-center gap-3 text-left transition-all duration-200">
+        <button onclick="addFlavorToBox('${flavor.id}')" class="group p-3 rounded-2xl bg-espresso-950/80 hover:bg-espresso-800 border border-gold-500/20 hover:border-gold-400 flex items-center gap-3 text-left transition-all duration-200">
           <div class="w-10 h-10 rounded-full shrink-0 flex items-center justify-center shadow-inner border border-gold-500/30" style="background: radial-gradient(circle at 30% 30%, ${flavor.accent}, ${flavor.color});">
             <div class="w-5 h-5 rounded-full border border-white/20"></div>
           </div>
@@ -1313,9 +1308,7 @@
       state.builder.size = size;
       state.builder.price = price;
       state.builder.title = title;
-      if (state.builder.slots.length > size) {
-        state.builder.slots = state.builder.slots.slice(0, size);
-      }
+      if (state.builder.slots.length > size) state.builder.slots = state.builder.slots.slice(0, size);
 
       document.querySelectorAll('.box-size-btn').forEach(btn => {
         if (parseInt(btn.dataset.size) === size) {
@@ -1376,17 +1369,13 @@
         const item = slots[i];
         if (item) {
           html += `
-            <button onclick="removeSlotFromBox(${i})" title="${item.name} (Tap to remove)" class="animate-slot-pop w-12 h-12 sm:w-14 sm:h-14 rounded-full shadow-lg border-2 border-gold-400/80 flex items-center justify-center relative group transition-transform active:scale-95" style="background: radial-gradient(circle at 30% 30%, ${item.accent}, ${item.color});">
+            <button onclick="removeSlotFromBox(${i})" title="${item.name}" class="animate-slot-pop w-12 h-12 sm:w-14 sm:h-14 rounded-full shadow-lg border-2 border-gold-400/80 flex items-center justify-center relative group" style="background: radial-gradient(circle at 30% 30%, ${item.accent}, ${item.color});">
               <span class="text-[9px] font-bold text-white drop-shadow text-center leading-tight px-1">${item.name.split(' ')[0]}</span>
               <span class="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-red-600 text-white text-[10px] flex items-center justify-center shadow">×</span>
             </button>
           `;
         } else {
-          html += `
-            <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full border border-dashed border-gold-500/35 bg-espresso-900/60 flex items-center justify-center text-[10px] text-gold-500/40">
-              ${i + 1}
-            </div>
-          `;
+          html += `<div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full border border-dashed border-gold-500/35 bg-espresso-900/60 flex items-center justify-center text-[10px] text-gold-500/40">${i + 1}</div>`;
         }
       }
       tray.innerHTML = html;
@@ -1394,11 +1383,9 @@
       const remaining = size - slots.length;
       document.getElementById('slot-counter').textContent = `${slots.length} / ${size} Filled`;
       const ctaLabel = document.getElementById('add-custom-box-label');
-      if (remaining === 0) {
-        ctaLabel.textContent = `Add Bespoke Box to Bag — ₹${price}`;
-      } else {
-        ctaLabel.textContent = `Select ${remaining} More Praline${remaining > 1 ? 's' : ''} to Complete Box`;
-      }
+      ctaLabel.textContent = remaining === 0 
+        ? `Add Bespoke Box to Bag — ₹${price}` 
+        : `Select ${remaining} More Praline${remaining > 1 ? 's' : ''} to Complete Box`;
     }
 
     function addCustomBoxToCart() {
@@ -1415,7 +1402,7 @@
         name: `Custom ${title}`,
         price: price,
         qty: 1,
-        image: 'https://images.unsplash.com/photo-1549007994-cb92caebd54b?auto=format&fit=crop&w=400&q=80',
+        image: './images/coco.jpg',
         meta: note ? `Flavors: ${flavorSummary} | Note: "${note}"` : `Flavors: ${flavorSummary}`
       });
 
@@ -1426,14 +1413,13 @@
     }
 
     // =====================================================================
-    // QUICK-VIEW MODAL & SEARCH OVERLAY
+    // MODALS, CART & WHATSAPP ORDER EXECUTION
     // =====================================================================
     function openQuickView(productId) {
       const p = state.products.find(item => item.id === productId);
       if (!p) return;
 
-      const content = document.getElementById('quick-view-content');
-      content.innerHTML = `
+      document.getElementById('quick-view-content').innerHTML = `
         <div class="relative aspect-[4/3] md:aspect-auto bg-espresso-900">
           <img src="${p.image}" onerror="this.src='${p.fallback}'" alt="${p.name}" class="w-full h-full object-cover" />
           <span class="absolute bottom-3 left-3 px-3 py-1 rounded-full bg-espresso-950/85 text-gold-300 text-xs border border-gold-500/30">${p.weight}</span>
@@ -1451,7 +1437,6 @@
               </div>
             </div>
           </div>
-
           <button onclick="addToCartById('${p.id}'); closeQuickView();" class="btn-gold-shimmer w-full py-4 rounded-2xl text-espresso-950 font-bold text-xs uppercase tracking-[0.15em] flex items-center justify-center gap-2">
             <i data-lucide="shopping-bag" class="w-4 h-4"></i>
             <span>Add to Velvet Bag — ₹${p.price}</span>
@@ -1494,7 +1479,7 @@
       );
 
       document.getElementById('search-results').innerHTML = matches.map(p => `
-        <div onclick="closeSearchModal(); openQuickView('${p.id}')" class="flex items-center justify-between p-3 rounded-2xl hover:bg-espresso-800 active:bg-espresso-800 cursor-pointer transition gap-3">
+        <div onclick="closeSearchModal(); openQuickView('${p.id}')" class="flex items-center justify-between p-3 rounded-2xl hover:bg-espresso-800 cursor-pointer transition gap-3">
           <div class="flex items-center gap-3 min-w-0">
             <img src="${p.image}" onerror="this.src='${p.fallback}'" class="w-12 h-12 rounded-xl object-cover shrink-0" />
             <div class="min-w-0">
@@ -1507,9 +1492,6 @@
       `).join('');
     }
 
-    // =====================================================================
-    // CART DRAWER & WHATSAPP ORDER INTEGRATION
-    // =====================================================================
     function toggleCart(open) {
       const drawer = document.getElementById('cart-drawer');
       const backdrop = document.getElementById('cart-backdrop');
@@ -1547,9 +1529,7 @@
 
     function updateCartQty(index, delta) {
       state.cart[index].qty += delta;
-      if (state.cart[index].qty <= 0) {
-        state.cart.splice(index, 1);
-      }
+      if (state.cart[index].qty <= 0) state.cart.splice(index, 1);
       saveCart();
       updateCartUI();
     }
@@ -1579,12 +1559,10 @@
       const container = document.getElementById('cart-items-container');
       const { totalItems, subtotal, discount, freeGiftThreshold, shipping, finalTotal } = getCartTotals();
 
-      // Update Navbar & Drawer Badges
       document.getElementById('nav-cart-count').textContent = totalItems;
       document.getElementById('nav-cart-total').textContent = `₹${subtotal}`;
       document.getElementById('drawer-item-count').textContent = `${totalItems} Handcrafted Item${totalItems !== 1 ? 's' : ''}`;
 
-      // Mobile Sticky Bottom Bag Bar
       const mobileBar = document.getElementById('mobile-sticky-bag');
       if (totalItems > 0) {
         mobileBar.classList.remove('hidden');
@@ -1594,7 +1572,6 @@
         mobileBar.classList.add('hidden');
       }
 
-      // Gamified Progress Bar
       const pct = Math.min(100, Math.round((subtotal / freeGiftThreshold) * 100));
       document.getElementById('shipping-progress-bar').style.width = `${pct}%`;
       document.getElementById('shipping-progress-pct').textContent = `${pct}%`;
@@ -1604,7 +1581,6 @@
         document.getElementById('shipping-progress-text').textContent = `Add ₹${freeGiftThreshold - subtotal} more for Complimentary Gold Gift Wrap!`;
       }
 
-      // Render Cart Items
       if (state.cart.length === 0) {
         container.innerHTML = `
           <div class="text-center py-14 space-y-3">
@@ -1633,7 +1609,6 @@
         `).join('');
       }
 
-      // Totals
       document.getElementById('cart-subtotal').textContent = `₹${subtotal}`;
       const discountRow = document.getElementById('discount-row');
       if (state.promoApplied && discount > 0) {
@@ -1701,8 +1676,7 @@
         `Please confirm availability & share UPI/Payment link.`
       ].filter(Boolean).join('\n');
 
-      const whatsappUrl = `https://wa.me/${OWNER_WHATSAPP}?text=${encodeURIComponent(message)}`;
-      window.open(whatsappUrl, '_blank', 'noopener');
+      window.open(`https://wa.me/${OWNER_WHATSAPP}?text=${encodeURIComponent(message)}`, '_blank', 'noopener');
 
       document.getElementById('checkout-form-view').classList.add('hidden');
       document.getElementById('checkout-success-view').classList.remove('hidden');
@@ -1718,8 +1692,9 @@
       const name = document.getElementById('concierge-name').value.trim();
       const phone = document.getElementById('concierge-phone').value.trim();
       const occasion = document.getElementById('concierge-occasion').value;
+      const qty = document.getElementById('concierge-qty').value.trim();
 
-      const msg = `Hello *Vintage Cocoa Gifting Concierge*,\n\nI would like to request your bespoke catalog.\n*Name/Company:* ${name}\n*Phone:* ${phone}\n*Occasion:* ${occasion}`;
+      const msg = `Hello *Vintage Cocoa Gifting Concierge*,\n\nI would like to enquire about bespoke hampers.\n*Name/Company:* ${name}\n*Phone:* ${phone}\n*Occasion:* ${occasion}${qty ? `\n*Details:* ${qty}` : ''}`;
       window.open(`https://wa.me/${OWNER_WHATSAPP}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
       e.target.reset();
     }
@@ -1732,10 +1707,7 @@
       const container = document.getElementById('toast-container');
       const toast = document.createElement('div');
       toast.className = 'pointer-events-auto px-4 py-3 rounded-2xl bg-espresso-950/95 text-cream-100 border border-gold-500/45 shadow-2xl flex items-center gap-2.5 text-xs font-medium animate-slot-pop max-w-xs sm:max-w-sm';
-      toast.innerHTML = `
-        <span class="w-2 h-2 rounded-full bg-gold-400 shrink-0"></span>
-        <span>${message}</span>
-      `;
+      toast.innerHTML = `<span class="w-2 h-2 rounded-full bg-gold-400 shrink-0"></span><span>${message}</span>`;
       container.appendChild(toast);
       setTimeout(() => {
         toast.style.opacity = '0';
@@ -1745,33 +1717,15 @@
       }, 2800);
     }
 
-    function initScrollReveal() {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-          }
-        });
-      }, { threshold: 0.1 });
-
-      document.querySelectorAll('.reveal-up').forEach(el => observer.observe(el));
-    }
-
     function initHeroTilt() {
       const card = document.getElementById('hero-tilt-card');
       if (!card || window.innerWidth < 1024) return;
-
       card.addEventListener('mousemove', (e) => {
         const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        const rotateX = ((y - centerY) / centerY) * -5;
-        const rotateY = ((x - centerX) / centerX) * 5;
+        const rotateX = (((e.clientY - rect.top) - rect.height / 2) / (rect.height / 2)) * -5;
+        const rotateY = (((e.clientX - rect.left) - rect.width / 2) / (rect.width / 2)) * 5;
         card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
       });
-
       card.addEventListener('mouseleave', () => {
         card.style.transform = 'rotateX(0deg) rotateY(0deg)';
       });
