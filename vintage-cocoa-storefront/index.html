@@ -2,7 +2,7 @@
 <html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
   <title>VINTAGE COCOA | Handcrafted Luxury Chocolates & Bespoke Gifting</title>
   
   <!-- Google Fonts: Cormorant Garamond, Playfair Display & Plus Jakarta Sans -->
@@ -49,14 +49,13 @@
           },
           animation: {
             'float-slow': 'floatSlow 7s ease-in-out infinite',
-            'float-delayed': 'floatSlow 8s ease-in-out 2.5s infinite',
             'shimmer': 'shimmer 3s linear infinite',
             'pulse-glow': 'pulseGlow 4s ease-in-out infinite',
           },
           keyframes: {
             floatSlow: {
               '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
-              '50%': { transform: 'translateY(-14px) rotate(1.5deg)' },
+              '50%': { transform: 'translateY(-12px) rotate(1.5deg)' },
             },
             shimmer: {
               '0%': { backgroundPosition: '-200% 0' },
@@ -81,13 +80,13 @@
       height: 100%;
       pointer-events: none;
       z-index: 9999;
-      opacity: 0.032;
+      opacity: 0.03;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
     }
 
     /* Custom Scrollbar */
     ::-webkit-scrollbar {
-      width: 8px;
+      width: 6px;
     }
     ::-webkit-scrollbar-track {
       background: #140C08;
@@ -95,7 +94,6 @@
     ::-webkit-scrollbar-thumb {
       background: #3E261A;
       border-radius: 4px;
-      border: 1px solid rgba(197, 155, 39, 0.25);
     }
     ::-webkit-scrollbar-thumb:hover {
       background: #C59B27;
@@ -113,26 +111,25 @@
     .btn-gold-shimmer {
       background: linear-gradient(110deg, #C59B27 0%, #E5C158 45%, #F2DC9B 50%, #C59B27 55%, #A37E1B 100%);
       background-size: 250% 100%;
-      transition: all 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+      transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
     }
     .btn-gold-shimmer:hover {
       background-position: 100% 0;
       box-shadow: 0 12px 32px -6px rgba(197, 155, 39, 0.45);
-      transform: translateY(-2px);
     }
 
     /* Scroll Reveal Animations */
     .reveal-up {
       opacity: 0;
-      transform: translateY(32px);
-      transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: translateY(24px);
+      transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .reveal-up.is-visible {
       opacity: 1;
       transform: translateY(0);
     }
 
-    /* 3D Perspective Tilt Card */
+    /* 3D Perspective Tilt Card (Desktop) */
     .tilt-stage {
       perspective: 1200px;
     }
@@ -143,57 +140,63 @@
 
     /* Glassmorphism Panels */
     .glass-dark {
-      background: rgba(20, 12, 8, 0.78);
+      background: rgba(20, 12, 8, 0.88);
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
       border-bottom: 1px solid rgba(197, 155, 39, 0.18);
     }
 
     .glass-card-dark {
-      background: linear-gradient(145deg, rgba(31, 18, 12, 0.92), rgba(20, 12, 8, 0.96));
-      border: 1px solid rgba(197, 155, 39, 0.22);
+      background: linear-gradient(145deg, rgba(31, 18, 12, 0.94), rgba(20, 12, 8, 0.98));
+      border: 1px solid rgba(197, 155, 39, 0.24);
       box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
     }
 
-    /* Chocolate Slot Pop Animation */
     @keyframes slotPop {
-      0% { transform: scale(0.4) rotate(-12deg); opacity: 0; }
-      70% { transform: scale(1.1) rotate(3deg); opacity: 1; }
-      100% { transform: scale(1) rotate(0deg); opacity: 1; }
+      0% { transform: scale(0.85); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
     }
     .animate-slot-pop {
-      animation: slotPop 0.38s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+      animation: slotPop 0.28s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+
+    /* Hide scrollbar for mobile horizontal filter pills */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
     }
   </style>
 </head>
-<body class="bg-cream-100 text-espresso-900 font-sans antialiased selection:bg-gold-500 selection:text-espresso-950 overflow-x-hidden">
+<body class="bg-cream-100 text-espresso-900 font-sans antialiased selection:bg-gold-500 selection:text-espresso-950 overflow-x-hidden pb-20 lg:pb-0">
 
   <!-- Subtle Tactile Film Grain -->
   <div class="grain-overlay"></div>
 
   <!-- Toast Notification Container -->
-  <div id="toast-container" class="fixed bottom-6 right-6 z-[100] flex flex-col gap-3 pointer-events-none"></div>
+  <div id="toast-container" class="fixed top-24 right-4 left-4 sm:left-auto sm:right-6 z-[100] flex flex-col items-center sm:items-end gap-2.5 pointer-events-none"></div>
 
   <!-- =====================================================================
-       1. LUXURY STICKY GLASS NAVBAR
+       1. LUXURY STICKY GLASS NAVBAR (MOBILE-OPTIMIZED)
   ====================================================================== -->
   <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 glass-dark text-cream-100">
     <!-- Top Heritage Announcement Bar -->
-    <div class="bg-espresso-950/90 border-b border-gold-500/15 py-1.5 px-4 text-center text-[11px] sm:text-xs tracking-[0.2em] uppercase text-gold-300/90">
-      Complimentary Gold-Foil Gift Wrapping & Express Dispatch on Orders Above ₹499 &bull; Use Code <span class="text-gold-400 font-semibold">ROYAL10</span>
+    <div class="bg-espresso-950/95 border-b border-gold-500/15 py-1.5 px-3 text-center text-[10px] sm:text-xs tracking-[0.14em] sm:tracking-[0.2em] uppercase text-gold-300/90 truncate">
+      Free Gold Gift Wrap & Shipping Above ₹499 &bull; Code <span class="text-gold-400 font-semibold">ROYAL10</span>
     </div>
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-2">
       <!-- Mobile Menu Trigger -->
-      <button onclick="toggleMobileMenu()" class="lg:hidden p-2.5 rounded-xl text-cream-200 hover:text-gold-400 hover:bg-espresso-800/60 transition" aria-label="Open Menu">
+      <button onclick="toggleMobileMenu()" class="lg:hidden p-2 rounded-xl text-cream-200 hover:text-gold-400 active:bg-espresso-800 transition shrink-0" aria-label="Open Menu">
         <i data-lucide="menu" class="w-6 h-6"></i>
       </button>
 
       <!-- Brand Crest & Logo -->
-      <a href="#" class="flex items-center gap-3 group">
-        <div class="w-11 h-11 rounded-full border border-gold-500/50 bg-gradient-to-br from-espresso-800 to-espresso-950 flex items-center justify-center shadow-lg group-hover:border-gold-400 transition-all duration-300">
-          <!-- Custom Cocoa Pod Crest SVG -->
-          <svg class="w-6 h-6 text-gold-400 group-hover:scale-110 transition-transform duration-300" viewBox="0 0 32 32" fill="none">
+      <a href="#" class="flex items-center gap-2 sm:gap-3 group min-w-0">
+        <div class="w-9 h-9 sm:w-11 sm:h-11 rounded-full border border-gold-500/50 bg-gradient-to-br from-espresso-800 to-espresso-950 flex items-center justify-center shadow-lg shrink-0">
+          <svg class="w-5 h-5 sm:w-6 sm:h-6 text-gold-400" viewBox="0 0 32 32" fill="none">
             <path d="M16 3C11.5 7.5 9 12.5 9 17.5C9 22.8 12.2 27 16 29C19.8 27 23 22.8 23 17.5C23 12.5 20.5 7.5 16 3Z" stroke="currentColor" stroke-width="1.6"/>
             <path d="M16 3V29" stroke="currentColor" stroke-width="1.2" stroke-dasharray="2 2"/>
             <path d="M12.2 12C13.5 15 13.5 20 12.2 23" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
@@ -201,162 +204,158 @@
             <circle cx="16" cy="17" r="2" fill="currentColor"/>
           </svg>
         </div>
-        <div class="flex flex-col">
-          <span class="font-display text-xl sm:text-2xl tracking-[0.16em] font-semibold text-cream-50 leading-none">VINTAGE COCOA</span>
-          <span class="text-[9px] sm:text-[10px] tracking-[0.32em] uppercase text-gold-400 mt-1">Artisan Chocolatiers</span>
+        <div class="flex flex-col truncate">
+          <span class="font-display text-base sm:text-2xl tracking-[0.12em] sm:tracking-[0.16em] font-semibold text-cream-50 leading-none truncate">VINTAGE COCOA</span>
+          <span class="text-[8px] sm:text-[10px] tracking-[0.24em] sm:tracking-[0.32em] uppercase text-gold-400 mt-0.5 sm:mt-1 truncate">Artisan Chocolatiers</span>
         </div>
       </a>
 
       <!-- Desktop Navigation Links -->
       <nav class="hidden lg:flex items-center gap-9 text-sm tracking-[0.12em] uppercase font-medium text-cream-200/90">
-        <a href="#collections" class="hover:text-gold-400 transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-gold-400 hover:after:w-full after:transition-all after:duration-300">Collections</a>
-        <a href="#box-builder" class="hover:text-gold-400 transition-colors relative py-1 flex items-center gap-1.5 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-gold-400 hover:after:w-full after:transition-all after:duration-300">
+        <a href="#collections" class="hover:text-gold-400 transition-colors py-1">Collections</a>
+        <a href="#box-builder" class="hover:text-gold-400 transition-colors py-1 flex items-center gap-1.5">
           <span>Build Your Box</span>
           <span class="px-1.5 py-0.5 text-[9px] bg-gold-500/20 text-gold-300 border border-gold-500/40 rounded-full">Bespoke</span>
         </a>
-        <a href="#our-craft" class="hover:text-gold-400 transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-gold-400 hover:after:w-full after:transition-all after:duration-300">Our Craft</a>
-        <a href="#concierge" class="hover:text-gold-400 transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-gold-400 hover:after:w-full after:transition-all after:duration-300">Gifting Concierge</a>
+        <a href="#our-craft" class="hover:text-gold-400 transition-colors py-1">Our Craft</a>
+        <a href="#concierge" class="hover:text-gold-400 transition-colors py-1">Gifting Concierge</a>
       </nav>
 
       <!-- Right Action Controls: Search & Bag -->
-      <div class="flex items-center gap-2 sm:gap-4">
-        <button onclick="openSearchModal()" class="p-2.5 rounded-full text-cream-200 hover:text-gold-400 hover:bg-espresso-800/70 transition-all" aria-label="Search Chocolates">
+      <div class="flex items-center gap-1.5 sm:gap-4 shrink-0">
+        <button onclick="openSearchModal()" class="p-2 sm:p-2.5 rounded-full text-cream-200 hover:text-gold-400 active:bg-espresso-800 transition-all" aria-label="Search Chocolates">
           <i data-lucide="search" class="w-5 h-5"></i>
         </button>
 
-        <button onclick="toggleCart(true)" class="magnetic-btn group flex items-center gap-2.5 px-3.5 sm:px-4 py-2 rounded-full bg-espresso-800/90 hover:bg-espresso-700 border border-gold-500/35 hover:border-gold-400 transition-all duration-300 shadow-md">
+        <button onclick="toggleCart(true)" class="group flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full bg-espresso-800/90 hover:bg-espresso-700 border border-gold-500/35 hover:border-gold-400 transition-all duration-300 shadow-md">
           <div class="relative">
-            <i data-lucide="shopping-bag" class="w-5 h-5 text-gold-400 group-hover:scale-105 transition-transform"></i>
-            <span id="nav-cart-count" class="absolute -top-2 -right-2 w-4 h-4 rounded-full bg-gold-500 text-espresso-950 text-[10px] font-bold flex items-center justify-center">2</span>
+            <i data-lucide="shopping-bag" class="w-5 h-5 text-gold-400"></i>
+            <span id="nav-cart-count" class="absolute -top-2 -right-2 w-4 h-4 rounded-full bg-gold-500 text-espresso-950 text-[10px] font-bold flex items-center justify-center">0</span>
           </div>
-          <span id="nav-cart-total" class="hidden sm:inline text-xs font-semibold tracking-wider text-cream-100">₹400</span>
+          <span id="nav-cart-total" class="text-xs font-semibold tracking-wider text-cream-100">₹0</span>
         </button>
       </div>
     </div>
 
     <!-- Mobile Navigation Drawer -->
-    <div id="mobile-menu" class="hidden lg:hidden bg-espresso-900 border-t border-gold-500/20 px-6 py-6 space-y-4">
-      <a href="#collections" onclick="toggleMobileMenu()" class="block py-2 text-sm uppercase tracking-[0.16em] text-cream-100 hover:text-gold-400">Collections</a>
-      <a href="#box-builder" onclick="toggleMobileMenu()" class="block py-2 text-sm uppercase tracking-[0.16em] text-gold-400 font-medium">Build Your Box (Bespoke)</a>
-      <a href="#our-craft" onclick="toggleMobileMenu()" class="block py-2 text-sm uppercase tracking-[0.16em] text-cream-100 hover:text-gold-400">Our Craft</a>
-      <a href="#concierge" onclick="toggleMobileMenu()" class="block py-2 text-sm uppercase tracking-[0.16em] text-cream-100 hover:text-gold-400">Gifting Concierge</a>
+    <div id="mobile-menu" class="hidden lg:hidden bg-espresso-900 border-t border-gold-500/20 px-5 py-5 space-y-3 shadow-2xl">
+      <a href="#collections" onclick="toggleMobileMenu()" class="block py-2.5 text-sm uppercase tracking-[0.16em] text-cream-100 hover:text-gold-400 border-b border-gold-500/10">Collections</a>
+      <a href="#box-builder" onclick="toggleMobileMenu()" class="block py-2.5 text-sm uppercase tracking-[0.16em] text-gold-400 font-semibold border-b border-gold-500/10">Build Your Box (Bespoke)</a>
+      <a href="#our-craft" onclick="toggleMobileMenu()" class="block py-2.5 text-sm uppercase tracking-[0.16em] text-cream-100 hover:text-gold-400 border-b border-gold-500/10">Our Craft</a>
+      <a href="#concierge" onclick="toggleMobileMenu()" class="block py-2.5 text-sm uppercase tracking-[0.16em] text-cream-100 hover:text-gold-400">Gifting Concierge</a>
     </div>
   </header>
 
   <!-- =====================================================================
        2. CINEMATIC HERO SECTION
   ====================================================================== -->
-  <section class="relative min-h-screen pt-32 pb-20 lg:pt-36 lg:pb-24 bg-espresso-900 text-cream-100 overflow-hidden flex items-center">
-    <!-- Ambient Radial Golden Glows -->
-    <div class="absolute top-1/4 -left-32 w-[520px] h-[520px] rounded-full bg-gold-500/10 blur-[130px] animate-pulse-glow pointer-events-none"></div>
-    <div class="absolute bottom-10 right-0 w-[480px] h-[480px] rounded-full bg-amber-700/15 blur-[140px] pointer-events-none"></div>
-    
-    <!-- Subtle Heritage SVG Filigree Background Pattern -->
-    <div class="absolute inset-0 opacity-[0.04] pointer-events-none" style="background-image: radial-gradient(#C59B27 1px, transparent 1px); background-size: 36px 36px;"></div>
+  <section class="relative min-h-[92vh] pt-28 pb-16 sm:pt-36 sm:pb-24 bg-espresso-900 text-cream-100 overflow-hidden flex items-center">
+    <div class="absolute top-1/4 -left-32 w-[420px] sm:w-[520px] h-[420px] sm:h-[520px] rounded-full bg-gold-500/10 blur-[120px] animate-pulse-glow pointer-events-none"></div>
+    <div class="absolute bottom-10 right-0 w-[380px] sm:w-[480px] h-[380px] sm:h-[480px] rounded-full bg-amber-700/15 blur-[130px] pointer-events-none"></div>
+    <div class="absolute inset-0 opacity-[0.04] pointer-events-none" style="background-image: radial-gradient(#C59B27 1px, transparent 1px); background-size: 32px 32px;"></div>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
         
         <!-- Left Column: Editorial Typography & Dual CTAs -->
-        <div class="lg:col-span-7 space-y-7 text-center lg:text-left">
-          <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-espresso-800/90 border border-gold-500/30 text-gold-300 text-xs tracking-[0.22em] uppercase shadow-inner">
+        <div class="lg:col-span-7 space-y-6 sm:space-y-7 text-center lg:text-left">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-espresso-800/90 border border-gold-500/30 text-gold-300 text-[10px] sm:text-xs tracking-[0.18em] sm:tracking-[0.22em] uppercase">
             <span class="w-1.5 h-1.5 rounded-full bg-gold-400 animate-ping"></span>
             Small-Batch Single-Origin Atelier
           </div>
 
-          <h1 class="font-serif text-5xl sm:text-6xl lg:text-7xl xl:text-[5.2rem] font-medium leading-[1.04] tracking-tight text-cream-50">
+          <h1 class="font-serif text-4xl sm:text-6xl lg:text-7xl xl:text-[5.2rem] font-medium leading-[1.06] tracking-tight text-cream-50">
             Handcrafted <br class="hidden sm:inline" />
             <span class="italic font-normal text-gold-foil">Elegance</span> in <br class="hidden sm:inline" />
             Every Bite.
           </h1>
 
-          <p class="text-cream-200/80 text-base sm:text-lg max-w-xl mx-auto lg:mx-0 leading-relaxed font-light">
+          <p class="text-cream-200/80 text-sm sm:text-lg max-w-xl mx-auto lg:mx-0 leading-relaxed font-light px-2 sm:px-0">
             Stone-conched for 48 hours using pure single-origin cocoa butter, roasted Piedmont hazelnuts, and 24K edible gold leaf. Crafted for connoisseurs and unforgettable gifting.
           </p>
 
           <!-- Dual CTAs -->
-          <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
-            <a href="#collections" class="btn-gold-shimmer w-full sm:w-auto px-8 py-4 rounded-full text-espresso-950 font-semibold text-sm tracking-[0.14em] uppercase flex items-center justify-center gap-2.5 shadow-xl">
+          <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3.5 pt-1">
+            <a href="#collections" class="btn-gold-shimmer w-full sm:w-auto px-7 py-4 rounded-full text-espresso-950 font-bold text-xs sm:text-sm tracking-[0.14em] uppercase flex items-center justify-center gap-2.5 shadow-xl">
               <span>Explore Collection</span>
               <i data-lucide="arrow-right" class="w-4 h-4"></i>
             </a>
-            <a href="#box-builder" class="w-full sm:w-auto px-8 py-4 rounded-full bg-espresso-800/70 hover:bg-espresso-800 text-cream-100 border border-gold-500/40 hover:border-gold-400 font-medium text-sm tracking-[0.14em] uppercase flex items-center justify-center gap-2.5 transition-all duration-300">
+            <a href="#box-builder" class="w-full sm:w-auto px-7 py-4 rounded-full bg-espresso-800/80 hover:bg-espresso-800 text-cream-100 border border-gold-500/40 hover:border-gold-400 font-medium text-xs sm:text-sm tracking-[0.14em] uppercase flex items-center justify-center gap-2.5 transition-all duration-300">
               <i data-lucide="sparkles" class="w-4 h-4 text-gold-400"></i>
               <span>Build Custom Gift Box</span>
             </a>
           </div>
 
           <!-- Trust Badges -->
-          <div class="grid grid-cols-3 gap-4 pt-6 border-t border-gold-500/15 max-w-xl mx-auto lg:mx-0">
-            <div class="flex flex-col sm:flex-row items-center lg:items-start gap-2.5 text-center sm:text-left">
-              <div class="w-9 h-9 rounded-xl bg-espresso-800 border border-gold-500/25 flex items-center justify-center shrink-0 text-gold-400">
+          <div class="grid grid-cols-3 gap-2 sm:gap-4 pt-6 border-t border-gold-500/15 max-w-xl mx-auto lg:mx-0">
+            <div class="flex flex-col sm:flex-row items-center lg:items-start gap-2 text-center sm:text-left">
+              <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-espresso-800 border border-gold-500/25 flex items-center justify-center shrink-0 text-gold-400">
                 <i data-lucide="award" class="w-4 h-4"></i>
               </div>
               <div>
-                <p class="text-xs font-semibold text-cream-100">100% Pure Cocoa</p>
-                <p class="text-[11px] text-cream-300/60">Zero vegetable oils</p>
+                <p class="text-[11px] sm:text-xs font-semibold text-cream-100">100% Pure Cocoa</p>
+                <p class="text-[10px] text-cream-300/60 hidden sm:block">Zero vegetable oils</p>
               </div>
             </div>
-            <div class="flex flex-col sm:flex-row items-center lg:items-start gap-2.5 text-center sm:text-left">
-              <div class="w-9 h-9 rounded-xl bg-espresso-800 border border-gold-500/25 flex items-center justify-center shrink-0 text-gold-400">
+            <div class="flex flex-col sm:flex-row items-center lg:items-start gap-2 text-center sm:text-left">
+              <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-espresso-800 border border-gold-500/25 flex items-center justify-center shrink-0 text-gold-400">
                 <i data-lucide="hand-heart" class="w-4 h-4"></i>
               </div>
               <div>
-                <p class="text-xs font-semibold text-cream-100">Hand-Tempered</p>
-                <p class="text-[11px] text-cream-300/60">Artisan small batches</p>
+                <p class="text-[11px] sm:text-xs font-semibold text-cream-100">Hand-Tempered</p>
+                <p class="text-[10px] text-cream-300/60 hidden sm:block">Artisan small batches</p>
               </div>
             </div>
-            <div class="flex flex-col sm:flex-row items-center lg:items-start gap-2.5 text-center sm:text-left">
-              <div class="w-9 h-9 rounded-xl bg-espresso-800 border border-gold-500/25 flex items-center justify-center shrink-0 text-gold-400">
+            <div class="flex flex-col sm:flex-row items-center lg:items-start gap-2 text-center sm:text-left">
+              <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-espresso-800 border border-gold-500/25 flex items-center justify-center shrink-0 text-gold-400">
                 <i data-lucide="truck" class="w-4 h-4"></i>
               </div>
               <div>
-                <p class="text-xs font-semibold text-cream-100">Chilled Dispatch</p>
-                <p class="text-[11px] text-cream-300/60">Insulated luxury boxes</p>
+                <p class="text-[11px] sm:text-xs font-semibold text-cream-100">Chilled Dispatch</p>
+                <p class="text-[10px] text-cream-300/60 hidden sm:block">Insulated luxury boxes</p>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Right Column: 3D Interactive Parallax Floating Luxury Showcase -->
+        <!-- Right Column: Featured Spotlight Card (Live Synced with Sheet) -->
         <div class="lg:col-span-5 tilt-stage flex justify-center">
-          <div id="hero-tilt-card" class="tilt-card relative w-full max-w-md rounded-3xl p-5 sm:p-7 glass-card-dark">
-            <!-- Decorative Corner Gold Filigree -->
-            <div class="absolute top-3 left-3 w-6 h-6 border-t-2 border-l-2 border-gold-500/50 rounded-tl-xl pointer-events-none"></div>
-            <div class="absolute top-3 right-3 w-6 h-6 border-t-2 border-r-2 border-gold-500/50 rounded-tr-xl pointer-events-none"></div>
-            <div class="absolute bottom-3 left-3 w-6 h-6 border-b-2 border-l-2 border-gold-500/50 rounded-bl-xl pointer-events-none"></div>
-            <div class="absolute bottom-3 right-3 w-6 h-6 border-b-2 border-r-2 border-gold-500/50 rounded-br-xl pointer-events-none"></div>
+          <div id="hero-tilt-card" class="tilt-card relative w-full max-w-md rounded-3xl p-4 sm:p-7 glass-card-dark">
+            <div class="absolute top-3 left-3 w-5 h-5 border-t-2 border-l-2 border-gold-500/50 rounded-tl-xl pointer-events-none"></div>
+            <div class="absolute top-3 right-3 w-5 h-5 border-t-2 border-r-2 border-gold-500/50 rounded-tr-xl pointer-events-none"></div>
+            <div class="absolute bottom-3 left-3 w-5 h-5 border-b-2 border-l-2 border-gold-500/50 rounded-bl-xl pointer-events-none"></div>
+            <div class="absolute bottom-3 right-3 w-5 h-5 border-b-2 border-r-2 border-gold-500/50 rounded-br-xl pointer-events-none"></div>
 
-            <!-- Main Luxury Chocolate Visual with Custom SVG & Studio Photo -->
-            <div class="relative rounded-2xl overflow-hidden aspect-[4/5] bg-gradient-to-b from-espresso-800 to-espresso-950 border border-gold-500/20 shadow-2xl group">
+            <div id="hero-spotlight-container" class="relative rounded-2xl overflow-hidden aspect-[4/5] bg-gradient-to-b from-espresso-800 to-espresso-950 border border-gold-500/20 shadow-2xl group">
               <img 
+                id="hero-spotlight-img"
                 src="https://images.unsplash.com/photo-1549007994-cb92caebd54b?auto=format&fit=crop&w=900&q=85" 
                 onerror="this.src='https://placehold.co/600x750/1F120C/E5C158?text=Vintage+Cocoa+Reserve'"
                 alt="Vintage Cocoa Signature Artisan Assortment" 
                 class="w-full h-full object-cover object-center opacity-85 group-hover:scale-105 transition-transform duration-700"
               />
-              <div class="absolute inset-0 bg-gradient-to-t from-espresso-950 via-espresso-950/30 to-transparent"></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-espresso-950 via-espresso-950/35 to-transparent"></div>
 
               <!-- Floating Wax Seal Emblem -->
-              <div class="absolute top-4 right-4 w-20 h-20 rounded-full bg-gradient-to-br from-gold-300 via-gold-500 to-gold-700 p-1 shadow-xl animate-float-slow flex items-center justify-center">
+              <div class="absolute top-3.5 right-3.5 w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-gold-300 via-gold-500 to-gold-700 p-1 shadow-xl animate-float-slow flex items-center justify-center">
                 <div class="w-full h-full rounded-full border border-espresso-950/40 flex flex-col items-center justify-center text-center px-1">
-                  <span class="text-[8px] font-bold tracking-[0.18em] uppercase text-espresso-950">EST. 2024</span>
-                  <span class="font-serif font-bold text-xs leading-tight text-espresso-950">VINTAGE<br/>COCOA</span>
-                  <span class="text-[7px] uppercase tracking-widest text-espresso-950/80">100% PURE</span>
+                  <span class="text-[7px] sm:text-[8px] font-bold tracking-[0.16em] uppercase text-espresso-950">EST. 2024</span>
+                  <span class="font-serif font-bold text-[10px] sm:text-xs leading-tight text-espresso-950">VINTAGE<br/>COCOA</span>
+                  <span class="text-[6px] sm:text-[7px] uppercase tracking-widest text-espresso-950/80">100% PURE</span>
                 </div>
               </div>
 
               <!-- Bottom Overlay Tasting Card -->
-              <div class="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-espresso-950/85 backdrop-blur-md border border-gold-500/30">
-                <div class="flex items-center justify-between">
-                  <div>
-                    <span class="text-[10px] uppercase tracking-[0.2em] text-gold-400">Limited Edition Reserve</span>
-                    <h3 class="font-serif text-xl text-cream-50 font-semibold">Signature Combo of 5</h3>
+              <div class="absolute bottom-3.5 left-3.5 right-3.5 p-3.5 sm:p-4 rounded-2xl bg-espresso-950/90 backdrop-blur-md border border-gold-500/30">
+                <div class="flex items-center justify-between gap-2">
+                  <div class="min-w-0">
+                    <span id="hero-spotlight-badge" class="text-[9px] sm:text-[10px] uppercase tracking-[0.2em] text-gold-400 block truncate">Limited Edition Reserve</span>
+                    <h3 id="hero-spotlight-title" class="font-serif text-lg sm:text-xl text-cream-50 font-semibold truncate">Signature Combo of 5</h3>
                   </div>
-                  <span class="font-serif text-xl font-bold text-gold-400">₹150</span>
+                  <span id="hero-spotlight-price" class="font-serif text-xl font-bold text-gold-400 shrink-0">₹150</span>
                 </div>
-                <p class="text-xs text-cream-200/75 mt-1">Coffee Ganache, White Marble, Roasted Almonds & Crackles</p>
-                <button onclick="addToCartById('combo-5')" class="mt-3 w-full py-2.5 rounded-xl bg-gold-500/20 hover:bg-gold-500 text-gold-300 hover:text-espresso-950 border border-gold-500/40 text-xs font-semibold uppercase tracking-[0.15em] transition-all duration-300 flex items-center justify-center gap-2">
+                <p id="hero-spotlight-sub" class="text-xs text-cream-200/75 mt-1 truncate">Coffee Ganache, White Marble, Roasted Almonds & Crackles</p>
+                <button id="hero-spotlight-btn" onclick="addFirstProductToCart()" class="mt-3 w-full py-2.5 rounded-xl bg-gold-500/20 hover:bg-gold-500 active:bg-gold-500 text-gold-300 hover:text-espresso-950 active:text-espresso-950 border border-gold-500/40 text-xs font-semibold uppercase tracking-[0.15em] transition-all duration-300 flex items-center justify-center gap-2">
                   <i data-lucide="plus" class="w-3.5 h-3.5"></i>
                   <span>Add Signature Box to Bag</span>
                 </button>
@@ -370,41 +369,44 @@
   </section>
 
   <!-- =====================================================================
-       3. INTERACTIVE PRODUCT COLLECTION & FILTER SHOWCASE
+       3. LIVE GOOGLE SHEETS PRODUCT COLLECTION & FILTER SHOWCASE
   ====================================================================== -->
-  <section id="collections" class="py-24 bg-cream-100 relative">
+  <section id="collections" class="py-16 sm:py-24 bg-cream-100 relative">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <!-- Section Header -->
-      <div class="text-center max-w-3xl mx-auto space-y-4 reveal-up">
-        <span class="text-xs font-semibold tracking-[0.26em] uppercase text-gold-600">Curated Creations</span>
-        <h2 class="font-serif text-4xl sm:text-5xl font-semibold text-espresso-900">
+      <div class="text-center max-w-3xl mx-auto space-y-3 sm:space-y-4 reveal-up">
+        <div class="inline-flex items-center gap-2 text-xs font-semibold tracking-[0.24em] uppercase text-gold-600">
+          <span>Curated Creations</span>
+          <span id="live-sync-dot" class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" title="Live Catalog Synced"></span>
+        </div>
+        <h2 class="font-serif text-3xl sm:text-5xl font-semibold text-espresso-900">
           The Artisanal <span class="italic font-normal text-gold-600">Collection</span>
         </h2>
-        <p class="text-espresso-700/80 text-sm sm:text-base leading-relaxed">
+        <p class="text-espresso-700/80 text-xs sm:text-base leading-relaxed">
           Every confection is hand-poured in small batches, free from artificial preservatives, and presented in keepsake packaging worthy of royalty.
         </p>
       </div>
 
-      <!-- Interactive Category Filter Tabs -->
-      <div class="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 mt-10 mb-14 reveal-up" id="filter-tabs">
-        <button data-filter="all" class="filter-btn active px-6 py-2.5 rounded-full text-xs sm:text-sm font-semibold tracking-wider uppercase transition-all duration-300 bg-espresso-900 text-gold-400 border border-espresso-900 shadow-md">
-          All Creations (6)
+      <!-- Mobile-Friendly Horizontal Scrollable Category Filter Tabs -->
+      <div class="flex items-center justify-start sm:justify-center gap-2.5 overflow-x-auto no-scrollbar py-2 mt-8 mb-10 sm:mt-10 sm:mb-14 reveal-up" id="filter-tabs">
+        <button data-filter="all" class="filter-btn active shrink-0 px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold tracking-wider uppercase transition-all duration-300 bg-espresso-900 text-gold-400 border border-espresso-900 shadow-md">
+          All Creations
         </button>
-        <button data-filter="gift-boxes" class="filter-btn px-6 py-2.5 rounded-full text-xs sm:text-sm font-semibold tracking-wider uppercase transition-all duration-300 bg-cream-200/80 text-espresso-800 hover:bg-espresso-900/10 border border-espresso-900/15">
-          Luxury Gift Boxes
+        <button data-filter="boxes" class="filter-btn shrink-0 px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold tracking-wider uppercase transition-all duration-300 bg-cream-200/80 text-espresso-800 hover:bg-espresso-900/10 border border-espresso-900/15">
+          Luxury Boxes
         </button>
-        <button data-filter="jars-bars" class="filter-btn px-6 py-2.5 rounded-full text-xs sm:text-sm font-semibold tracking-wider uppercase transition-all duration-300 bg-cream-200/80 text-espresso-800 hover:bg-espresso-900/10 border border-espresso-900/15">
-          Jars & Artisan Bars
+        <button data-filter="jars" class="filter-btn shrink-0 px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold tracking-wider uppercase transition-all duration-300 bg-cream-200/80 text-espresso-800 hover:bg-espresso-900/10 border border-espresso-900/15">
+          Artisan Jars
         </button>
-        <button data-filter="bestsellers" class="filter-btn px-6 py-2.5 rounded-full text-xs sm:text-sm font-semibold tracking-wider uppercase transition-all duration-300 bg-cream-200/80 text-espresso-800 hover:bg-espresso-900/10 border border-espresso-900/15">
-          Best Sellers
+        <button data-filter="bars" class="filter-btn shrink-0 px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold tracking-wider uppercase transition-all duration-300 bg-cream-200/80 text-espresso-800 hover:bg-espresso-900/10 border border-espresso-900/15">
+          Protein & Bars
         </button>
       </div>
 
-      <!-- Product Grid (Rendered Dynamically via JS for smooth filtering) -->
-      <div id="product-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- Cards injected by JS -->
+      <!-- Loading Skeleton / Live Product Grid -->
+      <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <!-- Live products from Google Sheet injected here -->
       </div>
 
     </div>
@@ -413,65 +415,64 @@
   <!-- =====================================================================
        4. INTERACTIVE 'BUILD YOUR OWN LUXURY BOX' CUSTOMIZER
   ====================================================================== -->
-  <section id="box-builder" class="py-24 bg-espresso-900 text-cream-100 relative overflow-hidden">
-    <!-- Ambient Gold Glow -->
+  <section id="box-builder" class="py-16 sm:py-24 bg-espresso-900 text-cream-100 relative overflow-hidden">
     <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[750px] h-[350px] bg-gold-500/10 blur-[140px] pointer-events-none"></div>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <div class="text-center max-w-3xl mx-auto space-y-4 mb-14 reveal-up">
-        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-gold-500/15 border border-gold-500/30 text-gold-300 text-xs tracking-[0.22em] uppercase">
+      <div class="text-center max-w-3xl mx-auto space-y-3 sm:space-y-4 mb-10 sm:mb-14 reveal-up">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-gold-500/15 border border-gold-500/30 text-gold-300 text-[11px] sm:text-xs tracking-[0.2em] uppercase">
           <i data-lucide="gift" class="w-3.5 h-3.5"></i>
           Bespoke Atelier Experience
         </div>
-        <h2 class="font-serif text-4xl sm:text-5xl font-semibold text-cream-50">
+        <h2 class="font-serif text-3xl sm:text-5xl font-semibold text-cream-50">
           Curate Your <span class="italic font-normal text-gold-foil">Signature Gift Box</span>
         </h2>
-        <p class="text-cream-200/75 text-sm sm:text-base">
+        <p class="text-cream-200/75 text-xs sm:text-base">
           Select your keepsake box size, hand-pick individual artisan pralines to fill each velvet slot, and add a gold-embossed personal note.
         </p>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-10 items-start">
         
         <!-- Left Controls: Step 1 (Box Size) & Step 2 (Flavor Palette) -->
-        <div class="lg:col-span-6 space-y-8">
+        <div class="lg:col-span-6 space-y-6 sm:space-y-8">
           
           <!-- Step 1: Select Box Size -->
-          <div class="p-6 rounded-3xl glass-card-dark space-y-4">
+          <div class="p-5 sm:p-6 rounded-3xl glass-card-dark space-y-4">
             <div class="flex items-center justify-between">
-              <span class="text-xs font-bold tracking-[0.2em] uppercase text-gold-400">Step 01 &bull; Choose Keepsake Box</span>
+              <span class="text-[11px] sm:text-xs font-bold tracking-[0.18em] uppercase text-gold-400">Step 01 &bull; Choose Box Size</span>
               <span id="selected-box-price-badge" class="text-sm font-serif font-bold text-gold-300">₹150</span>
             </div>
-            <div class="grid grid-cols-3 gap-3" id="box-size-options">
-              <button onclick="selectBoxSize(5, 150, '5-Piece Signature Strip')" data-size="5" class="box-size-btn active p-3.5 rounded-2xl border-2 border-gold-400 bg-espresso-800 text-left transition-all">
-                <p class="font-serif text-lg font-semibold text-cream-50">5 Pieces</p>
-                <p class="text-[11px] text-cream-300/70">Signature Strip</p>
-                <p class="text-xs font-bold text-gold-400 mt-1.5">₹150</p>
+            <div class="grid grid-cols-3 gap-2.5 sm:gap-3" id="box-size-options">
+              <button onclick="selectBoxSize(5, 150, '5-Piece Signature Strip')" data-size="5" class="box-size-btn active p-3 sm:p-3.5 rounded-2xl border-2 border-gold-400 bg-espresso-800 text-left transition-all">
+                <p class="font-serif text-base sm:text-lg font-semibold text-cream-50">5 Pcs</p>
+                <p class="text-[10px] sm:text-[11px] text-cream-300/70 truncate">Signature Strip</p>
+                <p class="text-xs font-bold text-gold-400 mt-1">₹150</p>
               </button>
-              <button onclick="selectBoxSize(9, 250, '9-Piece Royal Heart Box')" data-size="9" class="box-size-btn p-3.5 rounded-2xl border border-gold-500/25 bg-espresso-950/60 hover:border-gold-500/60 text-left transition-all">
-                <p class="font-serif text-lg font-semibold text-cream-50">9 Pieces</p>
-                <p class="text-[11px] text-cream-300/70">Royal Heart Box</p>
-                <p class="text-xs font-bold text-gold-400 mt-1.5">₹250</p>
+              <button onclick="selectBoxSize(9, 250, '9-Piece Royal Heart Box')" data-size="9" class="box-size-btn p-3 sm:p-3.5 rounded-2xl border border-gold-500/25 bg-espresso-950/60 hover:border-gold-500/60 text-left transition-all">
+                <p class="font-serif text-base sm:text-lg font-semibold text-cream-50">9 Pcs</p>
+                <p class="text-[10px] sm:text-[11px] text-cream-300/70 truncate">Royal Heart Box</p>
+                <p class="text-xs font-bold text-gold-400 mt-1">₹250</p>
               </button>
-              <button onclick="selectBoxSize(12, 340, '12-Piece Collector Trunk')" data-size="12" class="box-size-btn p-3.5 rounded-2xl border border-gold-500/25 bg-espresso-950/60 hover:border-gold-500/60 text-left transition-all">
-                <p class="font-serif text-lg font-semibold text-cream-50">12 Pieces</p>
-                <p class="text-[11px] text-cream-300/70">Collector Trunk</p>
-                <p class="text-xs font-bold text-gold-400 mt-1.5">₹340</p>
+              <button onclick="selectBoxSize(12, 340, '12-Piece Collector Trunk')" data-size="12" class="box-size-btn p-3 sm:p-3.5 rounded-2xl border border-gold-500/25 bg-espresso-950/60 hover:border-gold-500/60 text-left transition-all">
+                <p class="font-serif text-base sm:text-lg font-semibold text-cream-50">12 Pcs</p>
+                <p class="text-[10px] sm:text-[11px] text-cream-300/70 truncate">Collector Trunk</p>
+                <p class="text-xs font-bold text-gold-400 mt-1">₹340</p>
               </button>
             </div>
           </div>
 
           <!-- Step 2: Select Chocolates to Fill Slots -->
-          <div class="p-6 rounded-3xl glass-card-dark space-y-4">
-            <div class="flex items-center justify-between">
-              <span class="text-xs font-bold tracking-[0.2em] uppercase text-gold-400">Step 02 &bull; Tap Flavors to Fill Slots</span>
-              <button onclick="autoFillBox()" class="text-xs text-gold-300 hover:text-gold-400 underline underline-offset-4 flex items-center gap-1">
+          <div class="p-5 sm:p-6 rounded-3xl glass-card-dark space-y-4">
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-[11px] sm:text-xs font-bold tracking-[0.18em] uppercase text-gold-400">Step 02 &bull; Tap Flavors</span>
+              <button onclick="autoFillBox()" class="text-xs text-gold-300 hover:text-gold-400 underline underline-offset-4 flex items-center gap-1 shrink-0">
                 <i data-lucide="wand-2" class="w-3.5 h-3.5"></i>
-                <span>Chef's Assortment</span>
+                <span>Auto-Fill Chef Mix</span>
               </button>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="flavor-palette">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3" id="flavor-palette">
               <!-- Flavors injected by JS -->
             </div>
           </div>
@@ -480,38 +481,37 @@
 
         <!-- Right Interactive Stage: Live Visual Velvet Chocolate Box -->
         <div class="lg:col-span-6">
-          <div class="p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-espresso-800 via-espresso-900 to-espresso-950 border-2 border-gold-500/40 shadow-2xl space-y-6 relative">
+          <div class="p-5 sm:p-8 rounded-3xl bg-gradient-to-br from-espresso-800 via-espresso-900 to-espresso-950 border-2 border-gold-500/40 shadow-2xl space-y-5 sm:space-y-6 relative">
             
-            <!-- Box Header -->
             <div class="flex flex-wrap items-center justify-between gap-2 border-b border-gold-500/20 pb-4">
               <div>
                 <span class="text-[10px] tracking-[0.25em] uppercase text-gold-400">Live Preview</span>
-                <h3 id="builder-box-title" class="font-serif text-2xl font-semibold text-cream-50">5-Piece Signature Strip</h3>
+                <h3 id="builder-box-title" class="font-serif text-xl sm:text-2xl font-semibold text-cream-50">5-Piece Signature Strip</h3>
               </div>
               <div class="flex items-center gap-3">
                 <span id="slot-counter" class="px-3 py-1 rounded-full bg-gold-500/20 border border-gold-500/40 text-xs font-semibold text-gold-300">
                   0 / 5 Filled
                 </span>
-                <button onclick="clearBoxSlots()" class="text-xs text-cream-300/60 hover:text-red-400 transition" title="Clear Box">
+                <button onclick="clearBoxSlots()" class="text-xs text-cream-300/60 hover:text-red-400 transition px-2 py-1">
                   Reset
                 </button>
               </div>
             </div>
 
             <!-- Interactive Velvet Tray Grid -->
-            <div class="p-5 sm:p-6 rounded-2xl bg-espresso-950/90 border border-gold-500/25 shadow-inner">
-              <div id="velvet-tray" class="grid grid-cols-5 gap-3 sm:gap-4 justify-items-center">
+            <div class="p-4 sm:p-6 rounded-2xl bg-espresso-950/90 border border-gold-500/25 shadow-inner">
+              <div id="velvet-tray" class="grid grid-cols-5 gap-2.5 sm:gap-4 justify-items-center">
                 <!-- Slots rendered dynamically -->
               </div>
               <p class="text-center text-[11px] text-cream-300/50 mt-4">
-                Tip: Click any filled praline in the tray to remove it.
+                Tap any filled praline above to remove it.
               </p>
             </div>
 
             <!-- Step 3: Gold-Embossed Gift Card Note -->
             <div class="space-y-2">
-              <label for="gift-note-input" class="block text-xs font-bold tracking-[0.18em] uppercase text-gold-400">
-                Step 03 &bull; Complimentary Gold-Foil Gift Note (Optional)
+              <label for="gift-note-input" class="block text-[11px] sm:text-xs font-bold tracking-[0.16em] uppercase text-gold-400">
+                Step 03 &bull; Gold-Foil Gift Note (Optional)
               </label>
               <input 
                 type="text" 
@@ -523,9 +523,9 @@
             </div>
 
             <!-- Add Custom Box to Bag CTA -->
-            <button id="add-custom-box-btn" onclick="addCustomBoxToCart()" class="btn-gold-shimmer w-full py-4 rounded-2xl text-espresso-950 font-bold text-sm tracking-[0.15em] uppercase flex items-center justify-center gap-3 shadow-xl">
+            <button id="add-custom-box-btn" onclick="addCustomBoxToCart()" class="btn-gold-shimmer w-full py-4 rounded-2xl text-espresso-950 font-bold text-xs sm:text-sm tracking-[0.14em] uppercase flex items-center justify-center gap-2.5 shadow-xl">
               <i data-lucide="shopping-bag" class="w-4 h-4"></i>
-              <span id="add-custom-box-label">Fill 5 More Slots to Complete Box</span>
+              <span id="add-custom-box-label">Select 5 More Pralines to Complete Box</span>
             </button>
 
           </div>
@@ -536,31 +536,29 @@
   </section>
 
   <!-- =====================================================================
-       5. 'OUR CRAFT & BEAN-TO-BAR STORY' INTERACTIVE SECTION
+       5. 'OUR CRAFT & BEAN-TO-BAR STORY' SECTION
   ====================================================================== -->
-  <section id="our-craft" class="py-24 bg-cream-200/70 border-y border-espresso-900/10">
+  <section id="our-craft" class="py-16 sm:py-24 bg-cream-200/70 border-y border-espresso-900/10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
         
-        <!-- Left Story & Interactive Steps -->
-        <div class="lg:col-span-6 space-y-8 reveal-up">
+        <div class="lg:col-span-6 space-y-6 sm:space-y-8 reveal-up">
           <div class="space-y-3">
             <span class="text-xs font-semibold tracking-[0.26em] uppercase text-gold-600">Bean-to-Bar Heritage</span>
-            <h2 class="font-serif text-4xl sm:text-5xl font-semibold text-espresso-900 leading-tight">
+            <h2 class="font-serif text-3xl sm:text-5xl font-semibold text-espresso-900 leading-tight">
               Why Connoisseurs Choose <span class="italic font-normal text-gold-600">Vintage Cocoa</span>
             </h2>
-            <p class="text-espresso-700/85 text-sm sm:text-base leading-relaxed">
+            <p class="text-espresso-700/85 text-xs sm:text-base leading-relaxed">
               Unlike mass-produced compound chocolates loaded with palm oil and refined wax, every Vintage Cocoa creation is crafted from pure single-origin cacao butter.
             </p>
           </div>
 
-          <!-- 3-Step Craft Accordion / Interactive Cards -->
-          <div class="space-y-4">
-            <div class="p-5 rounded-2xl bg-cream-50 border border-gold-500/30 shadow-sm hover:shadow-md transition-all">
-              <div class="flex items-start gap-4">
-                <span class="font-serif text-3xl font-bold text-gold-600 leading-none">01</span>
+          <div class="space-y-3.5 sm:space-y-4">
+            <div class="p-4 sm:p-5 rounded-2xl bg-cream-50 border border-gold-500/30 shadow-sm">
+              <div class="flex items-start gap-3.5 sm:gap-4">
+                <span class="font-serif text-2xl sm:text-3xl font-bold text-gold-600 leading-none">01</span>
                 <div>
-                  <h3 class="font-serif text-xl font-semibold text-espresso-900">Single-Origin Estate Harvesting</h3>
+                  <h3 class="font-serif text-lg sm:text-xl font-semibold text-espresso-900">Single-Origin Estate Harvesting</h3>
                   <p class="text-xs sm:text-sm text-espresso-700/80 mt-1 leading-relaxed">
                     Ethically sourced Forastero & Trinitario cacao pods from Idukki & Malabar estates, fermented for 6 days to unlock deep fruity and nutty notes.
                   </p>
@@ -568,11 +566,11 @@
               </div>
             </div>
 
-            <div class="p-5 rounded-2xl bg-cream-50 border border-gold-500/30 shadow-sm hover:shadow-md transition-all">
-              <div class="flex items-start gap-4">
-                <span class="font-serif text-3xl font-bold text-gold-600 leading-none">02</span>
+            <div class="p-4 sm:p-5 rounded-2xl bg-cream-50 border border-gold-500/30 shadow-sm">
+              <div class="flex items-start gap-3.5 sm:gap-4">
+                <span class="font-serif text-2xl sm:text-3xl font-bold text-gold-600 leading-none">02</span>
                 <div>
-                  <h3 class="font-serif text-xl font-semibold text-espresso-900">48-Hour Granite Stone Conching</h3>
+                  <h3 class="font-serif text-lg sm:text-xl font-semibold text-espresso-900">48-Hour Granite Stone Conching</h3>
                   <p class="text-xs sm:text-sm text-espresso-700/80 mt-1 leading-relaxed">
                     Slow-ground under granite wheels for 48 hours to achieve a microscopic 18-micron silkiness that melts effortlessly at body temperature.
                   </p>
@@ -580,11 +578,11 @@
               </div>
             </div>
 
-            <div class="p-5 rounded-2xl bg-cream-50 border border-gold-500/30 shadow-sm hover:shadow-md transition-all">
-              <div class="flex items-start gap-4">
-                <span class="font-serif text-3xl font-bold text-gold-600 leading-none">03</span>
+            <div class="p-4 sm:p-5 rounded-2xl bg-cream-50 border border-gold-500/30 shadow-sm">
+              <div class="flex items-start gap-3.5 sm:gap-4">
+                <span class="font-serif text-2xl sm:text-3xl font-bold text-gold-600 leading-none">03</span>
                 <div>
-                  <h3 class="font-serif text-xl font-semibold text-espresso-900">Hand-Tempered & Gold-Leaf Finished</h3>
+                  <h3 class="font-serif text-lg sm:text-xl font-semibold text-espresso-900">Hand-Tempered & Gold-Leaf Finished</h3>
                   <p class="text-xs sm:text-sm text-espresso-700/80 mt-1 leading-relaxed">
                     Marble-slab tempered by master chocolatiers for that signature crisp "snap" and glossy mirror sheen, finished with roasted nuts and edible gold.
                   </p>
@@ -594,25 +592,23 @@
           </div>
         </div>
 
-        <!-- Right Visual & Sensory Tasting Notes Card -->
         <div class="lg:col-span-6 reveal-up">
           <div class="relative rounded-3xl overflow-hidden shadow-2xl border border-gold-500/30 bg-espresso-900">
             <img 
               src="https://images.unsplash.com/photo-1606312619070-d48b4c652a52?auto=format&fit=crop&w=900&q=85" 
               onerror="this.src='https://placehold.co/700x600/2D1B12/E5C158?text=Artisan+Chocolate+Tempering'"
               alt="Artisan Chocolatier Tempering Dark Chocolate" 
-              class="w-full h-[460px] object-cover opacity-80"
+              class="w-full h-[380px] sm:h-[460px] object-cover opacity-80"
             />
             <div class="absolute inset-0 bg-gradient-to-t from-espresso-950 via-espresso-950/40 to-transparent"></div>
             
-            <!-- Sensory Flavor Profile Overlay -->
-            <div class="absolute bottom-6 left-6 right-6 p-6 rounded-2xl bg-espresso-950/90 backdrop-blur-md border border-gold-500/30 text-cream-100 space-y-4">
-              <div class="flex items-center justify-between border-b border-gold-500/20 pb-3">
-                <span class="text-xs uppercase tracking-[0.22em] text-gold-400">Signature Cacao Profile</span>
+            <div class="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 p-4 sm:p-6 rounded-2xl bg-espresso-950/90 backdrop-blur-md border border-gold-500/30 text-cream-100 space-y-3 sm:space-y-4">
+              <div class="flex items-center justify-between border-b border-gold-500/20 pb-2.5">
+                <span class="text-[10px] sm:text-xs uppercase tracking-[0.2em] text-gold-400">Signature Cacao Profile</span>
                 <span class="text-xs font-semibold text-cream-200">70% Reserve Blend</span>
               </div>
               
-              <div class="space-y-3 text-xs">
+              <div class="space-y-2.5 text-xs">
                 <div>
                   <div class="flex justify-between mb-1">
                     <span class="text-cream-200">Velvety Cocoa Richness</span>
@@ -631,15 +627,6 @@
                     <div class="h-full bg-gradient-to-r from-gold-600 to-gold-400 rounded-full" style="width: 88%"></div>
                   </div>
                 </div>
-                <div>
-                  <div class="flex justify-between mb-1">
-                    <span class="text-cream-200">Balanced Sweetness (Unrefined Cane)</span>
-                    <span class="text-gold-400 font-semibold">62%</span>
-                  </div>
-                  <div class="w-full h-1.5 rounded-full bg-espresso-800 overflow-hidden">
-                    <div class="h-full bg-gradient-to-r from-gold-600 to-gold-400 rounded-full" style="width: 62%"></div>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
@@ -650,43 +637,44 @@
   </section>
 
   <!-- =====================================================================
-       6. BESPOKE WEDDING & CORPORATE GIFTING CONCIERGE
+       6. BESPOKE WEDDING & CORPORATE GIFTING CONCIERGE (DIRECT WHATSAPP)
   ====================================================================== -->
-  <section id="concierge" class="py-24 bg-cream-100">
+  <section id="concierge" class="py-16 sm:py-24 bg-cream-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="rounded-3xl bg-espresso-900 text-cream-100 p-8 sm:p-12 lg:p-16 relative overflow-hidden border border-gold-500/30 shadow-2xl reveal-up">
+      <div class="rounded-3xl bg-espresso-900 text-cream-100 p-6 sm:p-12 lg:p-16 relative overflow-hidden border border-gold-500/30 shadow-2xl reveal-up">
         <div class="absolute -right-24 -bottom-24 w-96 h-96 rounded-full bg-gold-500/10 blur-[100px] pointer-events-none"></div>
         
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center relative z-10">
-          <div class="lg:col-span-7 space-y-5">
-            <span class="text-xs font-semibold tracking-[0.26em] uppercase text-gold-400">Royal Weddings & Corporate Milestones</span>
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center relative z-10">
+          <div class="lg:col-span-7 space-y-4 sm:space-y-5">
+            <span class="text-[11px] sm:text-xs font-semibold tracking-[0.24em] uppercase text-gold-400">Royal Weddings & Corporate Milestones</span>
             <h2 class="font-serif text-3xl sm:text-5xl font-semibold text-cream-50 leading-tight">
               Bespoke Monogrammed <span class="italic font-normal text-gold-foil">Hampers & Favors</span>
             </h2>
-            <p class="text-cream-200/80 text-sm sm:text-base leading-relaxed max-w-2xl">
+            <p class="text-cream-200/80 text-xs sm:text-base leading-relaxed max-w-2xl">
               Planning a royal wedding, festive Diwali gifting, or executive client hampers? Our gifting concierge customizes velvet boxes with your family crest, company logo, and bespoke flavor pairings.
             </p>
-            <div class="flex flex-wrap gap-6 pt-2 text-xs text-gold-300">
-              <span class="flex items-center gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-gold-400"></i> Custom Gold Foil Monograms</span>
-              <span class="flex items-center gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-gold-400"></i> Pan-India Chilled Delivery</span>
-              <span class="flex items-center gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-gold-400"></i> Bulk Orders from 25 to 5,000+ Boxes</span>
+            <div class="flex flex-wrap gap-4 sm:gap-6 pt-1 text-xs text-gold-300">
+              <span class="flex items-center gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-gold-400 shrink-0"></i> Custom Gold Foil Monograms</span>
+              <span class="flex items-center gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-gold-400 shrink-0"></i> Pan-India Chilled Delivery</span>
+              <span class="flex items-center gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-gold-400 shrink-0"></i> Bulk Orders from 25 to 5,000+ Boxes</span>
             </div>
           </div>
 
           <div class="lg:col-span-5">
-            <form onsubmit="handleConciergeSubmit(event)" class="p-6 rounded-2xl bg-espresso-950/80 border border-gold-500/25 space-y-4">
-              <h3 class="font-serif text-xl text-cream-50">Request Bespoke Catalog</h3>
-              <input type="text" required placeholder="Your Name / Company" class="w-full px-4 py-3 rounded-xl bg-espresso-900 border border-gold-500/25 text-sm text-cream-100 focus:border-gold-400 focus:outline-none" />
+            <form onsubmit="handleConciergeSubmit(event)" class="p-5 sm:p-6 rounded-2xl bg-espresso-950/85 border border-gold-500/25 space-y-3.5 sm:space-y-4">
+              <h3 class="font-serif text-xl text-cream-50">Instant WhatsApp Concierge</h3>
+              <input type="text" id="concierge-name" required placeholder="Your Name / Company" class="w-full px-4 py-3 rounded-xl bg-espresso-900 border border-gold-500/25 text-sm text-cream-100 focus:border-gold-400 focus:outline-none" />
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <input type="tel" required placeholder="Phone / WhatsApp" class="w-full px-4 py-3 rounded-xl bg-espresso-900 border border-gold-500/25 text-sm text-cream-100 focus:border-gold-400 focus:outline-none" />
-                <select class="w-full px-4 py-3 rounded-xl bg-espresso-900 border border-gold-500/25 text-sm text-cream-200 focus:border-gold-400 focus:outline-none">
-                  <option>Wedding Invitations</option>
-                  <option>Corporate Gifting</option>
-                  <option>Festive Hampers</option>
+                <input type="tel" id="concierge-phone" required placeholder="Your Phone Number" class="w-full px-4 py-3 rounded-xl bg-espresso-900 border border-gold-500/25 text-sm text-cream-100 focus:border-gold-400 focus:outline-none" />
+                <select id="concierge-occasion" class="w-full px-4 py-3 rounded-xl bg-espresso-900 border border-gold-500/25 text-sm text-cream-200 focus:border-gold-400 focus:outline-none">
+                  <option value="Wedding Invitations & Favors">Wedding Invitations</option>
+                  <option value="Corporate Bulk Gifting">Corporate Gifting</option>
+                  <option value="Festive Luxury Hampers">Festive Hampers</option>
                 </select>
               </div>
-              <button type="submit" class="btn-gold-shimmer w-full py-3.5 rounded-xl text-espresso-950 font-bold text-xs uppercase tracking-[0.16em]">
-                Connect With Gifting Concierge
+              <button type="submit" class="btn-gold-shimmer w-full py-3.5 rounded-xl text-espresso-950 font-bold text-xs uppercase tracking-[0.16em] flex items-center justify-center gap-2">
+                <i data-lucide="message-circle" class="w-4 h-4"></i>
+                <span>Chat on WhatsApp Now</span>
               </button>
             </form>
           </div>
@@ -698,10 +686,10 @@
   <!-- =====================================================================
        7. LUXURY HERITAGE FOOTER
   ====================================================================== -->
-  <footer class="bg-espresso-950 text-cream-200/80 border-t border-gold-500/20 pt-16 pb-10">
+  <footer class="bg-espresso-950 text-cream-200/80 border-t border-gold-500/20 pt-14 pb-10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-gold-500/15">
-        <div class="space-y-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 pb-10 border-b border-gold-500/15">
+        <div class="space-y-3.5">
           <div class="flex items-center gap-3">
             <div class="w-9 h-9 rounded-full border border-gold-500/50 flex items-center justify-center text-gold-400">
               <i data-lucide="crown" class="w-4 h-4"></i>
@@ -714,19 +702,18 @@
         </div>
 
         <div>
-          <h4 class="text-xs font-bold uppercase tracking-[0.2em] text-gold-400 mb-4">Collections</h4>
-          <ul class="space-y-2.5 text-xs">
-            <li><a href="#collections" class="hover:text-gold-400 transition">Signature Combo of 5</a></li>
-            <li><a href="#collections" class="hover:text-gold-400 transition">Royal Heart Pack (9 Pcs)</a></li>
-            <li><a href="#collections" class="hover:text-gold-400 transition">Surprise Jar (50 Bites)</a></li>
-            <li><a href="#collections" class="hover:text-gold-400 transition">Butterscotch Crunch Jar</a></li>
-            <li><a href="#collections" class="hover:text-gold-400 transition">Artisan Dark Protein Bar</a></li>
+          <h4 class="text-xs font-bold uppercase tracking-[0.2em] text-gold-400 mb-3.5">Collections</h4>
+          <ul class="space-y-2 text-xs">
+            <li><a href="#collections" class="hover:text-gold-400 transition">Luxury Gift Boxes</a></li>
+            <li><a href="#collections" class="hover:text-gold-400 transition">Artisan Chocolate Jars</a></li>
+            <li><a href="#collections" class="hover:text-gold-400 transition">Dark Protein & Crunch Bars</a></li>
+            <li><a href="#box-builder" class="hover:text-gold-400 transition">Custom Assortment Boxes</a></li>
           </ul>
         </div>
 
         <div>
-          <h4 class="text-xs font-bold uppercase tracking-[0.2em] text-gold-400 mb-4">Atelier Services</h4>
-          <ul class="space-y-2.5 text-xs">
+          <h4 class="text-xs font-bold uppercase tracking-[0.2em] text-gold-400 mb-3.5">Atelier Services</h4>
+          <ul class="space-y-2 text-xs">
             <li><a href="#box-builder" class="hover:text-gold-400 transition">Build Your Own Gift Box</a></li>
             <li><a href="#concierge" class="hover:text-gold-400 transition">Wedding & Trousseau Favors</a></li>
             <li><a href="#concierge" class="hover:text-gold-400 transition">Corporate Bulk Hampers</a></li>
@@ -735,30 +722,49 @@
         </div>
 
         <div>
-          <h4 class="text-xs font-bold uppercase tracking-[0.2em] text-gold-400 mb-4">Freshness Guarantee</h4>
+          <h4 class="text-xs font-bold uppercase tracking-[0.2em] text-gold-400 mb-3.5">Direct Order Desk</h4>
           <p class="text-xs leading-relaxed text-cream-300/65 mb-3">
-            Every order is dispatched in temperature-insulated packaging with cold gel packs to ensure pristine gloss and snap upon arrival.
+            Need urgent same-day gifting dispatch or custom flavors? Order directly via our WhatsApp concierge.
           </p>
-          <div class="flex items-center gap-2 text-xs text-gold-300">
-            <i data-lucide="shield-check" class="w-4 h-4 text-gold-400"></i>
-            <span>FSSAI Certified &bull; 100% Vegetarian</span>
-          </div>
+          <a href="https://wa.me/919876543210?text=Hello%20Vintage%20Cocoa!%20I%20would%20like%20to%20explore%20your%20handcrafted%20chocolates." target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-xs font-semibold text-gold-400 hover:text-gold-300">
+            <i data-lucide="message-circle" class="w-4 h-4"></i>
+            <span>+91 98765 43210</span>
+          </a>
         </div>
       </div>
 
-      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-cream-300/50">
+      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] text-cream-300/50 text-center">
         <p>&copy; 2026 Vintage Cocoa Artisanal Chocolatiers. All Rights Reserved.</p>
-        <p>Handcrafted with Passion &bull; Pure Cacao Luxury</p>
+        <p>FSSAI Certified &bull; 100% Vegetarian &bull; Pure Cacao Luxury</p>
       </div>
     </div>
   </footer>
 
   <!-- =====================================================================
+       MOBILE STICKY FLOATING BAG BAR (VISIBLE WHEN CART HAS ITEMS)
+  ====================================================================== -->
+  <div id="mobile-sticky-bag" class="fixed bottom-3 left-3 right-3 z-40 lg:hidden hidden">
+    <button onclick="toggleCart(true)" class="w-full py-3.5 px-5 rounded-2xl bg-espresso-950/95 backdrop-blur-md border border-gold-500/50 text-cream-100 shadow-2xl flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <span id="mobile-bar-count" class="w-7 h-7 rounded-full bg-gold-500 text-espresso-950 text-xs font-bold flex items-center justify-center">0</span>
+        <div class="text-left">
+          <p class="text-[10px] uppercase tracking-widest text-gold-400">Your Velvet Bag</p>
+          <p id="mobile-bar-total" class="font-serif text-base font-bold text-cream-50">₹0</p>
+        </div>
+      </div>
+      <span class="px-4 py-2 rounded-xl btn-gold-shimmer text-espresso-950 font-bold text-xs uppercase tracking-wider flex items-center gap-1.5">
+        <span>Checkout</span>
+        <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+      </span>
+    </button>
+  </div>
+
+  <!-- =====================================================================
        MODAL 1: PRODUCT QUICK-VIEW MODAL
   ====================================================================== -->
-  <div id="quick-view-modal" class="fixed inset-0 z-[70] hidden items-center justify-center p-4 bg-espresso-950/80 backdrop-blur-md">
-    <div class="relative w-full max-w-3xl rounded-3xl bg-cream-100 text-espresso-900 border border-gold-500/40 shadow-2xl overflow-hidden animate-slot-pop">
-      <button onclick="closeQuickView()" class="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-espresso-900/90 text-cream-100 hover:text-gold-400 flex items-center justify-center transition">
+  <div id="quick-view-modal" class="fixed inset-0 z-[70] hidden items-end sm:items-center justify-center sm:p-4 bg-espresso-950/80 backdrop-blur-md">
+    <div class="relative w-full max-w-3xl rounded-t-3xl sm:rounded-3xl bg-cream-100 text-espresso-900 border border-gold-500/40 shadow-2xl overflow-hidden max-h-[90vh] overflow-y-auto animate-slot-pop">
+      <button onclick="closeQuickView()" class="absolute top-3.5 right-3.5 z-10 w-10 h-10 rounded-full bg-espresso-900/90 text-cream-100 hover:text-gold-400 flex items-center justify-center transition">
         <i data-lucide="x" class="w-5 h-5"></i>
       </button>
       <div id="quick-view-content" class="grid grid-cols-1 md:grid-cols-2">
@@ -770,18 +776,18 @@
   <!-- =====================================================================
        MODAL 2: INSTANT SEARCH OVERLAY
   ====================================================================== -->
-  <div id="search-modal" class="fixed inset-0 z-[75] hidden items-start justify-center pt-24 p-4 bg-espresso-950/85 backdrop-blur-md">
-    <div class="w-full max-w-2xl rounded-3xl bg-espresso-900 border border-gold-500/40 p-6 text-cream-100 shadow-2xl">
-      <div class="flex items-center gap-3 border-b border-gold-500/25 pb-4">
-        <i data-lucide="search" class="w-5 h-5 text-gold-400"></i>
+  <div id="search-modal" class="fixed inset-0 z-[75] hidden items-start justify-center pt-16 sm:pt-24 p-4 bg-espresso-950/85 backdrop-blur-md">
+    <div class="w-full max-w-2xl rounded-3xl bg-espresso-900 border border-gold-500/40 p-5 sm:p-6 text-cream-100 shadow-2xl">
+      <div class="flex items-center gap-3 border-b border-gold-500/25 pb-3.5">
+        <i data-lucide="search" class="w-5 h-5 text-gold-400 shrink-0"></i>
         <input 
           type="text" 
           id="search-input" 
           oninput="handleSearch(this.value)"
-          placeholder="Search truffles, heart boxes, butterscotch, protein bars..." 
-          class="w-full bg-transparent text-base text-cream-50 placeholder:text-cream-300/40 focus:outline-none"
+          placeholder="Search truffles, heart boxes, butterscotch..." 
+          class="w-full bg-transparent text-sm sm:text-base text-cream-50 placeholder:text-cream-300/40 focus:outline-none"
         />
-        <button onclick="closeSearchModal()" class="text-xs uppercase tracking-widest text-cream-300/60 hover:text-gold-400">ESC</button>
+        <button onclick="closeSearchModal()" class="p-1.5 rounded-lg bg-espresso-800 text-xs uppercase tracking-widest text-cream-300 hover:text-gold-400">Close</button>
       </div>
       <div id="search-results" class="mt-4 max-h-80 overflow-y-auto space-y-2.5">
         <!-- Live search results -->
@@ -794,41 +800,40 @@
   ====================================================================== -->
   <div id="cart-backdrop" onclick="toggleCart(false)" class="fixed inset-0 z-[80] bg-espresso-950/75 backdrop-blur-sm hidden transition-opacity duration-300"></div>
   
-  <aside id="cart-drawer" class="fixed top-0 right-0 bottom-0 z-[85] w-full max-w-md bg-cream-100 text-espresso-900 shadow-2xl border-l border-gold-500/30 transform translate-x-full transition-transform duration-500 ease-out flex flex-col">
+  <aside id="cart-drawer" class="fixed top-0 right-0 bottom-0 z-[85] w-full sm:max-w-md bg-cream-100 text-espresso-900 shadow-2xl border-l border-gold-500/30 transform translate-x-full transition-transform duration-300 ease-out flex flex-col">
     
     <!-- Drawer Header -->
-    <div class="p-6 bg-espresso-900 text-cream-100 border-b border-gold-500/25 flex items-center justify-between">
+    <div class="p-5 sm:p-6 bg-espresso-900 text-cream-100 border-b border-gold-500/25 flex items-center justify-between">
       <div class="flex items-center gap-3">
         <i data-lucide="shopping-bag" class="w-5 h-5 text-gold-400"></i>
         <div>
           <h3 class="font-serif text-xl font-semibold">Your Velvet Bag</h3>
-          <p id="drawer-item-count" class="text-[11px] text-gold-300/80 uppercase tracking-widest">2 Handcrafted Items</p>
+          <p id="drawer-item-count" class="text-[11px] text-gold-300/80 uppercase tracking-widest">0 Handcrafted Items</p>
         </div>
       </div>
-      <button onclick="toggleCart(false)" class="p-2 rounded-full hover:bg-espresso-800 text-cream-200 hover:text-gold-400 transition">
+      <button onclick="toggleCart(false)" class="p-2 rounded-full bg-espresso-800/80 hover:bg-espresso-700 text-cream-200 hover:text-gold-400 transition">
         <i data-lucide="x" class="w-5 h-5"></i>
       </button>
     </div>
 
     <!-- Gamified Free Luxury Gift Wrap & Shipping Progress Bar -->
-    <div class="px-6 py-3.5 bg-cream-200 border-b border-espresso-900/10">
-      <div class="flex items-center justify-between text-xs mb-1.5">
-        <span id="shipping-progress-text" class="font-medium text-espresso-800">Add ₹99 more for Complimentary Gold Gift Wrap!</span>
-        <span id="shipping-progress-pct" class="font-bold text-gold-700">80%</span>
+    <div class="px-5 sm:px-6 py-3 bg-cream-200 border-b border-espresso-900/10">
+      <div class="flex items-center justify-between text-xs mb-1.5 gap-2">
+        <span id="shipping-progress-text" class="font-medium text-espresso-800 truncate">Add ₹499 more for Complimentary Gold Gift Wrap!</span>
+        <span id="shipping-progress-pct" class="font-bold text-gold-700 shrink-0">0%</span>
       </div>
       <div class="w-full h-2 rounded-full bg-espresso-900/10 overflow-hidden">
-        <div id="shipping-progress-bar" class="h-full bg-gradient-to-r from-gold-600 to-gold-400 rounded-full transition-all duration-500" style="width: 80%"></div>
+        <div id="shipping-progress-bar" class="h-full bg-gradient-to-r from-gold-600 to-gold-400 rounded-full transition-all duration-500" style="width: 0%"></div>
       </div>
     </div>
 
     <!-- Cart Items List -->
-    <div id="cart-items-container" class="flex-1 overflow-y-auto p-6 space-y-4">
+    <div id="cart-items-container" class="flex-1 overflow-y-auto p-5 sm:p-6 space-y-3.5">
       <!-- Cart items injected here -->
     </div>
 
     <!-- Promo Code & Checkout Footer -->
-    <div class="p-6 bg-cream-200/90 border-t border-espresso-900/15 space-y-4">
-      <!-- Promo Input -->
+    <div class="p-5 sm:p-6 bg-cream-200/95 border-t border-espresso-900/15 space-y-3.5">
       <div class="flex gap-2">
         <input 
           type="text" 
@@ -841,111 +846,116 @@
         </button>
       </div>
 
-      <!-- Price Breakdown -->
-      <div class="space-y-1.5 text-xs">
+      <div class="space-y-1 text-xs">
         <div class="flex justify-between text-espresso-700">
           <span>Subtotal</span>
-          <span id="cart-subtotal" class="font-semibold">₹400</span>
+          <span id="cart-subtotal" class="font-semibold">₹0</span>
         </div>
         <div id="discount-row" class="hidden flex justify-between text-emerald-700 font-medium">
           <span>Royal Privilege Discount (10%)</span>
-          <span id="cart-discount">-₹40</span>
+          <span id="cart-discount">-₹0</span>
         </div>
         <div class="flex justify-between text-espresso-700">
           <span>Insulated Chilled Shipping</span>
-          <span id="cart-shipping" class="font-semibold">₹49</span>
+          <span id="cart-shipping" class="font-semibold">₹0</span>
         </div>
         <div class="flex justify-between text-base font-serif font-bold text-espresso-900 pt-2 border-t border-espresso-900/10">
           <span>Estimated Total</span>
-          <span id="cart-total">₹449</span>
+          <span id="cart-total">₹0</span>
         </div>
       </div>
 
       <button onclick="openCheckoutModal()" class="btn-gold-shimmer w-full py-4 rounded-2xl text-espresso-950 font-bold text-xs uppercase tracking-[0.16em] flex items-center justify-center gap-2 shadow-lg">
-        <i data-lucide="lock" class="w-4 h-4"></i>
-        <span>Proceed to Luxury Checkout</span>
+        <i data-lucide="message-circle" class="w-4 h-4"></i>
+        <span>Proceed to WhatsApp Checkout</span>
       </button>
     </div>
   </aside>
 
   <!-- =====================================================================
-       MODAL 3: SIMULATED LUXURY CHECKOUT & ORDER RECEIPT
+       MODAL 3: REAL WHATSAPP ORDER CHECKOUT MODAL
   ====================================================================== -->
-  <div id="checkout-modal" class="fixed inset-0 z-[95] hidden items-center justify-center p-4 bg-espresso-950/85 backdrop-blur-md">
-    <div class="w-full max-w-lg rounded-3xl bg-cream-100 text-espresso-900 border border-gold-500/40 p-6 sm:p-8 shadow-2xl relative">
-      <button onclick="closeCheckoutModal()" class="absolute top-5 right-5 text-espresso-700 hover:text-espresso-950">
+  <div id="checkout-modal" class="fixed inset-0 z-[95] hidden items-end sm:items-center justify-center sm:p-4 bg-espresso-950/85 backdrop-blur-md">
+    <div class="w-full max-w-lg rounded-t-3xl sm:rounded-3xl bg-cream-100 text-espresso-900 border border-gold-500/40 p-6 sm:p-8 shadow-2xl relative max-h-[92vh] overflow-y-auto">
+      <button onclick="closeCheckoutModal()" class="absolute top-5 right-5 w-9 h-9 rounded-full bg-cream-200 flex items-center justify-center text-espresso-700 hover:text-espresso-950">
         <i data-lucide="x" class="w-5 h-5"></i>
       </button>
 
-      <div id="checkout-form-view" class="space-y-5">
+      <div id="checkout-form-view" class="space-y-4">
         <div>
-          <span class="text-[10px] font-bold uppercase tracking-[0.22em] text-gold-600">Express Concierge Checkout</span>
+          <span class="text-[10px] font-bold uppercase tracking-[0.22em] text-gold-600">Direct Atelier WhatsApp Order</span>
           <h3 class="font-serif text-2xl font-semibold text-espresso-900">Delivery & Gift Details</h3>
         </div>
-        <form onsubmit="completeOrder(event)" class="space-y-3.5">
-          <input type="text" required placeholder="Recipient Full Name" class="w-full px-4 py-3 rounded-xl bg-cream-50 border border-espresso-900/15 text-sm focus:outline-none focus:border-gold-600" />
-          <input type="tel" required placeholder="Mobile Number (for Live Chilled Tracking)" class="w-full px-4 py-3 rounded-xl bg-cream-50 border border-espresso-900/15 text-sm focus:outline-none focus:border-gold-600" />
-          <textarea required rows="2" placeholder="Complete Delivery Address & PIN Code" class="w-full px-4 py-3 rounded-xl bg-cream-50 border border-espresso-900/15 text-sm focus:outline-none focus:border-gold-600"></textarea>
+        <form onsubmit="completeOrderViaWhatsApp(event)" class="space-y-3.5">
+          <input type="text" id="cust-name" required placeholder="Recipient Full Name *" class="w-full px-4 py-3 rounded-xl bg-cream-50 border border-espresso-900/15 text-sm focus:outline-none focus:border-gold-600" />
+          <input type="tel" id="cust-phone" required placeholder="Your Mobile / WhatsApp Number *" class="w-full px-4 py-3 rounded-xl bg-cream-50 border border-espresso-900/15 text-sm focus:outline-none focus:border-gold-600" />
+          <textarea id="cust-address" required rows="2" placeholder="Complete Delivery Address & PIN Code *" class="w-full px-4 py-3 rounded-xl bg-cream-50 border border-espresso-900/15 text-sm focus:outline-none focus:border-gold-600"></textarea>
+          <input type="text" id="cust-note" placeholder="Optional Delivery Instructions or Gift Note" class="w-full px-4 py-3 rounded-xl bg-cream-50 border border-espresso-900/15 text-sm focus:outline-none focus:border-gold-600" />
+          
           <div class="p-3.5 rounded-xl bg-cream-200/80 border border-gold-500/25 flex items-center justify-between text-xs">
-            <span class="font-medium text-espresso-800">Amount Payable (UPI / Card / COD)</span>
-            <span id="checkout-final-amount" class="font-serif text-lg font-bold text-espresso-950">₹449</span>
+            <span class="font-medium text-espresso-800">Total Payable (UPI / Card / COD)</span>
+            <span id="checkout-final-amount" class="font-serif text-lg font-bold text-espresso-950">₹0</span>
           </div>
-          <button type="submit" class="btn-gold-shimmer w-full py-4 rounded-2xl text-espresso-950 font-bold text-xs uppercase tracking-[0.16em]">
-            Confirm & Place Artisan Order
+          
+          <button type="submit" class="btn-gold-shimmer w-full py-4 rounded-2xl text-espresso-950 font-bold text-xs uppercase tracking-[0.15em] flex items-center justify-center gap-2 shadow-lg">
+            <i data-lucide="send" class="w-4 h-4"></i>
+            <span>Send Order on WhatsApp</span>
           </button>
         </form>
       </div>
 
       <div id="checkout-success-view" class="hidden text-center py-6 space-y-4">
-        <div class="w-16 h-16 rounded-full bg-gold-500/20 border-2 border-gold-500 text-gold-600 flex items-center justify-center mx-auto">
+        <div class="w-16 h-16 rounded-full bg-emerald-500/15 border-2 border-emerald-600 text-emerald-700 flex items-center justify-center mx-auto">
           <i data-lucide="check" class="w-8 h-8"></i>
         </div>
-        <span class="text-xs font-bold uppercase tracking-[0.22em] text-gold-600">Order Confirmed &bull; #VC-8942</span>
-        <h3 class="font-serif text-3xl font-semibold text-espresso-900">Thank You for Choosing Vintage Cocoa</h3>
+        <span class="text-xs font-bold uppercase tracking-[0.22em] text-gold-600">Redirected to WhatsApp Concierge</span>
+        <h3 class="font-serif text-3xl font-semibold text-espresso-900">Your Order Slip is Ready!</h3>
         <p class="text-xs sm:text-sm text-espresso-700 leading-relaxed">
-          Our master chocolatiers have received your order. Your chocolates are being freshly packed in our temperature-controlled gold-foil box.
+          Please press <strong>Send</strong> in WhatsApp to confirm your handcrafted chocolates with our chocolatier desk.
         </p>
         <button onclick="closeCheckoutModal()" class="px-8 py-3 rounded-full bg-espresso-900 text-gold-400 text-xs font-semibold uppercase tracking-widest">
-          Continue Exploring
+          Back to Storefront
         </button>
       </div>
     </div>
   </div>
 
   <!-- =====================================================================
-       JAVASCRIPT: INTERACTIVE ENGINE, STATE, TRANSITIONS & CART LOGIC
+       JAVASCRIPT: LIVE GOOGLE SHEETS CMS + WHATSAPP CHECKOUT + CLEAN CART
   ====================================================================== -->
   <script>
-    // 1. PRODUCT CATALOG DATA (Fixed spelling, clean photography, rich tasting metadata)
-    const PRODUCTS = [
+    // =====================================================================
+    // CONFIGURATION: OWNER WHATSAPP & LIVE GOOGLE SHEETS CSV ENDPOINT
+    // =====================================================================
+    const OWNER_WHATSAPP = '919876543210';
+    const GOOGLE_SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT_CN3MPQESzrACHK24VKw32sE1UcOrDVGQ4yCbswlO2jJF8PX3HDToqKqO02ACeRmh9_MgRNFCHRVk/pub?gid=0&single=true&output=csv';
+
+    // Fallback Catalog (Used only if Google Sheet is temporarily unreachable)
+    const FALLBACK_PRODUCTS = [
       {
         id: 'combo-5',
         name: 'Combo of 5 — Artisan Assortment',
         subtitle: 'Coffee, White Marble, Crackles, Seeds & Nuts',
         price: 150,
-        category: 'gift-boxes',
-        bestseller: true,
+        category: 'boxes',
         badge: 'Signature Strip',
-        cocoaPct: '64% Single-Origin',
-        weight: '75g (5 Heart Pralines)',
+        weight: '75g (5 Pieces)',
         image: 'https://images.unsplash.com/photo-1549007994-cb92caebd54b?auto=format&fit=crop&w=800&q=85',
-        fallback: 'https://placehold.co/600x600/1F120C/E5C158?text=Combo+of+5+Assortment',
-        description: 'Our signature gold-tray assortment featuring five hand-molded heart pralines: Espresso Roast Ganache, White Chocolate Marble, Crispy Rice Crackle, Roasted Pumpkin Seeds, and Kashmiri Almond.',
-        tastingNotes: ['Roasted Arabica', 'Velvet Cocoa', 'Crunchy Praline']
+        fallback: 'https://placehold.co/600x600/1F120C/E5C158?text=Combo+of+5',
+        description: 'Our signature gold-tray assortment featuring five hand-molded heart pralines crafted with pure single-origin cocoa butter.',
+        tastingNotes: ['Roasted Coffee', 'White Marble', 'Crisp Crackles']
       },
       {
         id: 'heart-pack-9',
         name: 'Heart Pack — 9 Royal Pralines',
         subtitle: 'Velvet Crimson & Gold Ribbon Keepsake Box',
         price: 250,
-        category: 'gift-boxes',
-        bestseller: true,
+        category: 'boxes',
         badge: 'Most Gifted',
-        cocoaPct: '60% Couverture',
-        weight: '135g (9 Gold-Foil Hearts)',
+        weight: '135g (9 Pieces)',
         image: 'https://images.unsplash.com/photo-1548907040-4baa42d10919?auto=format&fit=crop&w=800&q=85',
-        fallback: 'https://placehold.co/600x600/3E1216/E5C158?text=Heart+Pack+9+Pieces',
-        description: 'Presented in a plush heart-shaped keepsake box tied with satin ribbon. Nine individually gold-foiled chocolate hearts crafted to celebrate anniversaries, birthdays, and cherished moments.',
+        fallback: 'https://placehold.co/600x600/3E1216/E5C158?text=Heart+Pack+9',
+        description: 'Nine individually gold-foiled chocolate hearts presented in a plush heart-shaped keepsake box tied with satin ribbon.',
         tastingNotes: ['Silky Hazelnut', 'Caramelized Milk', 'Warm Vanilla']
       },
       {
@@ -953,14 +963,12 @@
         name: 'Surprise Jar — 50 Delightful Bites',
         subtitle: 'Assorted Jewel-Toned Foil Truffles in Glass Jar',
         price: 499,
-        category: 'jars-bars',
-        bestseller: true,
-        badge: 'Party & Family Favorite',
-        cocoaPct: '55%–70% Assorted',
-        weight: '450g (50 Wrapped Bites)',
+        category: 'jars',
+        badge: 'Family Favorite',
+        weight: '450g (50 Bites)',
         image: 'https://images.unsplash.com/photo-1511381939415-e44015466834?auto=format&fit=crop&w=800&q=85',
-        fallback: 'https://placehold.co/600x600/2D1B12/E5C158?text=Surprise+Jar+50+Bites',
-        description: 'An abundant apothecary glass jar brimming with 50 jewel-wrapped artisan chocolate bites across 8 surprise flavors including Orange Zest, Butterscotch, Dark Truffle, and Roasted Almond.',
+        fallback: 'https://placehold.co/600x600/2D1B12/E5C158?text=Surprise+Jar+50',
+        description: 'An abundant apothecary glass jar brimming with 50 jewel-wrapped artisan chocolate bites across 8 surprise flavors.',
         tastingNotes: ['Citrus Zest', 'Dark Ganache', 'Toasted Nuts']
       },
       {
@@ -968,49 +976,30 @@
         name: 'Butterscotch Crunch Jar',
         subtitle: 'Caramelized Golden Brittle & Belgian Milk Cocoa',
         price: 170,
-        category: 'jars-bars',
-        bestseller: false,
+        category: 'jars',
         badge: 'Small-Batch Crisp',
-        cocoaPct: '48% Creamy Milk',
-        weight: '180g (18 Gold-Foil Squares)',
+        weight: '180g (18 Squares)',
         image: 'https://images.unsplash.com/photo-1582176604856-e824b4736522?auto=format&fit=crop&w=800&q=85',
-        fallback: 'https://placehold.co/600x600/3E261A/E5C158?text=Butterscotch+Crunch+Jar',
-        description: 'Slow-cooked golden butterscotch brittle folded into creamy, stone-conched milk chocolate and individually wrapped in signature Vintage Cocoa gold foil.',
-        tastingNotes: ['Burnt Sugar Caramel', 'Salted Butter', 'Creamy Cocoa']
+        fallback: 'https://placehold.co/600x600/3E261A/E5C158?text=Butterscotch+Jar',
+        description: 'Slow-cooked golden butterscotch brittle folded into creamy, stone-conched milk chocolate wrapped in gold foil.',
+        tastingNotes: ['Golden Caramel', 'Salted Butter', 'Creamy Cocoa']
       },
       {
         id: 'protein-bar',
         name: 'Artisan Dark Protein Bar',
         subtitle: '70% Single-Origin Cocoa, Roasted Almonds & Whey',
         price: 75,
-        category: 'jars-bars',
-        bestseller: false,
+        category: 'bars',
         badge: 'Guilt-Free Indulgence',
-        cocoaPct: '70% Dark Cacao',
-        weight: '55g (14g Clean Protein)',
+        weight: '55g (14g Protein)',
         image: 'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=800&q=85',
-        fallback: 'https://placehold.co/600x600/140C08/E5C158?text=Artisan+Protein+Bar',
-        description: 'Crafted for discerning fitness enthusiasts who refuse to compromise on gourmet taste. Rich 70% dark chocolate loaded with California almonds, chia seeds, and clean protein.',
+        fallback: 'https://placehold.co/600x600/140C08/E5C158?text=Dark+Protein+Bar',
+        description: 'Rich 70% dark chocolate loaded with California almonds, chia seeds, and clean protein.',
         tastingNotes: ['Intense Dark Cacao', 'Toasted Almond', 'Zero Refined Sugar']
-      },
-      {
-        id: 'royal-hamper-18',
-        name: 'Royal Velvet Hamper — 18 Pieces',
-        subtitle: 'Gold-Embossed Collector’s Treasury Box',
-        price: 899,
-        category: 'gift-boxes',
-        bestseller: true,
-        badge: 'Luxury Reserve',
-        cocoaPct: '72% Grand Cru',
-        weight: '270g (18 Grand Pralines)',
-        image: 'https://images.unsplash.com/photo-1542843137-8791a6904d14?auto=format&fit=crop&w=800&q=85',
-        fallback: 'https://placehold.co/600x600/140C08/E5C158?text=Royal+Velvet+Hamper',
-        description: 'Our flagship collector’s trunk featuring 18 hand-finished pralines, edible 24K gold leaf truffles, pistachio rose marzipan, and a personalized wax-sealed message card.',
-        tastingNotes: ['24K Gold Leaf', 'Iranian Pistachio', 'Single-Estate Dark']
       }
     ];
 
-    // 2. CUSTOM BOX BUILDER FLAVORS
+    // Custom Box Builder Flavors
     const BUILDER_FLAVORS = [
       { id: 'espresso', name: 'Espresso Dark Truffle', note: '70% Dark & Arabica', color: '#24130C', accent: '#C59B27' },
       { id: 'marble', name: 'White Chocolate Marble', note: 'Madagascar Vanilla Swirl', color: '#EAE0D2', accent: '#6E4730' },
@@ -1020,13 +1009,27 @@
       { id: 'pistachio', name: 'Pistachio & Rose Petal', note: 'Royal Saffron Infusion', color: '#4B5E3A', accent: '#E5C158' }
     ];
 
-    // 3. APPLICATION STATE
+    // Load saved cart from localStorage (Starts 100% EMPTY on fresh visit/refresh)
+    function loadSavedCart() {
+      try {
+        const saved = localStorage.getItem('vintage_cocoa_cart_v1');
+        return saved ? JSON.parse(saved) : [];
+      } catch (e) {
+        return [];
+      }
+    }
+
+    function saveCart() {
+      try {
+        localStorage.setItem('vintage_cocoa_cart_v1', JSON.stringify(state.cart));
+      } catch (e) {}
+    }
+
+    // Application State
     let state = {
+      products: [...FALLBACK_PRODUCTS],
       activeFilter: 'all',
-      cart: [
-        { id: 'combo-5', name: 'Combo of 5 — Artisan Assortment', price: 150, qty: 1, image: PRODUCTS[0].image, meta: 'Signature Strip' },
-        { id: 'heart-pack-9', name: 'Heart Pack — 9 Royal Pralines', price: 250, qty: 1, image: PRODUCTS[1].image, meta: 'Velvet Gift Box' }
-      ],
+      cart: loadSavedCart(),
       promoApplied: false,
       builder: {
         size: 5,
@@ -1036,25 +1039,168 @@
       }
     };
 
-    // 4. INITIALIZE ON DOM READY
-    document.addEventListener('DOMContentLoaded', () => {
+    // Initialize App
+    document.addEventListener('DOMContentLoaded', async () => {
       lucide.createIcons();
-      renderProducts('all');
       renderBuilderFlavors();
       renderVelvetTray();
       updateCartUI();
       initScrollReveal();
       initHeroTilt();
+
+      // Show sleek loading state while fetching live Google Sheet
+      renderSkeletons();
+      await fetchLiveGoogleSheetProducts();
     });
 
-    // 5. RENDER PRODUCT GRID & CATEGORY FILTERING
-    function renderProducts(filter) {
+    // =====================================================================
+    // LIVE GOOGLE SHEETS CSV PARSER & SYNC ENGINE
+    // =====================================================================
+    function parseCSV(csvText) {
+      const rows = [];
+      let row = [];
+      let current = '';
+      let inQuotes = false;
+
+      for (let i = 0; i < csvText.length; i++) {
+        const char = csvText[i];
+        const nextChar = csvText[i + 1];
+
+        if (char === '"') {
+          if (inQuotes && nextChar === '"') {
+            current += '"';
+            i++;
+          } else {
+            inQuotes = !inQuotes;
+          }
+        } else if (char === ',' && !inQuotes) {
+          row.push(current.trim());
+          current = '';
+        } else if ((char === '\n' || (char === '\r' && nextChar === '\n')) && !inQuotes) {
+          if (char === '\r') i++;
+          row.push(current.trim());
+          if (row.some(cell => cell !== '')) rows.push(row);
+          row = [];
+          current = '';
+        } else {
+          current += char;
+        }
+      }
+      if (current !== '' || row.length > 0) {
+        row.push(current.trim());
+        if (row.some(cell => cell !== '')) rows.push(row);
+      }
+      return rows;
+    }
+
+    async function fetchLiveGoogleSheetProducts() {
+      try {
+        const cacheBusterUrl = `${GOOGLE_SHEET_CSV_URL}&_t=${Date.now()}`;
+        const response = await fetch(cacheBusterUrl);
+        if (!response.ok) throw new Error('Network response not ok');
+        const csvText = await response.text();
+        const rows = parseCSV(csvText);
+
+        if (rows.length > 1) {
+          const headers = rows[0].map(h => h.toLowerCase().trim());
+          const idx = (colName) => headers.indexOf(colName);
+
+          const liveItems = rows.slice(1).map((cols, index) => {
+            const rawPrice = (cols[idx('price')] || '150').replace(/[^0-9.]/g, '');
+            const parsedPrice = parseFloat(rawPrice) || 150;
+            const rawCat = (cols[idx('category')] || 'boxes').toLowerCase().trim();
+            
+            // Normalize category names
+            let category = 'boxes';
+            if (rawCat.includes('jar')) category = 'jars';
+            else if (rawCat.includes('bar')) category = 'bars';
+            else if (rawCat.includes('box')) category = 'boxes';
+
+            const notesRaw = cols[idx('notes')] || 'Pure Single-Origin Cocoa, Hand-Tempered';
+            const tastingNotes = notesRaw.split(',').map(s => s.trim()).filter(Boolean);
+            const name = cols[idx('name')] || `Artisan Creation #${index + 1}`;
+            const image = cols[idx('image')] || FALLBACK_PRODUCTS[index % FALLBACK_PRODUCTS.length].image;
+
+            return {
+              id: cols[idx('id')] || `vc-item-${index + 1}`,
+              name: name,
+              subtitle: cols[idx('subtitle')] || 'Small-Batch Handcrafted Chocolate',
+              category: category,
+              price: parsedPrice,
+              badge: cols[idx('badge')] || 'Handcrafted',
+              image: image,
+              fallback: `https://placehold.co/600x600/1F120C/E5C158?text=${encodeURIComponent(name)}`,
+              description: cols[idx('description')] || 'Hand-poured in small batches using 100% pure cocoa butter and premium roasted ingredients.',
+              tastingNotes: tastingNotes.length ? tastingNotes : ['100% Pure Cocoa'],
+              weight: cols[idx('weight')] || 'Artisan Pack'
+            };
+          }).filter(item => item.name && item.price > 0);
+
+          if (liveItems.length > 0) {
+            state.products = liveItems;
+            updateHeroSpotlight(liveItems[0]);
+          }
+        }
+      } catch (err) {
+        console.warn('Using fallback catalog:', err);
+      } finally {
+        renderProducts(state.activeFilter);
+      }
+    }
+
+    function updateHeroSpotlight(featured) {
+      if (!featured) return;
+      document.getElementById('hero-spotlight-img').src = featured.image;
+      document.getElementById('hero-spotlight-badge').textContent = featured.badge;
+      document.getElementById('hero-spotlight-title').textContent = featured.name;
+      document.getElementById('hero-spotlight-price').textContent = `₹${featured.price}`;
+      document.getElementById('hero-spotlight-sub').textContent = featured.subtitle;
+    }
+
+    function addFirstProductToCart() {
+      if (state.products.length > 0) {
+        addToCartById(state.products[0].id);
+      }
+    }
+
+    function renderSkeletons() {
       const grid = document.getElementById('product-grid');
-      const filtered = PRODUCTS.filter(p => {
+      grid.innerHTML = Array(3).fill(0).map(() => `
+        <div class="rounded-3xl bg-cream-50 border border-espresso-900/10 overflow-hidden animate-pulse">
+          <div class="aspect-[4/3] bg-espresso-900/15"></div>
+          <div class="p-6 space-y-3">
+            <div class="h-3 w-24 bg-espresso-900/15 rounded"></div>
+            <div class="h-6 w-3/4 bg-espresso-900/15 rounded"></div>
+            <div class="h-4 w-full bg-espresso-900/10 rounded"></div>
+            <div class="pt-4 flex justify-between items-center">
+              <div class="h-7 w-16 bg-espresso-900/15 rounded"></div>
+              <div class="h-10 w-24 bg-espresso-900/15 rounded-xl"></div>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // =====================================================================
+    // RENDER PRODUCT GRID & CATEGORY FILTERING
+    // =====================================================================
+    function renderProducts(filter) {
+      state.activeFilter = filter;
+      const grid = document.getElementById('product-grid');
+      const filtered = state.products.filter(p => {
         if (filter === 'all') return true;
-        if (filter === 'bestsellers') return p.bestseller;
         return p.category === filter;
       });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div class="col-span-full text-center py-12 space-y-2">
+            <p class="font-serif text-2xl text-espresso-800">No creations in this category yet</p>
+            <button onclick="resetFilterToAll()" class="text-xs font-bold uppercase tracking-widest text-gold-700 underline">View All Creations</button>
+          </div>
+        `;
+        return;
+      }
 
       grid.innerHTML = filtered.map(product => `
         <article class="group rounded-3xl bg-cream-50 border border-espresso-900/10 hover:border-gold-500/60 overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 flex flex-col">
@@ -1064,24 +1210,25 @@
               src="${product.image}" 
               onerror="this.src='${product.fallback}'"
               alt="${product.name}" 
-              class="w-full h-full object-cover object-center group-hover:scale-108 transition-transform duration-700 ease-out"
+              loading="lazy"
+              class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
             />
-            <div class="absolute inset-0 bg-gradient-to-t from-espresso-950/75 via-transparent to-espresso-950/20 opacity-80 group-hover:opacity-95 transition-opacity"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-espresso-950/80 via-transparent to-espresso-950/20"></div>
             
             <!-- Top Badge -->
-            <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-espresso-950/85 backdrop-blur-md border border-gold-500/40 text-gold-300 text-[10px] font-semibold uppercase tracking-[0.18em]">
+            <span class="absolute top-3.5 left-3.5 px-3 py-1 rounded-full bg-espresso-950/85 backdrop-blur-md border border-gold-500/40 text-gold-300 text-[10px] font-semibold uppercase tracking-[0.16em]">
               ${product.badge}
             </span>
 
-            <!-- Quick View Eye Button -->
-            <button onclick="openQuickView('${product.id}')" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-cream-50/90 hover:bg-gold-400 text-espresso-950 flex items-center justify-center shadow-md opacity-90 sm:opacity-0 group-hover:opacity-100 transform translate-y-1 group-hover:translate-y-0 transition-all duration-300" title="Quick View Tasting Notes">
+            <!-- Mobile & Desktop Quick View Button -->
+            <button onclick="openQuickView('${product.id}')" class="absolute top-3.5 right-3.5 w-9 h-9 rounded-full bg-cream-50/95 hover:bg-gold-400 text-espresso-950 flex items-center justify-center shadow-md transition-all" title="Quick View">
               <i data-lucide="eye" class="w-4 h-4"></i>
             </button>
 
-            <!-- Hover Tasting Notes Overlay -->
-            <div class="absolute bottom-3 left-4 right-4 flex flex-wrap gap-1.5 transform translate-y-2 opacity-90 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-              ${product.tastingNotes.map(note => `
-                <span class="px-2.5 py-0.5 rounded-full bg-espresso-950/80 backdrop-blur-sm border border-gold-500/30 text-[10px] text-cream-100">
+            <!-- Tasting Notes Pills -->
+            <div class="absolute bottom-3 left-3.5 right-3.5 flex flex-wrap gap-1.5">
+              ${product.tastingNotes.slice(0, 3).map(note => `
+                <span class="px-2.5 py-0.5 rounded-full bg-espresso-950/85 backdrop-blur-sm border border-gold-500/30 text-[10px] text-cream-100">
                   ${note}
                 </span>
               `).join('')}
@@ -1089,21 +1236,21 @@
           </div>
 
           <!-- Product Details -->
-          <div class="p-6 flex-1 flex flex-col justify-between space-y-5">
+          <div class="p-5 sm:p-6 flex-1 flex flex-col justify-between space-y-4">
             <div>
               <div class="flex items-center justify-between text-[11px] uppercase tracking-wider text-gold-700 font-semibold mb-1">
-                <span>${product.cocoaPct}</span>
+                <span>100% Pure Cocoa</span>
                 <span>${product.weight}</span>
               </div>
-              <h3 class="font-serif text-2xl font-semibold text-espresso-900 group-hover:text-gold-700 transition-colors">
+              <h3 class="font-serif text-xl sm:text-2xl font-semibold text-espresso-900 group-hover:text-gold-700 transition-colors">
                 ${product.name}
               </h3>
-              <p class="text-xs sm:text-sm text-espresso-700/75 mt-1.5 line-clamp-2">
+              <p class="text-xs sm:text-sm text-espresso-700/75 mt-1 line-clamp-2">
                 ${product.subtitle}
               </p>
             </div>
 
-            <div class="pt-4 border-t border-espresso-900/10 flex items-center justify-between gap-3">
+            <div class="pt-3.5 border-t border-espresso-900/10 flex items-center justify-between gap-3">
               <div>
                 <span class="text-[10px] uppercase tracking-widest text-espresso-600 block">Price</span>
                 <span class="font-serif text-2xl font-bold text-espresso-950">₹${product.price}</span>
@@ -1113,7 +1260,7 @@
                 <button onclick="openQuickView('${product.id}')" class="px-3.5 py-2.5 rounded-xl border border-espresso-900/15 hover:border-espresso-900 text-xs font-semibold text-espresso-800 transition">
                   Details
                 </button>
-                <button onclick="addToCartById('${product.id}')" class="px-5 py-2.5 rounded-xl bg-espresso-900 hover:bg-gold-500 text-gold-400 hover:text-espresso-950 font-semibold text-xs uppercase tracking-wider transition-all duration-300 flex items-center gap-1.5 shadow-md">
+                <button onclick="addToCartById('${product.id}')" class="px-5 py-2.5 rounded-xl bg-espresso-900 hover:bg-gold-500 active:bg-gold-500 text-gold-400 hover:text-espresso-950 active:text-espresso-950 font-semibold text-xs uppercase tracking-wider transition-all duration-300 flex items-center gap-1.5 shadow-md">
                   <i data-lucide="plus" class="w-3.5 h-3.5"></i>
                   <span>Add</span>
                 </button>
@@ -1126,7 +1273,11 @@
       lucide.createIcons();
     }
 
-    // Filter Tab Click Handlers
+    function resetFilterToAll() {
+      const allBtn = document.querySelector('.filter-btn[data-filter="all"]');
+      if (allBtn) allBtn.click();
+    }
+
     document.querySelectorAll('.filter-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         document.querySelectorAll('.filter-btn').forEach(b => {
@@ -1139,20 +1290,21 @@
       });
     });
 
-    // 6. INTERACTIVE 'BUILD YOUR OWN LUXURY BOX' ENGINE
+    // =====================================================================
+    // INTERACTIVE 'BUILD YOUR OWN LUXURY BOX' ENGINE
+    // =====================================================================
     function renderBuilderFlavors() {
       const container = document.getElementById('flavor-palette');
       container.innerHTML = BUILDER_FLAVORS.map(flavor => `
-        <button onclick="addFlavorToBox('${flavor.id}')" class="group p-3 rounded-2xl bg-espresso-950/75 hover:bg-espresso-800 border border-gold-500/20 hover:border-gold-400 flex items-center gap-3 text-left transition-all duration-200">
-          <!-- Artisanal Praline Swatch SVG -->
-          <div class="w-10 h-10 rounded-full shrink-0 flex items-center justify-center shadow-inner border border-gold-500/30 group-hover:scale-110 transition-transform" style="background: radial-gradient(circle at 30% 30%, ${flavor.accent}, ${flavor.color});">
+        <button onclick="addFlavorToBox('${flavor.id}')" class="group p-3 rounded-2xl bg-espresso-950/80 hover:bg-espresso-800 active:bg-espresso-800 border border-gold-500/20 hover:border-gold-400 flex items-center gap-3 text-left transition-all duration-200">
+          <div class="w-10 h-10 rounded-full shrink-0 flex items-center justify-center shadow-inner border border-gold-500/30" style="background: radial-gradient(circle at 30% 30%, ${flavor.accent}, ${flavor.color});">
             <div class="w-5 h-5 rounded-full border border-white/20"></div>
           </div>
           <div class="min-w-0 flex-1">
             <p class="text-xs font-semibold text-cream-100 truncate">${flavor.name}</p>
             <p class="text-[10px] text-cream-300/60 truncate">${flavor.note}</p>
           </div>
-          <span class="w-6 h-6 rounded-full bg-gold-500/15 text-gold-400 flex items-center justify-center text-xs font-bold group-hover:bg-gold-500 group-hover:text-espresso-950 transition">+</span>
+          <span class="w-7 h-7 rounded-full bg-gold-500/15 text-gold-400 flex items-center justify-center text-sm font-bold group-hover:bg-gold-500 group-hover:text-espresso-950 transition shrink-0">+</span>
         </button>
       `).join('');
     }
@@ -1182,7 +1334,7 @@
 
     function addFlavorToBox(flavorId) {
       if (state.builder.slots.length >= state.builder.size) {
-        showToast(`Your ${state.builder.size}-piece box is full! Click a slot to swap or add to bag.`);
+        showToast(`Your ${state.builder.size}-piece box is full! Tap a praline to remove or add to bag.`);
         return;
       }
       const flavor = BUILDER_FLAVORS.find(f => f.id === flavorId);
@@ -1213,21 +1365,20 @@
       const tray = document.getElementById('velvet-tray');
       const { size, slots, price } = state.builder;
       
-      // Adjust grid columns cleanly based on box size
       tray.className = size === 5 
-        ? 'grid grid-cols-5 gap-2.5 sm:gap-4 justify-items-center'
+        ? 'grid grid-cols-5 gap-2 sm:gap-4 justify-items-center'
         : size === 9 
           ? 'grid grid-cols-3 gap-3 sm:gap-4 max-w-xs mx-auto justify-items-center'
-          : 'grid grid-cols-4 gap-3 max-w-sm mx-auto justify-items-center';
+          : 'grid grid-cols-4 gap-2.5 sm:gap-3 max-w-sm mx-auto justify-items-center';
 
       let html = '';
       for (let i = 0; i < size; i++) {
         const item = slots[i];
         if (item) {
           html += `
-            <button onclick="removeSlotFromBox(${i})" title="${item.name} (Click to remove)" class="animate-slot-pop w-12 h-12 sm:w-14 sm:h-14 rounded-full shadow-lg border-2 border-gold-400/80 flex items-center justify-center relative group transition-transform hover:scale-105" style="background: radial-gradient(circle at 30% 30%, ${item.accent}, ${item.color});">
+            <button onclick="removeSlotFromBox(${i})" title="${item.name} (Tap to remove)" class="animate-slot-pop w-12 h-12 sm:w-14 sm:h-14 rounded-full shadow-lg border-2 border-gold-400/80 flex items-center justify-center relative group transition-transform active:scale-95" style="background: radial-gradient(circle at 30% 30%, ${item.accent}, ${item.color});">
               <span class="text-[9px] font-bold text-white drop-shadow text-center leading-tight px-1">${item.name.split(' ')[0]}</span>
-              <span class="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-red-600 text-white text-[10px] hidden group-hover:flex items-center justify-center">×</span>
+              <span class="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-red-600 text-white text-[10px] flex items-center justify-center shadow">×</span>
             </button>
           `;
         } else {
@@ -1240,7 +1391,6 @@
       }
       tray.innerHTML = html;
 
-      // Update Counter & CTA Button State
       const remaining = size - slots.length;
       document.getElementById('slot-counter').textContent = `${slots.length} / ${size} Filled`;
       const ctaLabel = document.getElementById('add-custom-box-label');
@@ -1258,7 +1408,7 @@
         return;
       }
       const note = document.getElementById('gift-note-input').value.trim();
-      const flavorSummary = [...new Set(slots.map(s => s.name.split(' ')[0]))].join(', ');
+      const flavorSummary = slots.map(s => s.name.split(' ')[0]).join(', ');
       
       state.cart.push({
         id: 'custom-' + Date.now(),
@@ -1266,40 +1416,43 @@
         price: price,
         qty: 1,
         image: 'https://images.unsplash.com/photo-1549007994-cb92caebd54b?auto=format&fit=crop&w=400&q=80',
-        meta: note ? `Assortment: ${flavorSummary} | Note: "${note}"` : `Assortment: ${flavorSummary}`
+        meta: note ? `Flavors: ${flavorSummary} | Note: "${note}"` : `Flavors: ${flavorSummary}`
       });
 
+      saveCart();
       updateCartUI();
       toggleCart(true);
-      showToast('Your bespoke gift box has been added to your velvet bag!');
+      showToast('Your bespoke gift box has been added!');
     }
 
-    // 7. QUICK-VIEW MODAL LOGIC
+    // =====================================================================
+    // QUICK-VIEW MODAL & SEARCH OVERLAY
+    // =====================================================================
     function openQuickView(productId) {
-      const p = PRODUCTS.find(item => item.id === productId);
+      const p = state.products.find(item => item.id === productId);
       if (!p) return;
 
       const content = document.getElementById('quick-view-content');
       content.innerHTML = `
-        <div class="relative aspect-square md:aspect-auto bg-espresso-900">
+        <div class="relative aspect-[4/3] md:aspect-auto bg-espresso-900">
           <img src="${p.image}" onerror="this.src='${p.fallback}'" alt="${p.name}" class="w-full h-full object-cover" />
-          <span class="absolute bottom-4 left-4 px-3 py-1 rounded-full bg-espresso-950/85 text-gold-300 text-xs border border-gold-500/30">${p.cocoaPct}</span>
+          <span class="absolute bottom-3 left-3 px-3 py-1 rounded-full bg-espresso-950/85 text-gold-300 text-xs border border-gold-500/30">${p.weight}</span>
         </div>
         <div class="p-6 sm:p-8 flex flex-col justify-between space-y-5">
-          <div class="space-y-3">
-            <span class="text-xs font-bold uppercase tracking-[0.2em] text-gold-600">${p.badge} &bull; ${p.weight}</span>
-            <h3 class="font-serif text-3xl font-semibold text-espresso-950">${p.name}</h3>
+          <div class="space-y-2.5">
+            <span class="text-xs font-bold uppercase tracking-[0.2em] text-gold-600">${p.badge}</span>
+            <h3 class="font-serif text-2xl sm:text-3xl font-semibold text-espresso-950">${p.name}</h3>
             <p class="font-serif text-2xl font-bold text-gold-700">₹${p.price}</p>
             <p class="text-xs sm:text-sm text-espresso-700 leading-relaxed">${p.description}</p>
             <div class="pt-2">
               <span class="text-[11px] font-bold uppercase tracking-wider text-espresso-900 block mb-2">Tasting Notes</span>
-              <div class="flex flex-wrap gap-2">
+              <div class="flex flex-wrap gap-1.5">
                 ${p.tastingNotes.map(n => `<span class="px-3 py-1 rounded-full bg-cream-200 text-espresso-800 text-xs font-medium">${n}</span>`).join('')}
               </div>
             </div>
           </div>
 
-          <button onclick="addToCartById('${p.id}'); closeQuickView();" class="btn-gold-shimmer w-full py-3.5 rounded-2xl text-espresso-950 font-bold text-xs uppercase tracking-[0.15em] flex items-center justify-center gap-2">
+          <button onclick="addToCartById('${p.id}'); closeQuickView();" class="btn-gold-shimmer w-full py-4 rounded-2xl text-espresso-950 font-bold text-xs uppercase tracking-[0.15em] flex items-center justify-center gap-2">
             <i data-lucide="shopping-bag" class="w-4 h-4"></i>
             <span>Add to Velvet Bag — ₹${p.price}</span>
           </button>
@@ -1318,7 +1471,45 @@
       modal.classList.remove('flex');
     }
 
-    // 8. CART DRAWER & GAMIFIED PROGRESS BAR LOGIC
+    function openSearchModal() {
+      const modal = document.getElementById('search-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      document.getElementById('search-input').focus();
+      handleSearch('');
+    }
+
+    function closeSearchModal() {
+      const modal = document.getElementById('search-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function handleSearch(query) {
+      const q = query.toLowerCase().trim();
+      const matches = state.products.filter(p => 
+        p.name.toLowerCase().includes(q) || 
+        p.subtitle.toLowerCase().includes(q) ||
+        p.tastingNotes.some(t => t.toLowerCase().includes(q))
+      );
+
+      document.getElementById('search-results').innerHTML = matches.map(p => `
+        <div onclick="closeSearchModal(); openQuickView('${p.id}')" class="flex items-center justify-between p-3 rounded-2xl hover:bg-espresso-800 active:bg-espresso-800 cursor-pointer transition gap-3">
+          <div class="flex items-center gap-3 min-w-0">
+            <img src="${p.image}" onerror="this.src='${p.fallback}'" class="w-12 h-12 rounded-xl object-cover shrink-0" />
+            <div class="min-w-0">
+              <p class="font-serif text-base font-semibold text-cream-50 truncate">${p.name}</p>
+              <p class="text-xs text-cream-300/65 truncate">${p.subtitle}</p>
+            </div>
+          </div>
+          <span class="font-serif font-bold text-gold-400 shrink-0">₹${p.price}</span>
+        </div>
+      `).join('');
+    }
+
+    // =====================================================================
+    // CART DRAWER & WHATSAPP ORDER INTEGRATION
+    // =====================================================================
     function toggleCart(open) {
       const drawer = document.getElementById('cart-drawer');
       const backdrop = document.getElementById('cart-backdrop');
@@ -1332,7 +1523,7 @@
     }
 
     function addToCartById(productId) {
-      const product = PRODUCTS.find(p => p.id === productId);
+      const product = state.products.find(p => p.id === productId);
       if (!product) return;
 
       const existing = state.cart.find(item => item.id === productId);
@@ -1349,6 +1540,7 @@
         });
       }
 
+      saveCart();
       updateCartUI();
       showToast(`Added "${product.name}" to your bag`);
     }
@@ -1358,6 +1550,7 @@
       if (state.cart[index].qty <= 0) {
         state.cart.splice(index, 1);
       }
+      saveCart();
       updateCartUI();
     }
 
@@ -1372,26 +1565,41 @@
       }
     }
 
-    function updateCartUI() {
-      const container = document.getElementById('cart-items-container');
+    function getCartTotals() {
       const totalItems = state.cart.reduce((sum, item) => sum + item.qty, 0);
       const subtotal = state.cart.reduce((sum, item) => sum + item.price * item.qty, 0);
       const discount = state.promoApplied ? Math.round(subtotal * 0.1) : 0;
       const freeGiftThreshold = 499;
       const shipping = subtotal >= freeGiftThreshold || subtotal === 0 ? 0 : 49;
       const finalTotal = Math.max(0, subtotal - discount + shipping);
+      return { totalItems, subtotal, discount, freeGiftThreshold, shipping, finalTotal };
+    }
+
+    function updateCartUI() {
+      const container = document.getElementById('cart-items-container');
+      const { totalItems, subtotal, discount, freeGiftThreshold, shipping, finalTotal } = getCartTotals();
 
       // Update Navbar & Drawer Badges
       document.getElementById('nav-cart-count').textContent = totalItems;
       document.getElementById('nav-cart-total').textContent = `₹${subtotal}`;
       document.getElementById('drawer-item-count').textContent = `${totalItems} Handcrafted Item${totalItems !== 1 ? 's' : ''}`;
 
+      // Mobile Sticky Bottom Bag Bar
+      const mobileBar = document.getElementById('mobile-sticky-bag');
+      if (totalItems > 0) {
+        mobileBar.classList.remove('hidden');
+        document.getElementById('mobile-bar-count').textContent = totalItems;
+        document.getElementById('mobile-bar-total').textContent = `₹${finalTotal}`;
+      } else {
+        mobileBar.classList.add('hidden');
+      }
+
       // Gamified Progress Bar
       const pct = Math.min(100, Math.round((subtotal / freeGiftThreshold) * 100));
       document.getElementById('shipping-progress-bar').style.width = `${pct}%`;
       document.getElementById('shipping-progress-pct').textContent = `${pct}%`;
       if (subtotal >= freeGiftThreshold) {
-        document.getElementById('shipping-progress-text').innerHTML = `<span class="text-emerald-800 font-semibold">Unlocked! Complimentary Gold Gift Wrap & Free Shipping</span>`;
+        document.getElementById('shipping-progress-text').innerHTML = `<span class="text-emerald-800 font-semibold">Unlocked! Free Gold Gift Wrap & Shipping</span>`;
       } else {
         document.getElementById('shipping-progress-text').textContent = `Add ₹${freeGiftThreshold - subtotal} more for Complimentary Gold Gift Wrap!`;
       }
@@ -1399,25 +1607,25 @@
       // Render Cart Items
       if (state.cart.length === 0) {
         container.innerHTML = `
-          <div class="text-center py-16 space-y-3">
+          <div class="text-center py-14 space-y-3">
             <i data-lucide="shopping-bag" class="w-10 h-10 text-espresso-400 mx-auto"></i>
             <p class="font-serif text-xl text-espresso-800">Your velvet bag is empty</p>
-            <p class="text-xs text-espresso-600">Explore our small-batch pralines or build your custom gift box.</p>
+            <p class="text-xs text-espresso-600 max-w-xs mx-auto">Explore our small-batch pralines or curate your custom gift box.</p>
           </div>
         `;
       } else {
         container.innerHTML = state.cart.map((item, idx) => `
-          <div class="flex gap-3.5 p-3.5 rounded-2xl bg-cream-50 border border-espresso-900/10 shadow-sm">
+          <div class="flex gap-3 p-3.5 rounded-2xl bg-cream-50 border border-espresso-900/10 shadow-sm">
             <img src="${item.image}" alt="${item.name}" class="w-16 h-16 rounded-xl object-cover shrink-0 bg-espresso-900" />
             <div class="flex-1 min-w-0">
               <h4 class="font-serif text-base font-semibold text-espresso-900 truncate">${item.name}</h4>
               <p class="text-[11px] text-espresso-600 truncate">${item.meta}</p>
               <div class="flex items-center justify-between mt-2">
                 <span class="font-bold text-sm text-espresso-950">₹${item.price * item.qty}</span>
-                <div class="flex items-center gap-2 bg-cream-200 rounded-lg px-2 py-0.5 border border-espresso-900/10">
-                  <button onclick="updateCartQty(${idx}, -1)" class="text-xs font-bold px-1.5 text-espresso-800 hover:text-gold-700">−</button>
+                <div class="flex items-center gap-2 bg-cream-200 rounded-lg px-2 py-1 border border-espresso-900/10">
+                  <button onclick="updateCartQty(${idx}, -1)" class="text-xs font-bold px-2 text-espresso-800 hover:text-gold-700">−</button>
                   <span class="text-xs font-semibold w-4 text-center">${item.qty}</span>
-                  <button onclick="updateCartQty(${idx}, 1)" class="text-xs font-bold px-1.5 text-espresso-800 hover:text-gold-700">+</button>
+                  <button onclick="updateCartQty(${idx}, 1)" class="text-xs font-bold px-2 text-espresso-800 hover:text-gold-700">+</button>
                 </div>
               </div>
             </div>
@@ -1441,44 +1649,6 @@
       lucide.createIcons();
     }
 
-    // 9. SEARCH OVERLAY LOGIC
-    function openSearchModal() {
-      const modal = document.getElementById('search-modal');
-      modal.classList.remove('hidden');
-      modal.classList.add('flex');
-      document.getElementById('search-input').focus();
-      handleSearch('');
-    }
-
-    function closeSearchModal() {
-      const modal = document.getElementById('search-modal');
-      modal.classList.add('hidden');
-      modal.classList.remove('flex');
-    }
-
-    function handleSearch(query) {
-      const q = query.toLowerCase().trim();
-      const matches = PRODUCTS.filter(p => 
-        p.name.toLowerCase().includes(q) || 
-        p.subtitle.toLowerCase().includes(q) ||
-        p.tastingNotes.some(t => t.toLowerCase().includes(q))
-      );
-
-      document.getElementById('search-results').innerHTML = matches.map(p => `
-        <div onclick="closeSearchModal(); openQuickView('${p.id}')" class="flex items-center justify-between p-3 rounded-2xl hover:bg-espresso-800 cursor-pointer transition">
-          <div class="flex items-center gap-3">
-            <img src="${p.image}" class="w-12 h-12 rounded-xl object-cover" />
-            <div>
-              <p class="font-serif text-base font-semibold text-cream-50">${p.name}</p>
-              <p class="text-xs text-cream-300/65">${p.subtitle}</p>
-            </div>
-          </div>
-          <span class="font-serif font-bold text-gold-400">₹${p.price}</span>
-        </div>
-      `).join('');
-    }
-
-    // 10. CHECKOUT SIMULATION & CONCIERGE FORM
     function openCheckoutModal() {
       if (state.cart.length === 0) {
         showToast('Your bag is empty. Add chocolates before checkout.');
@@ -1498,31 +1668,70 @@
       modal.classList.remove('flex');
     }
 
-    function completeOrder(e) {
+    function completeOrderViaWhatsApp(e) {
       e.preventDefault();
+      const name = document.getElementById('cust-name').value.trim();
+      const phone = document.getElementById('cust-phone').value.trim();
+      const address = document.getElementById('cust-address').value.trim();
+      const note = document.getElementById('cust-note').value.trim();
+      const { subtotal, discount, shipping, finalTotal } = getCartTotals();
+
+      const itemLines = state.cart.map((item, idx) => 
+        `${idx + 1}. *${item.name}* (x${item.qty}) — ₹${item.price * item.qty}\n   _${item.meta}_`
+      ).join('\n');
+
+      const orderId = 'VC-' + Math.floor(1000 + Math.random() * 9000);
+      const message = [
+        `*NEW ORDER — VINTAGE COCOA*`,
+        `Order Ref: *#${orderId}*`,
+        `--------------------------------`,
+        `*Customer:* ${name}`,
+        `*Mobile:* ${phone}`,
+        `*Address:* ${address}`,
+        note ? `*Gift/Delivery Note:* ${note}` : null,
+        `--------------------------------`,
+        `*Order Items:*`,
+        itemLines,
+        `--------------------------------`,
+        `Subtotal: ₹${subtotal}`,
+        state.promoApplied ? `Promo (ROYAL10): -₹${discount}` : null,
+        `Chilled Shipping: ${shipping === 0 ? 'FREE' : '₹' + shipping}`,
+        `*Total Payable: ₹${finalTotal}*`,
+        `--------------------------------`,
+        `Please confirm availability & share UPI/Payment link.`
+      ].filter(Boolean).join('\n');
+
+      const whatsappUrl = `https://wa.me/${OWNER_WHATSAPP}?text=${encodeURIComponent(message)}`;
+      window.open(whatsappUrl, '_blank', 'noopener');
+
       document.getElementById('checkout-form-view').classList.add('hidden');
       document.getElementById('checkout-success-view').classList.remove('hidden');
       state.cart = [];
       state.promoApplied = false;
+      saveCart();
       updateCartUI();
       lucide.createIcons();
     }
 
     function handleConciergeSubmit(e) {
       e.preventDefault();
+      const name = document.getElementById('concierge-name').value.trim();
+      const phone = document.getElementById('concierge-phone').value.trim();
+      const occasion = document.getElementById('concierge-occasion').value;
+
+      const msg = `Hello *Vintage Cocoa Gifting Concierge*,\n\nI would like to request your bespoke catalog.\n*Name/Company:* ${name}\n*Phone:* ${phone}\n*Occasion:* ${occasion}`;
+      window.open(`https://wa.me/${OWNER_WHATSAPP}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
       e.target.reset();
-      showToast('Thank you! Our Luxury Gifting Concierge will send the bespoke lookbook shortly.');
     }
 
     function toggleMobileMenu() {
       document.getElementById('mobile-menu').classList.toggle('hidden');
     }
 
-    // 11. LUXURY TOAST NOTIFICATIONS
     function showToast(message) {
       const container = document.getElementById('toast-container');
       const toast = document.createElement('div');
-      toast.className = 'pointer-events-auto px-5 py-3.5 rounded-2xl bg-espresso-950/95 text-cream-100 border border-gold-500/45 shadow-2xl flex items-center gap-3 text-xs font-medium animate-slot-pop max-w-sm';
+      toast.className = 'pointer-events-auto px-4 py-3 rounded-2xl bg-espresso-950/95 text-cream-100 border border-gold-500/45 shadow-2xl flex items-center gap-2.5 text-xs font-medium animate-slot-pop max-w-xs sm:max-w-sm';
       toast.innerHTML = `
         <span class="w-2 h-2 rounded-full bg-gold-400 shrink-0"></span>
         <span>${message}</span>
@@ -1530,13 +1739,12 @@
       container.appendChild(toast);
       setTimeout(() => {
         toast.style.opacity = '0';
-        toast.style.transform = 'translateY(10px)';
-        toast.style.transition = 'all 0.35s ease';
-        setTimeout(() => toast.remove(), 350);
-      }, 3200);
+        toast.style.transform = 'translateY(-8px)';
+        toast.style.transition = 'all 0.3s ease';
+        setTimeout(() => toast.remove(), 300);
+      }, 2800);
     }
 
-    // 12. SCROLL REVEAL & 3D HERO TILT INTERACTION
     function initScrollReveal() {
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -1544,14 +1752,14 @@
             entry.target.classList.add('is-visible');
           }
         });
-      }, { threshold: 0.12 });
+      }, { threshold: 0.1 });
 
       document.querySelectorAll('.reveal-up').forEach(el => observer.observe(el));
     }
 
     function initHeroTilt() {
       const card = document.getElementById('hero-tilt-card');
-      if (!card) return;
+      if (!card || window.innerWidth < 1024) return;
 
       card.addEventListener('mousemove', (e) => {
         const rect = card.getBoundingClientRect();
@@ -1559,8 +1767,8 @@
         const y = e.clientY - rect.top;
         const centerX = rect.width / 2;
         const centerY = rect.height / 2;
-        const rotateX = ((y - centerY) / centerY) * -6;
-        const rotateY = ((x - centerX) / centerX) * 6;
+        const rotateX = ((y - centerY) / centerY) * -5;
+        const rotateY = ((x - centerX) / centerX) * 5;
         card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
       });
 
@@ -1569,7 +1777,6 @@
       });
     }
 
-    // Close modals on Escape key
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         closeSearchModal();
